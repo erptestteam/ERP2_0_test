@@ -8,6 +8,7 @@ import views
 urlpatterns = patterns('',
     url(r'^$', views.index),
     url(r'^testdb$',views.testdb),
+    url(r'^',views.index),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

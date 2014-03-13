@@ -9,13 +9,23 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
 from django.db import transaction
 from django.db import connection
-import MySQLdb
 from django.conf import settings
 from django.utils import simplejson
 
+import MySQLdb
+from django.db import connection
+from django.db import transaction
+from django.utils import simplejson
+import json
+import re
+import time
+import logging
 
 def index(request):
     return HttpResponse('hello django.')
 
 def testdb(request):
-    return HttpResponse(0)
+    cursor = connection.cursor()
+    cursor.execute('select id,name,material_type from ent_material')
+    res = cursor.fetchall()
+    return HttpResponse(simplejson.dumps(res, ensure_ascii=False))

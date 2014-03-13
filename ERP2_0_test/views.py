@@ -11,6 +11,11 @@ from django.db import transaction
 from django.db import connection
 import MySQLdb
 from django.conf import settings
+from django.utils import simplejson
+
 
 def index(request):
-    return HttpResponse('heloo,e')
+    return HttpResponse('hello django.')
+
+def testdb(request):
+    return HttpResponse(0)

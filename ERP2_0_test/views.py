@@ -21,6 +21,8 @@ import re
 import time
 import logging
 
+from mysqldb_inspect import models as dbmodels
+
 def index(request):
     return HttpResponse('hello django.')
 
@@ -29,3 +31,11 @@ def testdb(request):
     cursor.execute('select id,name,material_type from ent_material')
     res = cursor.fetchall()
     return HttpResponse(simplejson.dumps(res, ensure_ascii=False))
+
+def testdb2(request):
+    materialList = dbmodels.EntMaterial.objects.all()
+    jsonList = []
+    for ma in materialList:
+        jsonList.append({'id':ma.id, 'name': ma.name})
+    return HttpResponse(simplejson.dumps(jsonList, ensure_ascii=False))
+

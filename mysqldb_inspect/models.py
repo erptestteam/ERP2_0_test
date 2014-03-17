@@ -8,6 +8,7 @@
 # into your database.
 
 from django.db import models
+from function import ERPFunction
 
 class EntItem(models.Model):
     id = models.IntegerField(primary_key=True)
@@ -31,7 +32,7 @@ class EntMachine(models.Model):
     class Meta:
         db_table = u'ent_machine'
 
-class EntMaterial(models.Model):
+class EntMaterial(models.Model, ERPFunction):
     id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=255, unique=True, blank=True)
     material_type = models.CharField(max_length=33, blank=True)
@@ -44,6 +45,7 @@ class EntMaterial(models.Model):
     i_time = models.DateTimeField(null=True, blank=True)
     u_time = models.DateTimeField(null=True, blank=True)
     d_time = models.DateTimeField(null=True, blank=True)
+    
     class Meta:
         db_table = u'ent_material'
 

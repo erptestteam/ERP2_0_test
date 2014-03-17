@@ -32,10 +32,32 @@ def testdb(request):
     res = cursor.fetchall()
     return HttpResponse(simplejson.dumps(res, ensure_ascii=False))
 
-def testdb2(request):
-    materialList = dbmodels.EntMaterial.objects.all()
+def material_list(request):
+    materialList = dbmodels.EntMaterial.objects.all().order_by('-id', 'name')
+    # materialList = dbmodels.EntMaterial.objects.filter(name__contains='2m.')
+    # materialList = dbmodels.EntMaterial.objects.filter(name__regex='.*2.*', id__lte=150).exclude(id=143).order_by('-id'，‘)
     jsonList = []
     for ma in materialList:
-        jsonList.append({'id':ma.id, 'name': ma.name})
+        # jsonList.append({'id':ma.id, 'name': ma.name})
+        jsonList.append(ma.fullOBJ())
+        '''
+        new_obj = {}
+        for (k, v) in ma.__dict__.items():
+            if k != '_state':
+                new_obj.setdefault(k, v)
+        jsonList.append(new_obj)
+        '''
     return HttpResponse(simplejson.dumps(jsonList, ensure_ascii=False))
 
+def material_get(request):
+    nm = dbmodels.EntMaterial.objects.get(id=142)
+    rnm = {'id':nm.id, 'name': nm.name}
+    return HttpResponse(simplejson.dumps(rnm, ensure_ascii=False))
+
+def material_add(request):
+    nm = dbmodels.EntMaterial
+    nm.name = 'test'
+    nm.save()
+    print type(nm)
+    
+    return HttpResponse(0)

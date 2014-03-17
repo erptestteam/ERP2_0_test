@@ -19,6 +19,18 @@ DATABASES = {
         'PORT': '3306',  # Set to empty string for default. Not used with sqlite3.
     }
 }
+DBID = '127.0.0.'
+if DBID == '127.0.0.1':
+    DATABASES = {
+                 'default': {
+                             'ENGINE': 'django.db.backends.mysql',
+                             'NAME': 'erp',
+                             'USER': 'root',
+                             'PASSWORD': '',
+                             'HOST': '127.0.0.1',
+                             'PORT': '3306',
+                             }
+                 }
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.4/ref/settings/#allowed-hosts
@@ -113,10 +125,10 @@ TEMPLATE_DIRS = (
 )
 
 INSTALLED_APPS = (
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
+    # 'django.contrib.auth',
+    # 'django.contrib.contenttypes',
     'django.contrib.sessions',
-    'django.contrib.sites',
+    # 'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Uncomment the next line to enable the admin:

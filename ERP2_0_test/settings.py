@@ -125,8 +125,8 @@ TEMPLATE_DIRS = (
 )
 
 INSTALLED_APPS = (
-    # 'django.contrib.auth',
-    # 'django.contrib.contenttypes',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
     'django.contrib.sessions',
     # 'django.contrib.sites',
     'django.contrib.messages',
@@ -136,6 +136,8 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'mysqldb_inspect',
+    # 'rest_framework',
+    'tastypie',
 )
 
 # A sample logging configuration. The only tangible logging

@@ -50,14 +50,18 @@ def material_list(request):
     return HttpResponse(simplejson.dumps(jsonList, ensure_ascii=False))
 
 def material_get(request):
-    nm = dbmodels.EntMaterial.objects.get(id=142)
-    rnm = {'id':nm.id, 'name': nm.name}
-    return HttpResponse(simplejson.dumps(rnm, ensure_ascii=False))
+    material = dbmodels.EntMaterial.objects.get(id=142)
+    return HttpResponse(simplejson.dumps(material.fullOBJ(), ensure_ascii=False))
 
 def material_add(request):
-    nm = dbmodels.EntMaterial
-    nm.name = 'test'
+    nm = dbmodels.EntMaterial()
+    nm.name = 'tes4'
     nm.save()
-    print type(nm)
-    
-    return HttpResponse(0)
+    print nm.id
+    return HttpResponse('add material %s successful' % (nm.id))
+
+def material_del(request, id):
+    nm = dbmodels.EntMaterial()
+    nm.id = id
+    print nm.delete()
+    return HttpResponse('del material %s successful' % (nm.id))

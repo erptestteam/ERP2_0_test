@@ -3,13 +3,24 @@ from tastypie.resources import fields, Bundle
 from tastypie.authorization import Authorization
 from tastypie.resources import ALL_WITH_RELATIONS, ALL
 
-from mysqldb_inspect.models import EntMaterial 
-from mysqldb_inspect.models import EntItem
+from mysqldb_inspect import models as dbModels 
+
+class EntItemResource(ModelResource):
+    class Meta:
+        queryset = dbModels.EntItem.objects.all()
+        resource_name = 'EntItem'
+        authorization = Authorization()
         
+class EntMachineResource(ModelResource):
+    class Meta:
+        queryset = dbModels.EntMachine.objects.all()
+        resource_name = 'EntMachine'
+        authorization = Authorization()
+
 class EntMaterialResource(ModelResource):
     class Meta:
-        queryset = EntMaterial.objects.all()
-        resource_name = 'entMaterial'
+        queryset = dbModels.EntMaterial.objects.all()
+        resource_name = 'EntMaterial'
         # excludes = ['id','']
         # fields = ['name', 'material_type']
         # include_resource_uri = False
@@ -21,15 +32,42 @@ class EntMaterialResource(ModelResource):
            'id': ['exact', 'lt', 'lte', 'gte', 'gt'],
         }
 
-class EntItemResource(ModelResource):
+class EntRelItemItemResource(ModelResource):
     class Meta:
-        queryset = EntItem.objects.all()
-        resource_name = 'entItem'
+        queryset = dbModels.EntRelItemItem.objects.all()
+        resource_name = 'EntRelItemItem'
         authorization = Authorization()
-        filtering = {
-           "id": ALL_WITH_RELATIONS
-        }
 
+class EntRelMathineItemResource(ModelResource):
+    class Meta:
+        queryset = dbModels.EntRelMathineItem.objects.all()
+        resource_name = 'EntRelMathineItem'
+        authorization = Authorization()
+
+class EntRelStorageItemResource(ModelResource):
+    class Meta:
+        queryset = dbModels.EntRelStorageItem.objects.all()
+        resource_name = 'EntRelStorageItem'
+        authorization = Authorization()
+
+class EntRelTechnologyItemEquipmentResource(ModelResource):
+    class Meta:
+        queryset = dbModels.EntRelTechnologyItemEquipment.objects.all()
+        resource_name = 'EntRelTechnologyItemEquipment'
+        authorization = Authorization()
+
+class EntSotrageResource(ModelResource):
+    class Meta:
+        queryset = dbModels.EntStorage.objects.all()
+        resource_name = 'EntStorage'
+        authorization = Authorization()
+
+class EntTechnologyResource(ModelResource):
+    class Meta:
+        queryset = dbModels.EntTechnology.objects.all()
+        resource_name = 'EntTechnology'
+        authorization = Authorization()
+    
 class RiakObject(object):
     def __init__(self, initial=None):
         self.__dict__['_data'] = {}
@@ -45,7 +83,7 @@ class RiakObject(object):
 
     def to_dict(self):
         return self._data
-    
+
 class MessageResource(Resource):
     # Just like a Django ``Form`` or ``Model``, we're defining all the
     # fields we're going to handle with the API here.

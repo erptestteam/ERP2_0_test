@@ -19,17 +19,21 @@ from django.utils import simplejson
 import json
 import re
 import time
+import datetime
 import logging
 
 from mysqldb_inspect import models as dbmodels
 
 def index(request):
-    return HttpResponse('hello django.')
+    now = datetime.datetime.now()
+    now2 = datetime.datetime.utcnow()
+    return HttpResponse('hello django.<br/>%s<br/>%s' % (now, now2))
 
 def testdb(request):
     cursor = connection.cursor()
-    cursor.execute('select id,name,material_type from ent_material')
+    cursor.execute('select id,d_time from ent_item where id = 1585')
     res = cursor.fetchall()
+    print res
     return HttpResponse(simplejson.dumps(res, ensure_ascii=False))
 
 def material_list(request):
@@ -65,3 +69,11 @@ def material_del(request, id):
     nm.id = id
     print nm.delete()
     return HttpResponse('del material %s successful' % (nm.id))
+
+def entItem_del(request, del_id):
+    print del_id
+    obj_to_del = dbmodels.EntItem.objects.get(id=del_id)
+    # print obj_to_del.delete()
+    print obj_to_del.fullOBJ()
+    obj_to_del.delete()
+    return HttpResponse('del entItem %s successful' % (obj_to_del.id))

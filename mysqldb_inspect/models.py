@@ -6,11 +6,11 @@
 #
 # Also note: You'll have to insert the output of 'django-admin.py sqlcustom [appname]'
 # into your database.
-
+import datetime
 from django.db import models
 from function import ERPFunction
 
-class EntItem(models.Model):
+class EntItem(models.Model, ERPFunction):
     id = models.IntegerField(primary_key=True)
     number = models.CharField(max_length=255, blank=True)
     meterial = models.CharField(max_length=255, blank=True)
@@ -21,7 +21,7 @@ class EntItem(models.Model):
     class Meta:
         db_table = u'ent_item'
 
-class EntMachine(models.Model):
+class EntMachine(models.Model, ERPFunction):
     id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=255, blank=True)
     descr = models.CharField(max_length=255, blank=True)
@@ -49,7 +49,7 @@ class EntMaterial(models.Model, ERPFunction):
     class Meta:
         db_table = u'ent_material'
 
-class EntRelItemItem(models.Model):
+class EntRelItemItem(models.Model, ERPFunction):
     id = models.IntegerField(primary_key=True)
     p_item_number = models.CharField(max_length=255, blank=True)
     c_item_number = models.CharField(max_length=255, blank=True)
@@ -60,7 +60,7 @@ class EntRelItemItem(models.Model):
     class Meta:
         db_table = u'ent_rel_item_item'
 
-class EntRelMathineItem(models.Model):
+class EntRelMathineItem(models.Model, ERPFunction):
     id = models.IntegerField(primary_key=True)
     mathine_id = models.IntegerField(null=True, blank=True)
     item_number = models.CharField(max_length=255, blank=True)
@@ -72,7 +72,7 @@ class EntRelMathineItem(models.Model):
     class Meta:
         db_table = u'ent_rel_mathine_item'
 
-class EntRelStorageItem(models.Model):
+class EntRelStorageItem(models.Model, ERPFunction):
     id = models.IntegerField(primary_key=True)
     storage_id = models.IntegerField(null=True, blank=True)
     item_number = models.CharField(max_length=255, blank=True)
@@ -86,7 +86,7 @@ class EntRelStorageItem(models.Model):
     class Meta:
         db_table = u'ent_rel_storage_item'
 
-class EntRelTechnologyItemEquipment(models.Model):
+class EntRelTechnologyItemEquipment(models.Model, ERPFunction):
     id = models.IntegerField(primary_key=True)
     item_number = models.CharField(max_length=255, blank=True)
     technology_id = models.IntegerField(null=True, blank=True)
@@ -100,7 +100,7 @@ class EntRelTechnologyItemEquipment(models.Model):
     class Meta:
         db_table = u'ent_rel_technology_item_equipment'
 
-class EntStorage(models.Model):
+class EntStorage(models.Model, ERPFunction):
     id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=255, blank=True)
     descr = models.CharField(max_length=255, blank=True)
@@ -111,7 +111,7 @@ class EntStorage(models.Model):
     class Meta:
         db_table = u'ent_storage'
 
-class EntTechnology(models.Model):
+class EntTechnology(models.Model, ERPFunction):
     id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=255, blank=True)
     descr = models.CharField(max_length=255, blank=True)

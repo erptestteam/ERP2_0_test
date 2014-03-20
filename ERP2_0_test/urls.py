@@ -27,6 +27,7 @@ urlpatterns = patterns('',
     # url(r'^material/get/$', views.material_get),
     # url(r'^material/add/$', views.material_add),
     # url(r'^material/(.+)/del/$', views.material_del),
+    # url(r'^EntItem/(.+)/del/$', views.entItem_del),
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 

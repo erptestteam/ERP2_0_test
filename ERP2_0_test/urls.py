@@ -6,18 +6,20 @@ import views
 # admin.autodiscover()
 
 from tastypie.api import Api
-import api
-# from ERP2_0_test.api import EntMaterialResource, EntItemResource
+from ERP2_0_test import api_models
+from ERP2_0_test import api_views
+# from ERP2_0_test.api_model import EntMaterialResource, EntItemResource
 
 v1_api = Api(api_name='v1')
-v1_api.register(api.EntItemResource())
-v1_api.register(api.EntMachineResource())
-v1_api.register(api.EntMaterialResource())
-v1_api.register(api.EntRelItemItemResource())
-v1_api.register(api.EntRelStorageItemResource())
-v1_api.register(api.EntRelTechnologyItemEquipmentResource())
-v1_api.register(api.EntSotrageResource())
-v1_api.register(api.EntTechnologyResource())
+v1_api.register(api_models.EntItemResource())
+v1_api.register(api_models.EntMachineResource())
+v1_api.register(api_models.EntMaterialResource())
+v1_api.register(api_models.EntRelItemItemResource())
+v1_api.register(api_models.EntRelStorageItemResource())
+v1_api.register(api_models.EntRelTechnologyItemEquipmentResource())
+v1_api.register(api_models.EntSotrageResource())
+v1_api.register(api_models.EntTechnologyResource())
+v1_api.register(api_views.MessageResource())
 
 urlpatterns = patterns('',
     (r'^api/', include(v1_api.urls)),

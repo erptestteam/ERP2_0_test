@@ -5,6 +5,9 @@ from tastypie.resources import ModelResource, Resource
 from tastypie.resources import fields, Bundle
 from tastypie.authorization import Authorization
 from tastypie.resources import ALL_WITH_RELATIONS, ALL
+from django.utils import simplejson
+from django.core.serializers import json
+import serializers
 
 from mysqldb_inspect import models as dbModels 
 
@@ -15,10 +18,10 @@ class EntItemResource(ModelResource):
         authorization = Authorization()
         allFields = dbModels.EntItem._meta.get_all_field_names()
         ordering = allFields
-        filtering = {
-                     }
+        filtering = {}
         for field in allFields:
             filtering.setdefault(field, ALL)
+        serializer = serializers.TimeFormatSerializer()
     
     @classmethod
     def obj_delete(self, bundle, **kwargs):
@@ -34,10 +37,10 @@ class EntMachineResource(ModelResource):
         authorization = Authorization()
         allFields = dbModels.EntMachine._meta.get_all_field_names()
         ordering = allFields
-        filtering = {
-                     }
+        filtering = {}
         for field in allFields:
             filtering.setdefault(field, ALL)
+        serializer = serializers.TimeFormatSerializer()
     
     @classmethod
     def obj_delete(self, bundle, **kwargs):
@@ -59,10 +62,10 @@ class EntMaterialResource(ModelResource):
         authorization = Authorization()
         allFields = dbModels.EntMaterial._meta.get_all_field_names()
         ordering = allFields
-        filtering = {
-                     }
+        filtering = {}
         for field in allFields:
             filtering.setdefault(field, ALL)
+        serializer = serializers.TimeFormatSerializer()
     
     @classmethod
     def obj_delete(self, bundle, **kwargs):
@@ -78,10 +81,10 @@ class EntRelItemItemResource(ModelResource):
         authorization = Authorization()
         allFields = dbModels.EntRelItemItem._meta.get_all_field_names()
         ordering = allFields
-        filtering = {
-                     }
+        filtering = {}
         for field in allFields:
             filtering.setdefault(field, ALL)
+        serializer = serializers.TimeFormatSerializer()
     
     @classmethod
     def obj_delete(self, bundle, **kwargs):
@@ -97,10 +100,10 @@ class EntRelMathineItemResource(ModelResource):
         authorization = Authorization()
         allFields = dbModels.EntRelMathineItem._meta.get_all_field_names()
         ordering = allFields
-        filtering = {
-                     }
+        filtering = {}
         for field in allFields:
             filtering.setdefault(field, ALL)
+        serializer = serializers.TimeFormatSerializer()
     
     @classmethod
     def obj_delete(self, bundle, **kwargs):
@@ -116,10 +119,10 @@ class EntRelStorageItemResource(ModelResource):
         authorization = Authorization()
         allFields = dbModels.EntRelStorageItem._meta.get_all_field_names()
         ordering = allFields
-        filtering = {
-                     }
+        filtering = {}
         for field in allFields:
             filtering.setdefault(field, ALL)
+        serializer = serializers.TimeFormatSerializer()
     
     @classmethod
     def obj_delete(self, bundle, **kwargs):
@@ -135,10 +138,10 @@ class EntRelTechnologyItemEquipmentResource(ModelResource):
         authorization = Authorization()
         allFields = dbModels.EntRelTechnologyItemEquipment._meta.get_all_field_names()
         ordering = allFields
-        filtering = {
-                     }
+        filtering = {}
         for field in allFields:
             filtering.setdefault(field, ALL)
+        serializer = serializers.TimeFormatSerializer()
     
     @classmethod
     def obj_delete(self, bundle, **kwargs):
@@ -154,10 +157,10 @@ class EntSotrageResource(ModelResource):
         authorization = Authorization()
         allFields = dbModels.EntStorage._meta.get_all_field_names()
         ordering = allFields
-        filtering = {
-                     }
+        filtering = {}
         for field in allFields:
             filtering.setdefault(field, ALL)
+        serializer = serializers.TimeFormatSerializer()
     
     @classmethod
     def obj_delete(self, bundle, **kwargs):
@@ -173,10 +176,10 @@ class EntTechnologyResource(ModelResource):
         authorization = Authorization()
         allFields = dbModels.EntTechnology._meta.get_all_field_names()
         ordering = allFields
-        filtering = {
-                     }
+        filtering = {}
         for field in allFields:
             filtering.setdefault(field, ALL)
+        serializer = serializers.TimeFormatSerializer()
     
     @classmethod
     def obj_delete(self, bundle, **kwargs):

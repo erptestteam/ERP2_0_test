@@ -43,6 +43,12 @@ ALLOWED_HOSTS = []
 TIME_ZONE = 'Etc/GMT-8'
 
 TASTYPIE_DATETIME_FORMATTING = 'rfc-2822'  # iso-8601, iso-8601-strict & rfc-2822.
+'''
+iso-8601:        2014-03-20T18:33:31
+iso-86010-strict:2014-03-20T18:33:31
+rfc-2822:        Thu, 20 Mar 2014 18:33:31 +0800
+'''
+TASTYPIE_DEFAULT_FORMATS = ['json', 'xml', 'html']  # json,jsonp (Disabled by default),xml,yaml,html,plist 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en-us'

@@ -1,4 +1,5 @@
 # coding=utf-8
+'''
 条件选取querySet的时候，filter表示=，exclude表示!=。
 querySet.distinct() 去重复
 __exact 精确等于 like 'aaa'
@@ -19,3 +20,4 @@ __year 日期字段的年份
 __month 日期字段的月份
 __day 日期字段的日
 __isnull=True/False
+'''

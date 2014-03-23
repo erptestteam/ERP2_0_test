@@ -19,8 +19,21 @@ DATABASES = {
         'PORT': '3306',  # Set to empty string for default. Not used with sqlite3.
     }
 }
-DBID = '127.0.0.'
-if DBID == '127.0.0.1':
+if True:
+    DATABASES = {
+                 'default': {
+                             'ENGINE': 'django.db.backends.mysql',
+                             'NAME': 'erp',
+                             'USER': 'root',
+                             'PASSWORD': '1234qwer',
+                             'HOST': '127.0.0.1',
+                             'PORT': '3306',
+                             }
+                 }
+
+import getpass
+SYS_USER = getpass.getuser()
+if SYS_USER == 'Administrator':
     DATABASES = {
                  'default': {
                              'ENGINE': 'django.db.backends.mysql',
@@ -143,7 +156,6 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'mysqldb_inspect',
-    # 'rest_framework',
     'tastypie',
 )
 

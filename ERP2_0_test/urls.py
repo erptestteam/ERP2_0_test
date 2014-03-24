@@ -20,6 +20,7 @@ v1_api.register(api_models.EntRelStorageItemResource())
 v1_api.register(api_models.EntRelTechnologyItemEquipmentResource())
 v1_api.register(api_models.EntSotrageResource())
 v1_api.register(api_models.EntTechnologyResource())
+v1_api.register(api_models.VieAlljoResource())
 v1_api.register(api_views.MessageResource())
 
 urlpatterns = patterns('',

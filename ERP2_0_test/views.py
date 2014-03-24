@@ -36,6 +36,10 @@ def testdb(request):
     print res
     return HttpResponse(simplejson.dumps(res, ensure_ascii=False))
 
+def resetdba():
+    cursor = connection.cursor()
+    cursor.execute('SET @a=0;')
+    
 def material_list(request):
     materialList = dbmodels.EntMaterial.objects.all().order_by('-id', 'name')
     # materialList = dbmodels.EntMaterial.objects.filter(name__contains='2m.')
@@ -59,7 +63,8 @@ def material_get(request):
 
 def material_add(request):
     nm = dbmodels.EntMaterial()
-    nm.name = 'tes4'
+    nm.name = 'tes66'
+    print nm.id
     nm.save()
     print nm.id
     return HttpResponse('add material %s successful' % (nm.id))

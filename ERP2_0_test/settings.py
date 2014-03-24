@@ -9,6 +9,10 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
+import getpass
+SYS_USER = getpass.getuser()
+print SYS_USER
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',  # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
@@ -19,7 +23,8 @@ DATABASES = {
         'PORT': '3306',  # Set to empty string for default. Not used with sqlite3.
     }
 }
-if True:
+
+if True and SYS_USER == 'chzh':
     DATABASES = {
                  'default': {
                              'ENGINE': 'django.db.backends.mysql',
@@ -31,8 +36,6 @@ if True:
                              }
                  }
 
-import getpass
-SYS_USER = getpass.getuser()
 if SYS_USER == 'Administrator':
     DATABASES = {
                  'default': {

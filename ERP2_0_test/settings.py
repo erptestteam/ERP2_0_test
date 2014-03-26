@@ -24,7 +24,7 @@ DATABASES = {
     }
 }
 
-if True and SYS_USER == 'chzh':
+if False and SYS_USER == 'chzh':
     DATABASES = {
                  'default': {
                              'ENGINE': 'django.db.backends.mysql',

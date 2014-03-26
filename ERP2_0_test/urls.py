@@ -12,15 +12,19 @@ from ERP2_0_test import api_views
 # from ERP2_0_test.api_model import EntMaterialResource, EntItemResource
 
 v1_api = Api(api_name='v1')
+v1_api.register(api_models.EntEquimentResource())
 v1_api.register(api_models.EntItemResource())
 v1_api.register(api_models.EntMachineResource())
 v1_api.register(api_models.EntMaterialResource())
+v1_api.register(api_models.EntOrderResource())
 v1_api.register(api_models.EntRelItemItemResource())
+v1_api.register(api_models.EntRelMathineItemResource())
 v1_api.register(api_models.EntRelStorageItemResource())
 v1_api.register(api_models.EntRelTechnologyItemEquipmentResource())
 v1_api.register(api_models.EntSotrageResource())
 v1_api.register(api_models.EntTechnologyResource())
-v1_api.register(api_models.VieAlljoResource())
+v1_api.register(api_models.TmpItemFullRelResource())
+# v1_api.register(api_models.testviewResource())
 v1_api.register(api_views.MessageResource())
 
 urlpatterns = patterns('',

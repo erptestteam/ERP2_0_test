@@ -1,7 +1,5 @@
 # coding=utf-8
-import datetime
-from django.utils.timezone import utc
-from tastypie.resources import ModelResource, Resource
+from tastypie.resources import Resource
 from tastypie.resources import fields, Bundle
 from tastypie.authorization import Authorization
 from tastypie.resources import ALL_WITH_RELATIONS, ALL

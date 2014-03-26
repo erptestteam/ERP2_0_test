@@ -1,3 +1,175 @@
+from django.db import models
+from function import ERPFunction
+
+# fro test
+'''
+class Testview(models.Model, ERPFunction):
+    material_type = models.CharField(max_length=33, blank=True)
+    length = models.FloatField(null=True, blank=True)
+    width = models.FloatField(null=True, blank=True)
+    height = models.FloatField(null=True, blank=True)
+    i_time = models.DateTimeField(null=True, blank=True)
+    u_time = models.DateTimeField(null=True, blank=True)
+    d_time = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'testView'
+'''
+
+# db tables
+class EntEquipment(models.Model, ERPFunction):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=255, blank=True)
+    remark = models.CharField(max_length=255, blank=True)
+    i_time = models.DateTimeField(null=True, blank=True)
+    u_time = models.DateTimeField(null=True, blank=True)
+    d_time = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'ent_equipment'
+
+class EntItem(models.Model, ERPFunction):
+    id = models.AutoField(primary_key=True)
+    number = models.CharField(max_length=255, unique=True, blank=True)
+    meterial = models.CharField(max_length=255, blank=True)
+    remark = models.CharField(max_length=255, blank=True)
+    i_time = models.DateTimeField(null=True, blank=True)
+    u_time = models.DateTimeField(null=True, blank=True)
+    d_time = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'ent_item'
+
+class EntMachine(models.Model, ERPFunction):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=255, unique=True, blank=True)
+    descr = models.CharField(max_length=255, blank=True)
+    remark = models.CharField(max_length=255, blank=True)
+    i_time = models.DateTimeField(null=True, blank=True)
+    u_time = models.DateTimeField(null=True, blank=True)
+    d_time = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'ent_machine'
+
+class EntMaterial(models.Model, ERPFunction):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=255, unique=True, blank=True)
+    material_type = models.CharField(max_length=33, blank=True)
+    length = models.FloatField(null=True, blank=True)
+    width = models.FloatField(null=True, blank=True)
+    height = models.FloatField(null=True, blank=True)
+    radius = models.FloatField(null=True, blank=True)
+    unit = models.CharField(max_length=255, blank=True)
+    remark = models.CharField(max_length=255, blank=True)
+    i_time = models.DateTimeField(null=True, blank=True)
+    u_time = models.DateTimeField(null=True, blank=True)
+    d_time = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'ent_material'
+
+class EntOrder(models.Model, ERPFunction):
+    id = models.AutoField(primary_key=True)
+    number = models.CharField(max_length=255, unique=True, blank=True)
+    batch_number = models.CharField(max_length=255, unique=True, blank=True)
+    type = models.CharField(max_length=255, blank=True)
+    note_date = models.DateTimeField(null=True, blank=True)
+    item_number = models.CharField(max_length=255, blank=True)
+    order_lead_time = models.DateTimeField(null=True, blank=True)
+    count = models.IntegerField(null=True, blank=True)
+    status = models.IntegerField(null=True, blank=True)
+    i_time = models.DateTimeField(null=True, blank=True)
+    u_time = models.DateTimeField(null=True, blank=True)
+    d_time = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'ent_order'
+
+class EntRelItemItem(models.Model, ERPFunction):
+    id = models.AutoField(primary_key=True)
+    p_item_number = models.CharField(max_length=255, blank=True)
+    c_item_number = models.CharField(max_length=255, blank=True)
+    count = models.IntegerField(null=True, blank=True)
+    remark = models.CharField(max_length=255, blank=True)
+    i_time = models.DateTimeField(null=True, blank=True)
+    u_time = models.DateTimeField(null=True, blank=True)
+    d_time = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'ent_rel_item_item'
+
+class EntRelMachineItem(models.Model, ERPFunction):
+    id = models.AutoField(primary_key=True)
+    machine = models.ForeignKey(EntMachine, unique=True, null=True, blank=True)
+    item_number = models.ForeignKey(EntItem, null=True, db_column='item_number', blank=True)
+    count = models.IntegerField(null=True, blank=True)
+    remark = models.CharField(max_length=255, blank=True)
+    i_time = models.DateTimeField(null=True, blank=True)
+    u_time = models.DateTimeField(null=True, blank=True)
+    d_time = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'ent_rel_machine_item'
+
+class EntRelStorageItem(models.Model, ERPFunction):
+    id = models.AutoField(primary_key=True)
+    storage_id = models.IntegerField(null=True, blank=True)
+    item_number = models.CharField(max_length=255, blank=True)
+    actual_count = models.IntegerField(null=True, blank=True)
+    min_count = models.IntegerField(null=True, blank=True)
+    lock_count = models.IntegerField(null=True, blank=True)
+    future_count = models.IntegerField(null=True, blank=True)
+    audit_time = models.DateTimeField(null=True, blank=True)
+    type = models.CharField(max_length=255, blank=True)
+    i_time = models.DateTimeField(null=True, blank=True)
+    u_time = models.DateTimeField(null=True, blank=True)
+    d_time = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'ent_rel_storage_item'
+
+class EntRelTechnologyItemEquipment(models.Model, ERPFunction):
+    id = models.AutoField(primary_key=True)
+    item_number = models.CharField(max_length=255, blank=True)
+    technology_id = models.IntegerField(null=True, blank=True)
+    technology_info = models.CharField(max_length=255, blank=True)
+    dimensions = models.CharField(max_length=255, blank=True)
+    equipment_id = models.IntegerField(null=True, blank=True)
+    equipment_param = models.CharField(max_length=255, blank=True)
+    remark = models.CharField(max_length=255, blank=True)
+    i_time = models.DateTimeField(null=True, blank=True)
+    u_time = models.DateTimeField(null=True, blank=True)
+    d_time = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'ent_rel_technology_item_equipment'
+
+class EntStorage(models.Model, ERPFunction):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=255, blank=True)
+    descr = models.CharField(max_length=255, blank=True)
+    remark = models.CharField(max_length=255, blank=True)
+    i_time = models.DateTimeField(null=True, blank=True)
+    u_time = models.DateTimeField(null=True, blank=True)
+    d_time = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'ent_storage'
+
+class EntTechnology(models.Model, ERPFunction):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=255, blank=True)
+    descr = models.CharField(max_length=255, blank=True)
+    remark = models.IntegerField(null=True, blank=True)
+    i_time = models.DateTimeField(null=True, blank=True)
+    u_time = models.DateTimeField(null=True, blank=True)
+    d_time = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'ent_technology'
+
+class TmpItemFullRel(models.Model, ERPFunction):
+    id = models.AutoField(primary_key=True)
+    t = models.CharField(max_length=255)
+    p = models.CharField(max_length=255)
+    c = models.CharField(max_length=255)
+    n = models.IntegerField(null=True, blank=True)
+    n1 = models.IntegerField(null=True, blank=True)
+    l = models.IntegerField(null=True, blank=True)
+    leaf = models.IntegerField(null=True, blank=True)
+    class Meta:
+        db_table = u'tmp_item_full_rel'
+
+'''
 # This is an auto-generated Django model module.
 # You'll have to do the following manually to clean this up:
 #     * Rearrange models' order
@@ -9,22 +181,17 @@
 from django.db import models
 from function import ERPFunction
 
-class Alljo(models.Model):
-    name = models.CharField(primary_key=True, max_length=255, blank=True)
-    material_type = models.CharField(primary_key=True, max_length=33, blank=True)
+class Testview(models.Model):
+    #name = models.CharField(max_length=255, blank=True)
+    material_type = models.CharField(max_length=33, blank=True)
     length = models.FloatField(null=True, blank=True)
     width = models.FloatField(null=True, blank=True)
     height = models.FloatField(null=True, blank=True)
-    radius = models.FloatField(null=True, blank=True)
-    unit = models.CharField(max_length=255, blank=True)
-    remark = models.CharField(max_length=255, blank=True)
     i_time = models.DateTimeField(null=True, blank=True)
     u_time = models.DateTimeField(null=True, blank=True)
     d_time = models.DateTimeField(null=True, blank=True)
     class Meta:
-        db_table = u'alljo'
-#        unique_together = ("name")
-#        unique_together = ("material_type", "name")
+        db_table = u'testView'
 
 class EntItem(models.Model, ERPFunction):
     id = models.AutoField(primary_key=True)
@@ -61,7 +228,6 @@ class EntMaterial(models.Model, ERPFunction):
     i_time = models.DateTimeField(null=True, blank=True)
     u_time = models.DateTimeField(null=True, blank=True)
     d_time = models.DateTimeField(null=True, blank=True)
-    
     class Meta:
         db_table = u'ent_material'
 
@@ -137,4 +303,4 @@ class EntTechnology(models.Model, ERPFunction):
     d_time = models.DateTimeField(null=True, blank=True)
     class Meta:
         db_table = u'ent_technology'
-
+'''

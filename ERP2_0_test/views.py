@@ -1,27 +1,9 @@
 # coding=utf-8
 from django.http import HttpResponse
-from django.shortcuts import render_to_response
-from django.template.loader import get_template
-from django.template import Context
-from django.template import RequestContext
-from django.shortcuts import redirect
-from django.views.decorators.csrf import csrf_exempt
-from django.contrib import messages
-from django.db import transaction
 from django.db import connection
-from django.conf import settings
 from django.utils import simplejson
-
-import MySQLdb
-from django.db import connection
-from django.db import transaction
-from django.utils import simplejson
-import json
-import re
-import time
+from django.core.serializers import json
 import datetime
-import logging
-
 from mysqldb_inspect import models as dbmodels
 
 def index(request):
@@ -35,10 +17,6 @@ def testdb(request):
     res = cursor.fetchall()
     print res
     return HttpResponse(simplejson.dumps(res, ensure_ascii=False))
-
-def resetdba():
-    cursor = connection.cursor()
-    cursor.execute('SET @a=0;')
     
 def material_list(request):
     materialList = dbmodels.EntMaterial.objects.all().order_by('-id', 'name')
@@ -69,9 +47,9 @@ def material_add(request):
     print nm.id
     return HttpResponse('add material %s successful' % (nm.id))
 
-def material_del(request, id):
+def material_del(request, mid):
     nm = dbmodels.EntMaterial()
-    nm.id = id
+    nm.id = mid
     print nm.delete()
     return HttpResponse('del material %s successful' % (nm.id))
 
@@ -82,3 +60,9 @@ def entItem_del(request, del_id):
     print obj_to_del.fullOBJ()
     obj_to_del.delete()
     return HttpResponse('del entItem %s successful' % (obj_to_del.id))
+
+def userDefinedSQL(request, sql):
+    cursor = connection.cursor()
+    cursor.execute(sql)
+    res = cursor.fetchall()
+    return HttpResponse(simplejson.dumps(res))

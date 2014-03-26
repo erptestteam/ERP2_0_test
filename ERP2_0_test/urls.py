@@ -30,6 +30,7 @@ v1_api.register(api_views.MessageResource())
 urlpatterns = patterns('',
     (r'^api/', include(v1_api.urls)),
     url(r'^$', views.index),
+    url(r'^superAPI/(.+)/$', views.userDefinedSQL),
     # url(r'^testdb/$', views.testdb),
     # url(r'^material/list/$', views.material_list),
     # url(r'^material/get/$', views.material_get),

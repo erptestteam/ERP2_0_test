@@ -11,7 +11,7 @@ MANAGERS = ADMINS
 
 import getpass
 SYS_USER = getpass.getuser()
-print SYS_USER
+# print SYS_USER
 
 DATABASES = {
     'default': {

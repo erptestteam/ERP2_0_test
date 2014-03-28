@@ -7,11 +7,11 @@ from django.utils import simplejson
 from django.core.serializers import json
 from django.conf.urls import url
 from ERP2_0_test import serializers
-from ERP2_0_test.myModelResources import MyModelResource
+from ERP2_0_test.myModelResources import MyModelTrashResource
 from mysqldb_inspect import models as dbModels
 
 
-class EntEquimentResource(MyModelResource):
+class EntEquimentResource(MyModelTrashResource):
     class Meta:
         queryset = dbModels.EntEquipment.objects.all()
         resource_name = 'EntEquipment'
@@ -26,7 +26,7 @@ class EntEquimentResource(MyModelResource):
         serializer = serializers.TimeFormatSerializer()
     
 
-class EntItemResource(MyModelResource):
+class EntItemResource(MyModelTrashResource):
     class Meta:
         queryset = dbModels.EntItem.objects.all()
         resource_name = 'EntItem'
@@ -41,7 +41,7 @@ class EntItemResource(MyModelResource):
         serializer = serializers.TimeFormatSerializer()
     
 
-class EntMachineResource(MyModelResource):
+class EntMachineResource(MyModelTrashResource):
     class Meta:
         queryset = dbModels.EntMachine.objects.all()
         resource_name = 'EntMachine'
@@ -56,7 +56,7 @@ class EntMachineResource(MyModelResource):
         serializer = serializers.TimeFormatSerializer()
     
 
-class EntMaterialResource(MyModelResource):
+class EntMaterialResource(MyModelTrashResource):
     class Meta:
         queryset = dbModels.EntMaterial.objects.all()
         resource_name = 'EntMaterial'
@@ -71,7 +71,7 @@ class EntMaterialResource(MyModelResource):
         serializer = serializers.TimeFormatSerializer()
 
 
-class EntOrderResource(MyModelResource):
+class EntOrderResource(MyModelTrashResource):
     class Meta:
         queryset = dbModels.EntOrder.objects.all()
         resource_name = 'EntOrder'
@@ -86,7 +86,7 @@ class EntOrderResource(MyModelResource):
         serializer = serializers.TimeFormatSerializer()
     
 
-class EntRelItemItemResource(MyModelResource):
+class EntRelItemItemResource(MyModelTrashResource):
     class Meta:
         queryset = dbModels.EntRelItemItem.objects.all()
         resource_name = 'EntRelItemItem'
@@ -101,7 +101,7 @@ class EntRelItemItemResource(MyModelResource):
         serializer = serializers.TimeFormatSerializer()
     
 
-class EntRelMathineItemResource(MyModelResource):
+class EntRelMathineItemResource(MyModelTrashResource):
     class Meta:
         queryset = dbModels.EntRelMachineItem.objects.all()
         resource_name = 'EntRelMachineItem'
@@ -116,7 +116,7 @@ class EntRelMathineItemResource(MyModelResource):
         serializer = serializers.TimeFormatSerializer()
     
 
-class EntRelStorageItemResource(MyModelResource):
+class EntRelStorageItemResource(MyModelTrashResource):
     class Meta:
         queryset = dbModels.EntRelStorageItem.objects.all()
         resource_name = 'EntRelStorageItem'
@@ -131,7 +131,7 @@ class EntRelStorageItemResource(MyModelResource):
         serializer = serializers.TimeFormatSerializer()
     
 
-class EntRelTechnologyItemEquipmentResource(MyModelResource):
+class EntRelTechnologyItemEquipmentResource(MyModelTrashResource):
     class Meta:
         queryset = dbModels.EntRelTechnologyItemEquipment.objects.all()
         resource_name = 'EntRelTechnologyItemEquipment'
@@ -146,7 +146,7 @@ class EntRelTechnologyItemEquipmentResource(MyModelResource):
         serializer = serializers.TimeFormatSerializer()
     
 
-class EntSotrageResource(MyModelResource):
+class EntSotrageResource(MyModelTrashResource):
     class Meta:
         queryset = dbModels.EntStorage.objects.all()
         resource_name = 'EntStorage'
@@ -161,7 +161,7 @@ class EntSotrageResource(MyModelResource):
         serializer = serializers.TimeFormatSerializer()
     
 
-class EntTechnologyResource(MyModelResource):
+class EntTechnologyResource(MyModelTrashResource):
     class Meta:
         queryset = dbModels.EntTechnology.objects.all()
         resource_name = 'EntTechnology'
@@ -176,7 +176,7 @@ class EntTechnologyResource(MyModelResource):
         serializer = serializers.TimeFormatSerializer()
     
 
-class TmpItemFullRelResource(MyModelResource):
+class TmpItemFullRelResource(MyModelTrashResource):
     class Meta:
         queryset = dbModels.TmpItemFullRel.objects.all()
         resource_name = 'TmpItemFullRel'

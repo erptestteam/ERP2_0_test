@@ -29,7 +29,7 @@ class EntEquipment(models.Model, ERPFunction):
 class EntItem(models.Model, ERPFunction):
     id = models.AutoField(primary_key=True)
     number = models.CharField(max_length=255, unique=True, blank=True)
-    meterial = models.CharField(max_length=255, blank=True)
+    material = models.CharField(max_length=255, blank=True)
     remark = models.CharField(max_length=255, blank=True)
     i_time = models.DateTimeField(null=True, blank=True)
     u_time = models.DateTimeField(null=True, blank=True)

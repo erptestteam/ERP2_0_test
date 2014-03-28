@@ -66,3 +66,29 @@ def userDefinedSQL(request, sql):
     cursor.execute(sql)
     res = cursor.fetchall()
     return HttpResponse(simplejson.dumps(res))
+
+model_talbe_map_list = [
+                        {'model':dbmodels.EntEquipment, 'model_name':'EntEquipment', 'table_name':'ent_equipment'},
+                        {'model':dbmodels.EntItem, 'model_name':'EntItem', 'table_name':'ent_item'},
+                        {'model':dbmodels.EntMachine, 'model_name':'EntMachine', 'table_name':'ent_machine'},
+                        {'model':dbmodels.EntMaterial, 'model_name':'EntMaterial', 'table_name':'ent_material'},
+                        {'model':dbmodels.EntOrder, 'model_name':'EntOrder', 'table_name':'ent_order'},
+                        {'model':dbmodels.EntRelItemItem, 'model_name':'EntRelItemItem', 'table_name':'ent_rel_item_item'},
+                        {'model':dbmodels.EntRelMachineItem, 'model_name':'EntRelMachineItem', 'table_name':'ent_rel_machine_item'},
+                        {'model':dbmodels.EntRelStorageItem, 'model_name':'EntRelStorageItem', 'table_name':'ent_rel_storage_item'},
+                        {'model':dbmodels.EntRelTechnologyItemEquipment, 'model_name':'EntRelTechnologyItemEquipment', 'table_name':'ent_rel_technology_item_equipment'},
+                        {'model':dbmodels.EntStorage, 'model_name':'EntStorage', 'table_name':'ent_storage'},
+                        {'model':dbmodels.EntTechnology, 'model_name':'EntTechnology', 'table_name':'ent_technology'},
+                        {'model':dbmodels.TmpItemFullRel, 'model_name':'TmpItemFullRel', 'table_name':'tmp_item_full_rel'},
+                        ]
+def deleteList(request, mo_na, to_del):
+    print mo_na
+    to_del_obj_list = []
+    to_del_list = to_del.split(';')
+    for mtm in model_talbe_map_list:
+        if mtm['model_name'] == mo_na:
+            to_del_obj_list = mtm['model'].objects.filter(id__in=to_del_list)
+    for tdo in to_del_obj_list:
+        tdo.d_time = datetime.datetime.now()
+        tdo.save()
+    return HttpResponse(0)

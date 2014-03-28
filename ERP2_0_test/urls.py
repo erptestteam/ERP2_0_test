@@ -28,26 +28,26 @@ v1_api.register(api_models.TmpItemFullRelResource())
 # v1_api.register(api_models.testviewResource())
 v1_api.register(api_views.MessageResource())
 
-tarsh_api = Api(api_name='v1')
-tarsh_api.register(api_trash.EntEquimentResource())
-tarsh_api.register(api_trash.EntItemResource())
-tarsh_api.register(api_trash.EntMachineResource())
-tarsh_api.register(api_trash.EntMaterialResource())
-tarsh_api.register(api_trash.EntOrderResource())
-tarsh_api.register(api_trash.EntRelItemItemResource())
-tarsh_api.register(api_trash.EntRelMathineItemResource())
-tarsh_api.register(api_trash.EntRelStorageItemResource())
-tarsh_api.register(api_trash.EntRelTechnologyItemEquipmentResource())
-tarsh_api.register(api_trash.EntSotrageResource())
-tarsh_api.register(api_trash.EntTechnologyResource())
-tarsh_api.register(api_trash.TmpItemFullRelResource())
+trash_api = Api(api_name='v1')
+trash_api.register(api_trash.EntEquimentResource())
+trash_api.register(api_trash.EntItemResource())
+trash_api.register(api_trash.EntMachineResource())
+trash_api.register(api_trash.EntMaterialResource())
+trash_api.register(api_trash.EntOrderResource())
+trash_api.register(api_trash.EntRelItemItemResource())
+trash_api.register(api_trash.EntRelMathineItemResource())
+trash_api.register(api_trash.EntRelStorageItemResource())
+trash_api.register(api_trash.EntRelTechnologyItemEquipmentResource())
+trash_api.register(api_trash.EntSotrageResource())
+trash_api.register(api_trash.EntTechnologyResource())
+trash_api.register(api_trash.TmpItemFullRelResource())
 
 urlpatterns = patterns('',
     (r'^api/', include(v1_api.urls)),
-    (r'^api/trash/', include(tarsh_api.urls)),
+    (r'^api/trash/', include(trash_api.urls)),
     url(r'^$', views.index),
     url(r'^superAPI/(.+)/$', views.userDefinedSQL),
-    url(r'^deleteList/(.+)/set/(.+)/$', views.deleteList),
+    # url(r'^deleteList/(.+)/set/(.+)/$', views.deleteList),
     # url(r'^testdb/$', views.testdb),
     # url(r'^material/list/$', views.material_list),
     # url(r'^material/get/$', views.material_get),

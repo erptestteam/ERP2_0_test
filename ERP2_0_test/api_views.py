@@ -4,6 +4,7 @@ from tastypie.resources import fields, Bundle
 from tastypie.authorization import Authorization
 from tastypie.resources import ALL_WITH_RELATIONS, ALL
 
+
 class RiakObject(object):
     def __init__(self, initial=None):
         self.__dict__['_data'] = {}
@@ -19,6 +20,7 @@ class RiakObject(object):
 
     def to_dict(self):
         return self._data
+
 
 class MessageResource(Resource):
     # Just like a Django ``Form`` or ``Model``, we're defining all the
@@ -102,3 +104,4 @@ class MessageResource(Resource):
 
     def rollback(self, bundles):
         pass
+

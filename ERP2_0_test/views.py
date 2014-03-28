@@ -6,10 +6,12 @@ from django.core.serializers import json
 import datetime
 from mysqldb_inspect import models as dbmodels
 
+
 def index(request):
     now = datetime.datetime.now()
     now2 = datetime.datetime.utcnow()
     return HttpResponse('hello django.<br/>%s<br/>%s' % (now, now2))
+
 
 def testdb(request):
     cursor = connection.cursor()
@@ -17,6 +19,7 @@ def testdb(request):
     res = cursor.fetchall()
     print res
     return HttpResponse(simplejson.dumps(res, ensure_ascii=False))
+
     
 def material_list(request):
     materialList = dbmodels.EntMaterial.objects.all().order_by('-id', 'name')
@@ -35,9 +38,11 @@ def material_list(request):
         '''
     return HttpResponse(simplejson.dumps(jsonList, ensure_ascii=False))
 
+
 def material_get(request):
     material = dbmodels.EntMaterial.objects.get(id=142)
     return HttpResponse(simplejson.dumps(material.fullOBJ(), ensure_ascii=False))
+
 
 def material_add(request):
     nm = dbmodels.EntMaterial()
@@ -47,11 +52,13 @@ def material_add(request):
     print nm.id
     return HttpResponse('add material %s successful' % (nm.id))
 
+
 def material_del(request, mid):
     nm = dbmodels.EntMaterial()
     nm.id = mid
     print nm.delete()
     return HttpResponse('del material %s successful' % (nm.id))
+
 
 def entItem_del(request, del_id):
     print del_id
@@ -61,11 +68,13 @@ def entItem_del(request, del_id):
     obj_to_del.delete()
     return HttpResponse('del entItem %s successful' % (obj_to_del.id))
 
+
 def userDefinedSQL(request, sql):
     cursor = connection.cursor()
     cursor.execute(sql)
     res = cursor.fetchall()
     return HttpResponse(simplejson.dumps(res))
+
 
 model_talbe_map_list = [
                         {'model':dbmodels.EntEquipment, 'model_name':'EntEquipment', 'table_name':'ent_equipment'},
@@ -81,8 +90,9 @@ model_talbe_map_list = [
                         {'model':dbmodels.EntTechnology, 'model_name':'EntTechnology', 'table_name':'ent_technology'},
                         {'model':dbmodels.TmpItemFullRel, 'model_name':'TmpItemFullRel', 'table_name':'tmp_item_full_rel'},
                         ]
+
+
 def deleteList(request, mo_na, to_del):
-    print mo_na
     to_del_obj_list = []
     to_del_list = to_del.split(';')
     for mtm in model_talbe_map_list:

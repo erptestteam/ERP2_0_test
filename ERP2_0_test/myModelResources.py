@@ -1,13 +1,11 @@
 # coding=utf-8
-import django
 import datetime
-import serializers
-from tastypie import http
 from tastypie.resources import ModelResource
 from tastypie.authorization import Authorization
 from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned, ValidationError
 from tastypie.utils import is_valid_jsonp_callback_value, dict_strip_unicode_keys, trailing_slash
 from tastypie.exceptions import NotFound, BadRequest, InvalidFilterError, HydrationError, InvalidSortError, ImmediateHttpResponse, Unauthorized
+
 
 class MyModelResource(ModelResource):
     def obj_get_list(self, bundle, **kwargs):
@@ -27,6 +25,7 @@ class MyModelResource(ModelResource):
         except ValueError:
             raise BadRequest("Invalid resource lookup data provided (mismatched type).")
     
+    
     def obj_delete(self, bundle, **kwargs):
         if not hasattr(bundle.obj, 'delete'):
             try:
@@ -38,6 +37,7 @@ class MyModelResource(ModelResource):
         # bundle.obj.delete()
         bundle.obj.d_time = datetime.datetime.now()
         bundle.obj.save()
+
 
     def obj_delete_list(self, bundle, **kwargs):
         objects_to_delete = self.obj_get_list(bundle=bundle, **kwargs)
@@ -58,6 +58,7 @@ class MyModelResource(ModelResource):
                 # authed_obj.delete()
                 authed_obj.d_time = datetime.datetime.now()
                 authed_obj.save()
+
 
 class MyModelTrashResource(ModelResource):
     def obj_get_list(self, bundle, **kwargs):

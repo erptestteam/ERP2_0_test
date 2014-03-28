@@ -1,11 +1,6 @@
 # coding=utf-8
-import datetime
-from django.utils.timezone import utc
 from tastypie.authorization import Authorization
 from tastypie.resources import ALL_WITH_RELATIONS, ALL
-from django.utils import simplejson
-from django.core.serializers import json
-from django.conf.urls import url
 from ERP2_0_test import serializers
 from ERP2_0_test.myModelResources import MyModelResource
 from mysqldb_inspect import models as dbModels
@@ -13,7 +8,7 @@ from mysqldb_inspect import models as dbModels
 
 class EntEquimentResource(MyModelResource):
     class Meta:
-        queryset = dbModels.EntEquipment.objects.all()
+        queryset = dbModels.EntEquipment.objects.all().order_by('-i_time', 'id')
         resource_name = 'EntEquipment'
         allFields = dbModels.EntEquipment._meta.get_all_field_names()
         authorization = Authorization()
@@ -28,7 +23,7 @@ class EntEquimentResource(MyModelResource):
 
 class EntItemResource(MyModelResource):
     class Meta:
-        queryset = dbModels.EntItem.objects.all()
+        queryset = dbModels.EntItem.objects.all().order_by('-i_time', 'id')
         resource_name = 'EntItem'
         allFields = dbModels.EntItem._meta.get_all_field_names()
         authorization = Authorization()
@@ -43,7 +38,7 @@ class EntItemResource(MyModelResource):
 
 class EntMachineResource(MyModelResource):
     class Meta:
-        queryset = dbModels.EntMachine.objects.all()
+        queryset = dbModels.EntMachine.objects.all().order_by('-i_time', 'id')
         resource_name = 'EntMachine'
         allFields = dbModels.EntMachine._meta.get_all_field_names()
         authorization = Authorization()
@@ -58,7 +53,7 @@ class EntMachineResource(MyModelResource):
 
 class EntMaterialResource(MyModelResource):
     class Meta:
-        queryset = dbModels.EntMaterial.objects.all()
+        queryset = dbModels.EntMaterial.objects.all().order_by('-i_time', 'id')
         resource_name = 'EntMaterial'
         allFields = dbModels.EntMaterial._meta.get_all_field_names()
         authorization = Authorization()
@@ -73,7 +68,7 @@ class EntMaterialResource(MyModelResource):
 
 class EntOrderResource(MyModelResource):
     class Meta:
-        queryset = dbModels.EntOrder.objects.all()
+        queryset = dbModels.EntOrder.objects.all().order_by('-i_time', 'id')
         resource_name = 'EntOrder'
         allFields = dbModels.EntOrder._meta.get_all_field_names()
         authorization = Authorization()
@@ -88,7 +83,7 @@ class EntOrderResource(MyModelResource):
 
 class EntRelItemItemResource(MyModelResource):
     class Meta:
-        queryset = dbModels.EntRelItemItem.objects.all()
+        queryset = dbModels.EntRelItemItem.objects.all().order_by('-i_time', 'id')
         resource_name = 'EntRelItemItem'
         allFields = dbModels.EntRelItemItem._meta.get_all_field_names()
         authorization = Authorization()
@@ -103,7 +98,7 @@ class EntRelItemItemResource(MyModelResource):
 
 class EntRelMathineItemResource(MyModelResource):
     class Meta:
-        queryset = dbModels.EntRelMachineItem.objects.all()
+        queryset = dbModels.EntRelMachineItem.objects.all().order_by('-i_time', 'id')
         resource_name = 'EntRelMachineItem'
         allFields = dbModels.EntRelMachineItem._meta.get_all_field_names()
         authorization = Authorization()
@@ -118,7 +113,7 @@ class EntRelMathineItemResource(MyModelResource):
 
 class EntRelStorageItemResource(MyModelResource):
     class Meta:
-        queryset = dbModels.EntRelStorageItem.objects.all()
+        queryset = dbModels.EntRelStorageItem.objects.all().order_by('-i_time', 'id')
         resource_name = 'EntRelStorageItem'
         allFields = dbModels.EntRelStorageItem._meta.get_all_field_names()
         authorization = Authorization()
@@ -133,7 +128,7 @@ class EntRelStorageItemResource(MyModelResource):
 
 class EntRelTechnologyItemEquipmentResource(MyModelResource):
     class Meta:
-        queryset = dbModels.EntRelTechnologyItemEquipment.objects.all()
+        queryset = dbModels.EntRelTechnologyItemEquipment.objects.all().order_by('-i_time', 'id')
         resource_name = 'EntRelTechnologyItemEquipment'
         allFields = dbModels.EntRelTechnologyItemEquipment._meta.get_all_field_names()
         authorization = Authorization()
@@ -148,7 +143,7 @@ class EntRelTechnologyItemEquipmentResource(MyModelResource):
 
 class EntSotrageResource(MyModelResource):
     class Meta:
-        queryset = dbModels.EntStorage.objects.all()
+        queryset = dbModels.EntStorage.objects.all().order_by('-i_time', 'id')
         resource_name = 'EntStorage'
         allFields = dbModels.EntStorage._meta.get_all_field_names()
         authorization = Authorization()
@@ -163,7 +158,7 @@ class EntSotrageResource(MyModelResource):
 
 class EntTechnologyResource(MyModelResource):
     class Meta:
-        queryset = dbModels.EntTechnology.objects.all()
+        queryset = dbModels.EntTechnology.objects.all().order_by('-i_time', 'id')
         resource_name = 'EntTechnology'
         allFields = dbModels.EntTechnology._meta.get_all_field_names()
         authorization = Authorization()
@@ -178,7 +173,7 @@ class EntTechnologyResource(MyModelResource):
 
 class TmpItemFullRelResource(MyModelResource):
     class Meta:
-        queryset = dbModels.TmpItemFullRel.objects.all()
+        queryset = dbModels.TmpItemFullRel.objects.all().order_by('-i_time', 'id')
         resource_name = 'TmpItemFullRel'
         allFields = dbModels.TmpItemFullRel._meta.get_all_field_names()
         authorization = Authorization()

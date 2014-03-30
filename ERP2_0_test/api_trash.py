@@ -1,12 +1,12 @@
 # coding=utf-8
 from tastypie.authorization import Authorization
 from tastypie.resources import ALL_WITH_RELATIONS, ALL
-from ERP2_0_test import serializers
-from ERP2_0_test.myModelResources import MyModelTrashResource
+from ERP2_0_test import mySerializers
+from ERP2_0_test import myModelResources
 from mysqldbmodels import models as dbModels
 
 
-class EntEquimentResource(MyModelTrashResource):
+class EntEquimentResource(myModelResources.TrashModelResource):
     class Meta:
         queryset = dbModels.EntEquipment.objects.all().order_by('-u_time', 'id')
         resource_name = 'EntEquipment'
@@ -18,10 +18,10 @@ class EntEquimentResource(MyModelTrashResource):
         filtering = {}
         for field in allFields:
             filtering.setdefault(field, ALL)
-        serializer = serializers.TimeFormatSerializer()
+        serializer = mySerializers.TimeFormatSerializer()
     
 
-class EntItemResource(MyModelTrashResource):
+class EntItemResource(myModelResources.TrashModelResource):
     class Meta:
         queryset = dbModels.EntItem.objects.all().order_by('-u_time', 'id')
         resource_name = 'EntItem'
@@ -33,10 +33,10 @@ class EntItemResource(MyModelTrashResource):
         filtering = {}
         for field in allFields:
             filtering.setdefault(field, ALL)
-        serializer = serializers.TimeFormatSerializer()
+        serializer = mySerializers.TimeFormatSerializer()
     
 
-class EntMachineResource(MyModelTrashResource):
+class EntMachineResource(myModelResources.TrashModelResource):
     class Meta:
         queryset = dbModels.EntMachine.objects.all().order_by('-u_time', 'id')
         resource_name = 'EntMachine'
@@ -48,10 +48,10 @@ class EntMachineResource(MyModelTrashResource):
         filtering = {}
         for field in allFields:
             filtering.setdefault(field, ALL)
-        serializer = serializers.TimeFormatSerializer()
+        serializer = mySerializers.TimeFormatSerializer()
     
 
-class EntMaterialResource(MyModelTrashResource):
+class EntMaterialResource(myModelResources.TrashModelResource):
     class Meta:
         queryset = dbModels.EntMaterial.objects.all().order_by('-u_time', 'id')
         resource_name = 'EntMaterial'
@@ -63,10 +63,10 @@ class EntMaterialResource(MyModelTrashResource):
         filtering = {}
         for field in allFields:
             filtering.setdefault(field, ALL)
-        serializer = serializers.TimeFormatSerializer()
+        serializer = mySerializers.TimeFormatSerializer()
 
 
-class EntOrderResource(MyModelTrashResource):
+class EntOrderResource(myModelResources.TrashModelResource):
     class Meta:
         queryset = dbModels.EntOrder.objects.all().order_by('-u_time', 'id')
         resource_name = 'EntOrder'
@@ -78,10 +78,10 @@ class EntOrderResource(MyModelTrashResource):
         filtering = {}
         for field in allFields:
             filtering.setdefault(field, ALL)
-        serializer = serializers.TimeFormatSerializer()
+        serializer = mySerializers.TimeFormatSerializer()
     
 
-class EntRelItemItemResource(MyModelTrashResource):
+class EntRelItemItemResource(myModelResources.TrashModelResource):
     class Meta:
         queryset = dbModels.EntRelItemItem.objects.all().order_by('-u_time', 'id')
         resource_name = 'EntRelItemItem'
@@ -93,10 +93,10 @@ class EntRelItemItemResource(MyModelTrashResource):
         filtering = {}
         for field in allFields:
             filtering.setdefault(field, ALL)
-        serializer = serializers.TimeFormatSerializer()
+        serializer = mySerializers.TimeFormatSerializer()
     
 
-class EntRelMathineItemResource(MyModelTrashResource):
+class EntRelMathineItemResource(myModelResources.TrashModelResource):
     class Meta:
         queryset = dbModels.EntRelMachineItem.objects.all().order_by('-u_time', 'id')
         resource_name = 'EntRelMachineItem'
@@ -108,10 +108,10 @@ class EntRelMathineItemResource(MyModelTrashResource):
         filtering = {}
         for field in allFields:
             filtering.setdefault(field, ALL)
-        serializer = serializers.TimeFormatSerializer()
+        serializer = mySerializers.TimeFormatSerializer()
     
 
-class EntRelStorageItemResource(MyModelTrashResource):
+class EntRelStorageItemResource(myModelResources.TrashModelResource):
     class Meta:
         queryset = dbModels.EntRelStorageItem.objects.all().order_by('-u_time', 'id')
         resource_name = 'EntRelStorageItem'
@@ -123,10 +123,10 @@ class EntRelStorageItemResource(MyModelTrashResource):
         filtering = {}
         for field in allFields:
             filtering.setdefault(field, ALL)
-        serializer = serializers.TimeFormatSerializer()
+        serializer = mySerializers.TimeFormatSerializer()
     
 
-class EntRelTechnologyItemEquipmentResource(MyModelTrashResource):
+class EntRelTechnologyItemEquipmentResource(myModelResources.TrashModelResource):
     class Meta:
         queryset = dbModels.EntRelTechnologyItemEquipment.objects.all().order_by('-u_time', 'id')
         resource_name = 'EntRelTechnologyItemEquipment'
@@ -138,10 +138,10 @@ class EntRelTechnologyItemEquipmentResource(MyModelTrashResource):
         filtering = {}
         for field in allFields:
             filtering.setdefault(field, ALL)
-        serializer = serializers.TimeFormatSerializer()
+        serializer = mySerializers.TimeFormatSerializer()
     
 
-class EntSotrageResource(MyModelTrashResource):
+class EntSotrageResource(myModelResources.TrashModelResource):
     class Meta:
         queryset = dbModels.EntStorage.objects.all().order_by('-u_time', 'id')
         resource_name = 'EntStorage'
@@ -153,10 +153,10 @@ class EntSotrageResource(MyModelTrashResource):
         filtering = {}
         for field in allFields:
             filtering.setdefault(field, ALL)
-        serializer = serializers.TimeFormatSerializer()
+        serializer = mySerializers.TimeFormatSerializer()
     
 
-class EntTechnologyResource(MyModelTrashResource):
+class EntTechnologyResource(myModelResources.TrashModelResource):
     class Meta:
         queryset = dbModels.EntTechnology.objects.all().order_by('-u_time', 'id')
         resource_name = 'EntTechnology'
@@ -168,12 +168,12 @@ class EntTechnologyResource(MyModelTrashResource):
         filtering = {}
         for field in allFields:
             filtering.setdefault(field, ALL)
-        serializer = serializers.TimeFormatSerializer()
+        serializer = mySerializers.TimeFormatSerializer()
     
 
-class TmpItemFullRelResource(MyModelTrashResource):
+class TmpItemFullRelResource(myModelResources.TrashModelResource):
     class Meta:
-        queryset = dbModels.TmpItemFullRel.objects.all().order_by('-u_time', 'id')
+        queryset = dbModels.TmpItemFullRel.objects.all()
         resource_name = 'TmpItemFullRel'
         allFields = dbModels.TmpItemFullRel._meta.get_all_field_names()
         authorization = Authorization()
@@ -183,27 +183,12 @@ class TmpItemFullRelResource(MyModelTrashResource):
         filtering = {}
         for field in allFields:
             filtering.setdefault(field, ALL)
-        serializer = serializers.TimeFormatSerializer()
-    
-
-class TmpOrderResource(MyModelTrashResource):
-    class Meta:
-        queryset = dbModels.TmpOrder.objects.all().order_by('-u_time', 'id')
-        resource_name = 'TmpOrder'
-        allFields = dbModels.TmpOrder._meta.get_all_field_names()
-        authorization = Authorization()
-        ordering = allFields
-        limit = 100
-        max_limit = 0
-        filtering = {}
-        for field in allFields:
-            filtering.setdefault(field, ALL)
-        serializer = serializers.TimeFormatSerializer()
+        serializer = mySerializers.TimeFormatSerializer()
         
 
-class TmpOrderAnalysisResource(MyModelTrashResource):
+class TmpOrderAnalysisResource(myModelResources.TrashModelResource):
     class Meta:
-        queryset = dbModels.TmpOrderAnalysis.objects.all().order_by('-u_time', 'id')
+        queryset = dbModels.TmpOrderAnalysis.objects.all()
         resource_name = 'TmpOrderAnalysis'
         allFields = dbModels.TmpOrderAnalysis._meta.get_all_field_names()
         authorization = Authorization()
@@ -213,12 +198,12 @@ class TmpOrderAnalysisResource(MyModelTrashResource):
         filtering = {}
         for field in allFields:
             filtering.setdefault(field, ALL)
-        serializer = serializers.TimeFormatSerializer()
+        serializer = mySerializers.TimeFormatSerializer()
         
 
-class TmpOrderFilterRelResource(MyModelTrashResource):
+class TmpOrderFilterRelResource(myModelResources.TrashModelResource):
     class Meta:
-        queryset = dbModels.TmpOrderFilter.objects.all().order_by('-u_time', 'id')
+        queryset = dbModels.TmpOrderFilter.objects.all()
         resource_name = 'TmpOrderFilter'
         allFields = dbModels.TmpOrderFilter._meta.get_all_field_names()
         authorization = Authorization()
@@ -228,5 +213,5 @@ class TmpOrderFilterRelResource(MyModelTrashResource):
         filtering = {}
         for field in allFields:
             filtering.setdefault(field, ALL)
-        serializer = serializers.TimeFormatSerializer()
+        serializer = mySerializers.TimeFormatSerializer()
         

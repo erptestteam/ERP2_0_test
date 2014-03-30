@@ -4,7 +4,7 @@ from django.db import connection
 from django.utils import simplejson
 from django.core.serializers import json
 import datetime
-from mysqldb import models2_1 as dbmodels
+from mysqldbmodels import models2_1 as dbmodels
 
 
 def index(request):

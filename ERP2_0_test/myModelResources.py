@@ -1,13 +1,39 @@
 # coding=utf-8
 import datetime
 from tastypie.resources import ModelResource
-from tastypie.authorization import Authorization
 from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned, ValidationError
 from tastypie.utils import is_valid_jsonp_callback_value, dict_strip_unicode_keys, trailing_slash
 from tastypie.exceptions import NotFound, BadRequest, InvalidFilterError, HydrationError, InvalidSortError, ImmediateHttpResponse, Unauthorized
 
 
-class MyModelResource(ModelResource):
+class MyModelResource(ModelResource): 
+    def save(self, bundle, skip_errors=False):
+        self.is_valid(bundle)
+
+        if bundle.errors and not skip_errors:
+            raise ImmediateHttpResponse(response=self.error_response(bundle.request, bundle.errors))
+
+        # Check if they're authorized.
+        if bundle.obj.pk:
+            self.authorized_update_detail(self.get_object_list(bundle.request), bundle)
+            setattr(bundle.obj, 'u_time', datetime.datetime.now())
+        else:
+            self.authorized_create_detail(self.get_object_list(bundle.request), bundle)
+            setattr(bundle.obj, 'i_time', datetime.datetime.now())
+
+        # Save FKs just in case.
+        self.save_related(bundle)
+
+        # Save the main object.
+        bundle.obj.save()
+        bundle.objects_saved.add(self.create_identifier(bundle.obj))
+
+        # Now pick up the M2M bits.
+        m2m_bundle = self.hydrate_m2m(bundle)
+        self.save_m2m(m2m_bundle)
+        return bundle
+    
+    
     def obj_get_list(self, bundle, **kwargs):
         filters = {}
 

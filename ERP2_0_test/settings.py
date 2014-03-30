@@ -28,7 +28,7 @@ if True and SYS_USER == 'chzh':
     DATABASES = {
                  'default': {
                              'ENGINE': 'django.db.backends.mysql',
-                             'NAME': 'erp',
+                             'NAME': 'erp2_2',
                              'USER': 'root',
                              'PASSWORD': '1234qwer',
                              'HOST': '127.0.0.1',
@@ -158,7 +158,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
-    'mysqldb_inspect',
+    'mysqldbmodels',
     'tastypie',
 )
 

@@ -4,7 +4,7 @@ from django.db import connection
 from django.utils import simplejson
 from django.core.serializers import json
 import datetime
-from mysqldb_inspect import models as dbmodels
+from mysqldb import models2_1 as dbmodels
 
 
 def index(request):
@@ -102,3 +102,15 @@ def deleteList(request, mo_na, to_del):
         tdo.d_time = datetime.datetime.now()
         tdo.save()
     return HttpResponse(0)
+
+
+def testAdvancedModelsFunction(request):
+    responseSTR = ''
+    material_list = dbmodels.EntMaterial.objects.filter(d_time__isnull=True).exclude()
+    # material_list = dbmodels.EntMaterial.objects.exclude(d_time__isnull=True)
+    for obj in material_list:
+        responseSTR = responseSTR + str(obj.fullOBJ()) + '<br/>'
+    now = datetime.datetime.now()
+    utcnow = datetime.datetime.utcnow()
+    return HttpResponse('testAdvancedModelsFunction.<br/>local:%s<br/>utc:%s<br>%s' % (now, utcnow, responseSTR))
+

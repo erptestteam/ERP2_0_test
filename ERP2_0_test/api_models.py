@@ -3,7 +3,7 @@ from tastypie.authorization import Authorization
 from tastypie.resources import ALL_WITH_RELATIONS, ALL
 from ERP2_0_test import serializers
 from ERP2_0_test.myModelResources import MyModelResource
-from mysqldb_inspect import models as dbModels
+from mysqldbmodels import models as dbModels
 
 
 class EntEquimentResource(MyModelResource):
@@ -185,3 +185,48 @@ class TmpItemFullRelResource(MyModelResource):
             filtering.setdefault(field, ALL)
         serializer = serializers.TimeFormatSerializer()
     
+
+class TmpOrderResource(MyModelResource):
+    class Meta:
+        queryset = dbModels.TmpOrder.objects.all().order_by('-i_time', 'id')
+        resource_name = 'TmpOrder'
+        allFields = dbModels.TmpOrder._meta.get_all_field_names()
+        authorization = Authorization()
+        ordering = allFields
+        limit = 100
+        max_limit = 0
+        filtering = {}
+        for field in allFields:
+            filtering.setdefault(field, ALL)
+        serializer = serializers.TimeFormatSerializer()
+        
+
+class TmpOrderAnalysisResource(MyModelResource):
+    class Meta:
+        queryset = dbModels.TmpOrderAnalysis.objects.all().order_by('-i_time', 'id')
+        resource_name = 'TmpOrderAnalysis'
+        allFields = dbModels.TmpOrderAnalysis._meta.get_all_field_names()
+        authorization = Authorization()
+        ordering = allFields
+        limit = 100
+        max_limit = 0
+        filtering = {}
+        for field in allFields:
+            filtering.setdefault(field, ALL)
+        serializer = serializers.TimeFormatSerializer()
+        
+
+class TmpOrderFilterRelResource(MyModelResource):
+    class Meta:
+        queryset = dbModels.TmpOrderFilter.objects.all().order_by('-i_time', 'id')
+        resource_name = 'TmpOrderFilter'
+        allFields = dbModels.TmpOrderFilter._meta.get_all_field_names()
+        authorization = Authorization()
+        ordering = allFields
+        limit = 100
+        max_limit = 0
+        filtering = {}
+        for field in allFields:
+            filtering.setdefault(field, ALL)
+        serializer = serializers.TimeFormatSerializer()
+        

@@ -96,7 +96,7 @@ class EntRelItemItemResource(myModelResources.ENTModelResource):
         serializer = mySerializers.TimeFormatSerializer()
     
 
-class EntRelMathineItemResource(myModelResources.ENTModelResource):
+class EntRelMachineItemResource(myModelResources.ENTModelResource):
     class Meta:
         queryset = dbModels.EntRelMachineItem.objects.all().order_by('-u_time', 'id')
         resource_name = 'EntRelMachineItem'

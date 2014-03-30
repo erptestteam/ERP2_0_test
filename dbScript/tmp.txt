@@ -1,0 +1,78 @@
+    #IF _found THEN
+        OPEN tifr_cursor;
+        WHILE _found DO
+            FETCH tifr_cursor INTO _sub_p,_sub_c,_sub_n,_sub_ns,_sub_l;
+            SET _sub_c_split_req = _sub_ns * shortValue;
+            SET _sub_c_usedStorage = (SELECT get_component_used_storage3(_sub_c));
+            CALL get_component_actual_future_storage3
+                (_sub_c,_useActualStorage,_useFutureStorage,_sub_c_actual_storage,_sub_c_future_storage);
+            IF _sub_c_split_req <= (_sub_c_actual_storage + _sub_c_future_storage - _sub_c_usedStorage) THEN
+                SET _sub_c_from_storage = _sub_c_split_req;
+                SET _sub_c_from_product = 0;
+            ELSE
+                SET _sub_c_from_storage = _sub_c_actual_storage + _sub_c_future_storage - _sub_c_usedStorage;
+                SET _sub_c_from_product = _sub_c_split_req - _sub_c_from_storage;
+            END IF;
+            INSERT INTO tmp_order_analysis (orderID,componentID,p,c,
+            orderRequirement,splitRequirement,otherRequirement,defectRequirement,
+            actualStorage,futureStorage,usedStorage,fromStorage,fromProduct,
+            n_full_rel,nl_full_rel,l_full_rel)
+            VALUES (_orderID,_componentID,_sub_p,_sub_c,
+            0,_sub_c_split_req,0,(SELECT get_component_defective_requirement3(_sub_c,_sub_c_split_req,_useDefective)),
+            _sub_c_actual_storage,_sub_c_future_storage,_sub_c_usedStorage,_sub_c_from_storage,_sub_c_from_product,
+            _sub_n,_sub_ns,_sub_l);
+            #FETCH tifr_cursor INTO _sub_p,_sub_c,_sub_n,_sub_ns,_sub_l;
+        END WHILE;
+        CLOSE tifr_cursor;
+    #END IF;
+
+
+
+
+    IF _sub_count > 0 THEN 
+        OPEN tifr_cursor;
+	REPEAT
+	    FETCH tifr_cursor INTO _sub_p,_sub_c,_sub_n,_sub_ns,_sub_l;
+	    SET _sub_c_split_req = _sub_ns * shortValue;
+	    SET _sub_c_usedStorage = (SELECT get_component_used_storage3(_sub_c));
+	    CALL get_component_actual_future_storage3
+		(_sub_c,_useActualStorage,_useFutureStorage,_sub_c_actual_storage,_sub_c_future_storage);
+	    IF _sub_c_split_req <= (_sub_c_actual_storage + _sub_c_future_storage - _sub_c_usedStorage) THEN
+		SET _sub_c_from_storage = _sub_c_split_req;
+		SET _sub_c_from_product = 0;
+	    ELSE
+		SET _sub_c_from_storage = _sub_c_actual_storage + _sub_c_future_storage - _sub_c_usedStorage;
+		SET _sub_c_from_product = _sub_c_split_req - _sub_c_from_storage;
+	    END IF;
+	    INSERT INTO tmp_order_analysis 
+	    (orderID,componentID,p,c,
+	    orderRequirement,splitRequirement,otherRequirement,defectRequirement,
+	    actualStorage,futureStorage,usedStorage,fromStorage,fromProduct)
+	    #n_full_rel,nl_full_rel,l_full_rel)
+	    VALUES 
+	    (_orderID,_componentID,_sub_p,_sub_c,
+	    0,_sub_c_split_req,0,(SELECT get_component_defective_requirement3(_sub_c,_sub_c_split_req,_useDefective)),
+	    _sub_c_actual_storage,_sub_c_future_storage,_sub_c_usedStorage,_sub_c_from_storage,_sub_c_from_product);
+	    #_sub_n,_sub_ns,_sub_l);
+	 UNTIL _done END REPEAT;
+	 CLOSE tifr_cursor;
+    END IF;
+
+
+    
+    IF _useActualStorage = 0 AND _useFutureStorage = 0 THEN
+        SELECT SUM(actual_count),SUM(future_count) INTO actualStorage,futureStorage 
+        FROM ent_rel_storage_item WHERE item_number = comp_id GROUP BY item_number;
+    ELSEIF _useActualStorage = 0 AND _useFutureStorage = 1 THEN
+        SELECT SUM(actual_count),0 INTO actualStorage,futureStorage 
+        FROM ent_rel_storage_item WHERE item_number = comp_id GROUP BY item_number;
+    ELSEIF _useActualStorage = 1 AND _useFutureStorage = 0 THEN
+        SELECT 0,SUM(future_count) INTO actualStorage,futureStorage 
+        FROM ent_rel_storage_item WHERE item_number = comp_id GROUP BY item_number;
+    END IF;
+    IF actualStorage IS NULL THEN 
+        SET actualStorage = 0;
+    END IF;
+    IF futureStorage IS NULL THEN 
+        SET futureStorage = 0;
+    END IF;

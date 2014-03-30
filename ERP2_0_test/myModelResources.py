@@ -14,12 +14,14 @@ class MyModelResource(ModelResource):
             raise ImmediateHttpResponse(response=self.error_response(bundle.request, bundle.errors))
 
         # Check if they're authorized.
+        time_now = datetime.datetime.now()
         if bundle.obj.pk:
             self.authorized_update_detail(self.get_object_list(bundle.request), bundle)
-            setattr(bundle.obj, 'u_time', datetime.datetime.now())
+            setattr(bundle.obj, 'u_time', time_now)
         else:
             self.authorized_create_detail(self.get_object_list(bundle.request), bundle)
-            setattr(bundle.obj, 'i_time', datetime.datetime.now())
+            setattr(bundle.obj, 'u_time', time_now)
+            setattr(bundle.obj, 'i_time', time_now)
 
         # Save FKs just in case.
         self.save_related(bundle)
@@ -72,14 +74,12 @@ class MyModelResource(ModelResource):
         
         if hasattr(deletable_objects, 'delete'):
             # deletable_objects.delete()
-            print 'true'
             for deleteable_object in deletable_objects:
                 # if deleteable_object.d_time == None:
                 print deleteable_object.id
                 # deleteable_object.d_time = datetime.datetime.now()
                 # deleteable_object.save()
         else:
-            print 'false'
             for authed_obj in deletable_objects:
                 # authed_obj.delete()
                 authed_obj.d_time = datetime.datetime.now()

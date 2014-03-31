@@ -96,6 +96,21 @@ class EntMaterialResource(myModelResources.TrashModelResource):
         serializer = mySerializers.TimeFormatSerializer()
     
 
+class EntMenuResource(myModelResources.ENTModelResource):
+    class Meta:
+        queryset = dbModels.EntMenu.objects.all().order_by('-u_time', 'id')
+        resource_name = 'EntMenu'
+        allFields = dbModels.EntMenu._meta.get_all_field_names()
+        authorization = Authorization()
+        ordering = allFields
+        limit = 100
+        max_limit = 0
+        filtering = {}
+        for field in allFields:
+            filtering.setdefault(field, ALL)
+        serializer = mySerializers.TimeFormatSerializer()
+    
+
 class EntOrderResource(myModelResources.TrashModelResource):
     class Meta:
         queryset = dbModels.EntOrder.objects.all().order_by('-u_time', 'id')
@@ -206,6 +221,21 @@ class EntTechnologyResource(myModelResources.TrashModelResource):
         queryset = dbModels.EntTechnology.objects.all().order_by('-u_time', 'id')
         resource_name = 'EntTechnology'
         allFields = dbModels.EntTechnology._meta.get_all_field_names()
+        authorization = Authorization()
+        ordering = allFields
+        limit = 100
+        max_limit = 0
+        filtering = {}
+        for field in allFields:
+            filtering.setdefault(field, ALL)
+        serializer = mySerializers.TimeFormatSerializer()
+    
+
+class EntUserResource(myModelResources.TrashModelResource):
+    class Meta:
+        queryset = dbModels.EntUser.objects.all().order_by('-u_time', 'id')
+        resource_name = 'EntUser'
+        allFields = dbModels.EntUser._meta.get_all_field_names()
         authorization = Authorization()
         ordering = allFields
         limit = 100

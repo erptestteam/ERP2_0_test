@@ -105,23 +105,22 @@ def deleteList(request, mo_na, to_del):
 
 
 from django.db.models import F
+from django.db.models import Q
 from datetime import timedelta
+
 def testAdvancedModelsFunction(request):
-    responseSTR = ''
     # material_list = dbmodels.EntMaterial.objects.filter(d_time__isnull=True).exclude()
     # material_list = dbmodels.EntMaterial.objects.exclude(d_time__isnull=True)
     # material_list = dbmodels.EntMaterial.objects.filter(length__gt=F('width'))
     # material_list = dbmodels.EntMaterial.objects.filter(d_time__lte=F('i_time') + timedelta(days=1))
-    material = dbmodels.EntMaterial.objects.get(id__exact=3)  # Explicit form
-    material = dbmodels.EntMaterial.objects.get(id=3)  # __exact is implied
-    material = dbmodels.EntMaterial.objects.get(pk=3)  # pk implies id__exact
-    responseSTR = responseSTR + str(material.fullOBJ()) + '<br/>'
-    '''
-    for obj in material_list:
-        responseSTR = responseSTR + str(obj.fullOBJ()) + '<br/>'
-    '''
+    # material = dbmodels.EntMaterial.objects.get(id__exact=3)  # Explicit form
+    # material = dbmodels.EntMaterial.objects.get(id=3)  # __exact is implied
+    # material = dbmodels.EntMaterial.objects.get(pk=3)  # pk implies id__exact
+    # material_list = dbmodels.EntMaterial.objects.filter(Q(id__lte=2) | Q(id__gte=20), Q(id__lte=22))
+    material_list = dbmodels.EntMaterial.objects.filter(id__lte=2).values()
+    material_list = dbmodels.EntMaterial.objects.filter(id__lte=10).values('id', 'name')
+    # dbmodels.EntMaterial.objects.get(id__exact=1).delete()
     now = datetime.datetime.now()
     utcnow = datetime.datetime.utcnow()
-    return HttpResponse('testAdvancedModelsFunction.<br/>local:%s<br/>utc:%s<br>%s' % (now, utcnow,
-                         simplejson.dumps(responseSTR)))
+    return HttpResponse('testAdvancedModelsFunction.<br/>local:%s<br/>utc:%s<br>%s' % (now, utcnow, material_list))
 

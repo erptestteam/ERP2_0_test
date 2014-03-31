@@ -8,9 +8,8 @@
 # into your database.
 
 from django.db import models
-from function import ERPFunction
 
-class EntEquipment(models.Model, ERPFunction):
+class EntEquipment(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255, blank=True)
     remark = models.CharField(max_length=255, blank=True)
@@ -43,7 +42,7 @@ class EntFeedingStatus(models.Model):
     class Meta:
         db_table = u'ent_feeding_status'
 
-class EntItem(models.Model, ERPFunction):
+class EntItem(models.Model):
     id = models.AutoField(primary_key=True)
     number = models.CharField(max_length=255, unique=True, blank=True)
     material = models.CharField(max_length=255, blank=True)
@@ -56,7 +55,7 @@ class EntItem(models.Model, ERPFunction):
     class Meta:
         db_table = u'ent_item'
 
-class EntMachine(models.Model, ERPFunction):
+class EntMachine(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255, unique=True, blank=True)
     descr = models.CharField(max_length=255, blank=True)
@@ -67,7 +66,7 @@ class EntMachine(models.Model, ERPFunction):
     class Meta:
         db_table = u'ent_machine'
 
-class EntMaterial(models.Model, ERPFunction):
+class EntMaterial(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255, unique=True, blank=True)
     material_type = models.CharField(max_length=33, blank=True)
@@ -83,7 +82,18 @@ class EntMaterial(models.Model, ERPFunction):
     class Meta:
         db_table = u'ent_material'
 
-class EntOrder(models.Model, ERPFunction):
+class EntMenu(models.Model):
+    id = models.IntegerField(primary_key=True)
+    menu_name = models.CharField(max_length=765, blank=True)
+    menu_level = models.IntegerField(null=True, blank=True)
+    parrent_id = models.IntegerField(null=True, blank=True)
+    i_time = models.DateTimeField(null=True, blank=True)
+    u_time = models.DateTimeField(null=True, blank=True)
+    d_time = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'ent_menu'
+
+class EntOrder(models.Model):
     id = models.AutoField(primary_key=True)
     number = models.CharField(max_length=255, unique=True, blank=True)
     batch_number = models.CharField(max_length=255, unique=True, blank=True)
@@ -111,7 +121,7 @@ class EntRelItemDrawing(models.Model):
     class Meta:
         db_table = u'ent_rel_item_drawing'
 
-class EntRelItemItem(models.Model, ERPFunction):
+class EntRelItemItem(models.Model):
     id = models.AutoField(primary_key=True)
     p_item_number = models.CharField(max_length=255, blank=True)
     c_item_number = models.CharField(max_length=255, blank=True)
@@ -123,7 +133,7 @@ class EntRelItemItem(models.Model, ERPFunction):
     class Meta:
         db_table = u'ent_rel_item_item'
 
-class EntRelMachineItem(models.Model, ERPFunction):
+class EntRelMachineItem(models.Model):
     id = models.IntegerField(primary_key=True)
     machine_id = models.IntegerField(unique=True, null=True, blank=True)
     item_number = models.CharField(max_length=765, blank=True)
@@ -135,7 +145,7 @@ class EntRelMachineItem(models.Model, ERPFunction):
     class Meta:
         db_table = u'ent_rel_machine_item'
 
-class EntRelStorageItem(models.Model, ERPFunction):
+class EntRelStorageItem(models.Model):
     id = models.AutoField(primary_key=True)
     storage_id = models.IntegerField(null=True, blank=True)
     item_number = models.CharField(max_length=255, blank=True)
@@ -151,7 +161,7 @@ class EntRelStorageItem(models.Model, ERPFunction):
     class Meta:
         db_table = u'ent_rel_storage_item'
 
-class EntRelTechnologyItemEquipment(models.Model, ERPFunction):
+class EntRelTechnologyItemEquipment(models.Model):
     id = models.AutoField(primary_key=True)
     item_number = models.CharField(max_length=255, blank=True)
     technology_id = models.IntegerField(null=True, blank=True)
@@ -167,7 +177,7 @@ class EntRelTechnologyItemEquipment(models.Model, ERPFunction):
     class Meta:
         db_table = u'ent_rel_technology_item_equipment'
 
-class EntStorage(models.Model, ERPFunction):
+class EntStorage(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255, blank=True)
     descr = models.CharField(max_length=255, blank=True)
@@ -178,7 +188,7 @@ class EntStorage(models.Model, ERPFunction):
     class Meta:
         db_table = u'ent_storage'
 
-class EntTechnology(models.Model, ERPFunction):
+class EntTechnology(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255, blank=True)
     descr = models.CharField(max_length=255, blank=True)
@@ -189,7 +199,18 @@ class EntTechnology(models.Model, ERPFunction):
     class Meta:
         db_table = u'ent_technology'
 
-class TmpItemFullRel(models.Model, ERPFunction):
+class EntUser(models.Model):
+    id = models.IntegerField(primary_key=True)
+    login_name = models.CharField(max_length=765, blank=True)
+    login_pass = models.CharField(max_length=765, blank=True)
+    menu_access = models.CharField(max_length=765, blank=True)
+    i_time = models.DateTimeField(null=True, blank=True)
+    u_time = models.DateTimeField(null=True, blank=True)
+    d_time = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'ent_user'
+
+class TmpItemFullRel(models.Model):
     id = models.AutoField(primary_key=True)
     t = models.CharField(max_length=255)
     p = models.CharField(max_length=255)
@@ -201,7 +222,7 @@ class TmpItemFullRel(models.Model, ERPFunction):
     class Meta:
         db_table = u'tmp_item_full_rel'
 
-class TmpOrder(models.Model, ERPFunction):
+class TmpOrder(models.Model):
     id = models.AutoField(primary_key=True)
     number = models.CharField(max_length=255, blank=True)
     batch_number = models.CharField(max_length=255, blank=True)
@@ -217,7 +238,7 @@ class TmpOrder(models.Model, ERPFunction):
     class Meta:
         db_table = u'tmp_order'
 
-class TmpOrderAnalysis(models.Model, ERPFunction):
+class TmpOrderAnalysis(models.Model):
     id = models.AutoField(primary_key=True)
     orderid = models.IntegerField(null=True, db_column='orderID', blank=True)  # Field name made lowercase.
     componentid = models.CharField(max_length=255, db_column='componentID', blank=True)  # Field name made lowercase.
@@ -238,7 +259,7 @@ class TmpOrderAnalysis(models.Model, ERPFunction):
     class Meta:
         db_table = u'tmp_order_analysis'
 
-class TmpOrderFilter(models.Model, ERPFunction):
+class TmpOrderFilter(models.Model):
     id = models.AutoField(primary_key=True)
     number = models.CharField(max_length=255, unique=True, blank=True)
     batch_number = models.CharField(max_length=255, unique=True, blank=True)

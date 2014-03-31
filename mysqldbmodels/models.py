@@ -20,6 +20,29 @@ class EntEquipment(models.Model, ERPFunction):
     class Meta:
         db_table = u'ent_equipment'
 
+class EntFeeding(models.Model):
+    id = models.IntegerField(primary_key=True)
+    item_number = models.CharField(max_length=255, blank=True)
+    feeding_count = models.IntegerField(null=True, blank=True)
+    feeding_date = models.DateTimeField(null=True, blank=True)
+    i_time = models.DateTimeField(null=True, blank=True)
+    u_time = models.DateTimeField(null=True, blank=True)
+    d_time = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'ent_feeding'
+
+class EntFeedingStatus(models.Model):
+    id = models.IntegerField(primary_key=True)
+    feeding_id = models.IntegerField(null=True, blank=True)
+    step_name = models.CharField(max_length=255, blank=True)
+    step_status = models.CharField(max_length=765, blank=True)
+    step_rang = models.IntegerField(null=True, blank=True)
+    i_time = models.DateTimeField(null=True, blank=True)
+    u_time = models.DateTimeField(null=True, blank=True)
+    d_time = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'ent_feeding_status'
+
 class EntItem(models.Model, ERPFunction):
     id = models.AutoField(primary_key=True)
     number = models.CharField(max_length=255, unique=True, blank=True)
@@ -135,6 +158,7 @@ class EntRelTechnologyItemEquipment(models.Model, ERPFunction):
     technology_info = models.CharField(max_length=255, blank=True)
     dimensions = models.CharField(max_length=255, blank=True)
     equipment_id = models.IntegerField(null=True, blank=True)
+    rank = models.IntegerField(null=True, blank=True)
     equipment_param = models.CharField(max_length=255, blank=True)
     remark = models.CharField(max_length=255, blank=True)
     i_time = models.DateTimeField(null=True, blank=True)

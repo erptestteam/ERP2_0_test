@@ -104,14 +104,24 @@ def deleteList(request, mo_na, to_del):
     return HttpResponse(0)
 
 
+from django.db.models import F
+from datetime import timedelta
 def testAdvancedModelsFunction(request):
     responseSTR = ''
-    material_list = dbmodels.EntMaterial.objects.filter(d_time__isnull=True).exclude()
+    # material_list = dbmodels.EntMaterial.objects.filter(d_time__isnull=True).exclude()
     # material_list = dbmodels.EntMaterial.objects.exclude(d_time__isnull=True)
+    # material_list = dbmodels.EntMaterial.objects.filter(length__gt=F('width'))
+    # material_list = dbmodels.EntMaterial.objects.filter(d_time__lte=F('i_time') + timedelta(days=1))
+    material = dbmodels.EntMaterial.objects.get(id__exact=3)  # Explicit form
+    material = dbmodels.EntMaterial.objects.get(id=3)  # __exact is implied
+    material = dbmodels.EntMaterial.objects.get(pk=3)  # pk implies id__exact
+    responseSTR = responseSTR + str(material.fullOBJ()) + '<br/>'
+    '''
     for obj in material_list:
         responseSTR = responseSTR + str(obj.fullOBJ()) + '<br/>'
+    '''
     now = datetime.datetime.now()
     utcnow = datetime.datetime.utcnow()
     return HttpResponse('testAdvancedModelsFunction.<br/>local:%s<br/>utc:%s<br>%s' % (now, utcnow,
-                         simplejson.encoder(responseSTR)))
+                         simplejson.dumps(responseSTR)))
 

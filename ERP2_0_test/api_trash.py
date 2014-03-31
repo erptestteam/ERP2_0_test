@@ -21,6 +21,36 @@ class EntEquimentResource(myModelResources.TrashModelResource):
         serializer = mySerializers.TimeFormatSerializer()
     
 
+class EntFeedingResource(myModelResources.TrashModelResource):
+    class Meta:
+        queryset = dbModels.EntFeeding.objects.all().order_by('-u_time', 'id')
+        resource_name = 'EntFeeding'
+        allFields = dbModels.EntItem._meta.get_all_field_names()
+        authorization = Authorization()
+        ordering = allFields
+        limit = 100
+        max_limit = 0
+        filtering = {}
+        for field in allFields:
+            filtering.setdefault(field, ALL)
+        serializer = mySerializers.TimeFormatSerializer()
+    
+
+class EntFeedingStatusResource(myModelResources.TrashModelResource):
+    class Meta:
+        queryset = dbModels.EntFeedingStatus.objects.all().order_by('-u_time', 'id')
+        resource_name = 'EntFeedingStatus'
+        allFields = dbModels.EntFeedingStatus._meta.get_all_field_names()
+        authorization = Authorization()
+        ordering = allFields
+        limit = 100
+        max_limit = 0
+        filtering = {}
+        for field in allFields:
+            filtering.setdefault(field, ALL)
+        serializer = mySerializers.TimeFormatSerializer()
+    
+
 class EntItemResource(myModelResources.TrashModelResource):
     class Meta:
         queryset = dbModels.EntItem.objects.all().order_by('-u_time', 'id')
@@ -64,7 +94,7 @@ class EntMaterialResource(myModelResources.TrashModelResource):
         for field in allFields:
             filtering.setdefault(field, ALL)
         serializer = mySerializers.TimeFormatSerializer()
-
+    
 
 class EntOrderResource(myModelResources.TrashModelResource):
     class Meta:
@@ -81,7 +111,7 @@ class EntOrderResource(myModelResources.TrashModelResource):
         serializer = mySerializers.TimeFormatSerializer()
     
 
-class EntRelItemDrawingResource(myModelResources.ENTModelResource):
+class EntRelItemDrawingResource(myModelResources.TrashModelResource):
     class Meta:
         queryset = dbModels.EntRelItemDrawing.objects.all().order_by('-u_time', 'id')
         resource_name = 'EntRelItemDrawing'
@@ -94,7 +124,7 @@ class EntRelItemDrawingResource(myModelResources.ENTModelResource):
         for field in allFields:
             filtering.setdefault(field, ALL)
         serializer = mySerializers.TimeFormatSerializer()
-
+    
 
 class EntRelItemItemResource(myModelResources.TrashModelResource):
     class Meta:
@@ -199,7 +229,7 @@ class TmpItemFullRelResource(myModelResources.TrashModelResource):
         for field in allFields:
             filtering.setdefault(field, ALL)
         serializer = mySerializers.TimeFormatSerializer()
-        
+    
 
 class TmpOrderAnalysisResource(myModelResources.TrashModelResource):
     class Meta:
@@ -214,7 +244,7 @@ class TmpOrderAnalysisResource(myModelResources.TrashModelResource):
         for field in allFields:
             filtering.setdefault(field, ALL)
         serializer = mySerializers.TimeFormatSerializer()
-        
+    
 
 class TmpOrderFilterRelResource(myModelResources.TrashModelResource):
     class Meta:
@@ -229,4 +259,4 @@ class TmpOrderFilterRelResource(myModelResources.TrashModelResource):
         for field in allFields:
             filtering.setdefault(field, ALL)
         serializer = mySerializers.TimeFormatSerializer()
-        
+    

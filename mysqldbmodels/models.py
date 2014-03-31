@@ -24,6 +24,7 @@ class EntItem(models.Model, ERPFunction):
     id = models.AutoField(primary_key=True)
     number = models.CharField(max_length=255, unique=True, blank=True)
     material = models.CharField(max_length=255, blank=True)
+    type = models.IntegerField(null=True, blank=True)
     remark = models.CharField(max_length=255, blank=True)
     defective_rate = models.FloatField(null=True, blank=True)
     i_time = models.DateTimeField(null=True, blank=True)

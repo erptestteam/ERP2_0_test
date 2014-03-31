@@ -112,5 +112,6 @@ def testAdvancedModelsFunction(request):
         responseSTR = responseSTR + str(obj.fullOBJ()) + '<br/>'
     now = datetime.datetime.now()
     utcnow = datetime.datetime.utcnow()
-    return HttpResponse('testAdvancedModelsFunction.<br/>local:%s<br/>utc:%s<br>%s' % (now, utcnow, responseSTR))
+    return HttpResponse('testAdvancedModelsFunction.<br/>local:%s<br/>utc:%s<br>%s' % (now, utcnow,
+                         simplejson.encoder(responseSTR)))
 

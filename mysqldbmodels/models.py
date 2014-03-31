@@ -76,6 +76,18 @@ class EntOrder(models.Model, ERPFunction):
     class Meta:
         db_table = u'ent_order'
 
+class EntRelItemDrawing(models.Model):
+    id = models.IntegerField(primary_key=True)
+    item_number = models.CharField(max_length=255, blank=True)
+    type = models.CharField(max_length=255, blank=True)
+    location = models.CharField(max_length=255, blank=True)
+    disable = models.IntegerField(null=True, blank=True)
+    i_time = models.DateTimeField(null=True, blank=True)
+    u_time = models.DateTimeField(null=True, blank=True)
+    d_time = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'ent_rel_item_drawing'
+
 class EntRelItemItem(models.Model, ERPFunction):
     id = models.AutoField(primary_key=True)
     p_item_number = models.CharField(max_length=255, blank=True)

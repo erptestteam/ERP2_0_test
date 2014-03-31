@@ -79,7 +79,22 @@ class EntOrderResource(myModelResources.ENTModelResource):
         for field in allFields:
             filtering.setdefault(field, ALL)
         serializer = mySerializers.TimeFormatSerializer()
-    
+        
+
+class EntRelItemDrawingResource(myModelResources.ENTModelResource):
+    class Meta:
+        queryset = dbModels.EntRelItemDrawing.objects.all().order_by('-u_time', 'id')
+        resource_name = 'EntRelItemDrawing'
+        allFields = dbModels.EntRelItemDrawing._meta.get_all_field_names()
+        authorization = Authorization()
+        ordering = allFields
+        limit = 100
+        max_limit = 0
+        filtering = {}
+        for field in allFields:
+            filtering.setdefault(field, ALL)
+        serializer = mySerializers.TimeFormatSerializer()
+
 
 class EntRelItemItemResource(myModelResources.ENTModelResource):
     class Meta:

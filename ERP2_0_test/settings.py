@@ -9,9 +9,14 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-import getpass
-SYS_USER = getpass.getuser()
+# import getpass
+# SYS_USER = getpass.getuser()
 # print SYS_USER
+
+import socket
+s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+s.connect(('google.com', 0))
+innerIP = s.getsockname()[0]
 
 DATABASES = {
     'default': {
@@ -24,7 +29,8 @@ DATABASES = {
     }
 }
 
-if True and SYS_USER == 'chzh':
+# if True and SYS_USER == 'chzh':
+if True and innerIP == '192.168.106.32':
     DATABASES = {
                  'default': {
                              'ENGINE': 'django.db.backends.mysql',
@@ -36,7 +42,8 @@ if True and SYS_USER == 'chzh':
                              }
                  }
 
-if SYS_USER == 'Administrator':
+# if SYS_USER == 'Administrator':
+if True and innerIP == '192.168.1.222':
     DATABASES = {
                  'default': {
                              'ENGINE': 'django.db.backends.mysql',

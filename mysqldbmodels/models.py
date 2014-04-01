@@ -34,7 +34,7 @@ class EntFeedingStatus(models.Model):
     id = models.IntegerField(primary_key=True)
     feeding_id = models.IntegerField(null=True, blank=True)
     step_name = models.CharField(max_length=255, blank=True)
-    step_status = models.CharField(max_length=765, blank=True)
+    step_status = models.CharField(max_length=255, blank=True)
     step_rang = models.IntegerField(null=True, blank=True)
     i_time = models.DateTimeField(null=True, blank=True)
     u_time = models.DateTimeField(null=True, blank=True)
@@ -84,8 +84,9 @@ class EntMaterial(models.Model):
 
 class EntMenu(models.Model):
     id = models.IntegerField(primary_key=True)
-    menu_name = models.CharField(max_length=765, blank=True)
+    menu_name = models.CharField(max_length=255, blank=True)
     menu_level = models.IntegerField(null=True, blank=True)
+    menu_url = models.CharField(max_length=255, blank=True)
     parrent_id = models.IntegerField(null=True, blank=True)
     i_time = models.DateTimeField(null=True, blank=True)
     u_time = models.DateTimeField(null=True, blank=True)
@@ -136,9 +137,9 @@ class EntRelItemItem(models.Model):
 class EntRelMachineItem(models.Model):
     id = models.IntegerField(primary_key=True)
     machine_id = models.IntegerField(unique=True, null=True, blank=True)
-    item_number = models.CharField(max_length=765, blank=True)
+    item_number = models.CharField(max_length=255, blank=True)
     count = models.IntegerField(null=True, blank=True)
-    remark = models.CharField(max_length=765, blank=True)
+    remark = models.CharField(max_length=255, blank=True)
     i_time = models.DateTimeField(null=True, blank=True)
     u_time = models.DateTimeField(null=True, blank=True)
     d_time = models.DateTimeField(null=True, blank=True)
@@ -201,9 +202,9 @@ class EntTechnology(models.Model):
 
 class EntUser(models.Model):
     id = models.IntegerField(primary_key=True)
-    login_name = models.CharField(max_length=765, blank=True)
-    login_pass = models.CharField(max_length=765, blank=True)
-    menu_access = models.CharField(max_length=765, blank=True)
+    login_name = models.CharField(max_length=255, blank=True)
+    login_pass = models.CharField(max_length=255, blank=True)
+    menu_access = models.CharField(max_length=255, blank=True)
     i_time = models.DateTimeField(null=True, blank=True)
     u_time = models.DateTimeField(null=True, blank=True)
     d_time = models.DateTimeField(null=True, blank=True)

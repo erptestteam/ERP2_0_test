@@ -5,12 +5,12 @@ from django.utils import simplejson
 from django.core.serializers import json
 import datetime
 from mysqldbmodels import models as dbmodels
+from django.conf import settings
 
 
 def index(request):
-    now = datetime.datetime.now()
-    now2 = datetime.datetime.utcnow()
-    return HttpResponse('hello django.<br/>%s<br/>%s' % (now, now2))
+    return HttpResponse('hello django.<br/>%s<br/>local: %s<br/>utc:%s' % (
+                        settings.DATABASES, datetime.datetime.now(), datetime.datetime.utcnow()))
 
 
 def testdb(request):
@@ -120,7 +120,6 @@ def testAdvancedModelsFunction(request):
     material_list = dbmodels.EntMaterial.objects.filter(id__lte=2).values()
     material_list = dbmodels.EntMaterial.objects.filter(id__lte=10).values('id', 'name')
     # dbmodels.EntMaterial.objects.get(id__exact=1).delete()
-    now = datetime.datetime.now()
-    utcnow = datetime.datetime.utcnow()
-    return HttpResponse('testAdvancedModelsFunction.<br/>local:%s<br/>utc:%s<br>%s' % (now, utcnow, material_list))
+    return HttpResponse('testAdvancedModelsFunction.<br/>local:%s<br/>utc:%s<br>%s' % (
+                        datetime.datetime.now(), datetime.datetime.utcnow(), material_list))
 

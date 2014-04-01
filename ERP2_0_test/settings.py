@@ -21,28 +21,37 @@ innerIP = s.getsockname()[0]
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',  # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'erp',  # Or path to database file if using sqlite3.
+        'NAME': 'erp2_2',  # Or path to database file if using sqlite3.
         'USER': 'root',  # Not used with sqlite3.
         'PASSWORD': '1234qwer',  # Not used with sqlite3.
-        'HOST': '192.168.0.100',  # Set to empty string for localhost. Not used with sqlite3.
+        'HOST': '127.0.0.1',  # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '3306',  # Set to empty string for default. Not used with sqlite3.
     }
 }
-
-# if True and SYS_USER == 'chzh':
-if True and innerIP == '192.168.106.32':
+if True:
     DATABASES = {
                  'default': {
                              'ENGINE': 'django.db.backends.mysql',
-                             'NAME': 'erp2_2',
+                             'NAME': 'erp',
                              'USER': 'root',
                              'PASSWORD': '1234qwer',
-                             'HOST': '127.0.0.1',
+                             'HOST': '192.168.0.100',
                              'PORT': '3306',
                              }
                  }
 
-# if SYS_USER == 'Administrator':
+if True and innerIP == '192.168.0.100':
+    DATABASES = {
+                 'default': {
+                             'ENGINE': 'django.db.backends.mysql',
+                             'NAME': 'erp',
+                             'USER': 'root',
+                             'PASSWORD': '1234qwer',
+                             'HOST': '192.168.0.100',
+                             'PORT': '3306',
+                             }
+                 }
+
 if True and innerIP == '192.168.1.222':
     DATABASES = {
                  'default': {

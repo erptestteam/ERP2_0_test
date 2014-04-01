@@ -193,7 +193,7 @@ class EntTechnology(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255, blank=True)
     descr = models.CharField(max_length=255, blank=True)
-    remark = models.IntegerField(null=True, blank=True)
+    remark = models.CharField(max_length=255, blank=True)
     i_time = models.DateTimeField(null=True, blank=True)
     u_time = models.DateTimeField(null=True, blank=True)
     d_time = models.DateTimeField(null=True, blank=True)

@@ -1,7 +1,8 @@
 eclipse.preferences.version=1
+encoding//ERP2_0_test/api_dbViews.py=utf-8
 encoding//ERP2_0_test/api_models.py=utf-8
 encoding//ERP2_0_test/api_trash.py=utf-8
-encoding//ERP2_0_test/api_views.py=utf-8
+encoding//ERP2_0_test/api_udViews.py=utf-8
 encoding//ERP2_0_test/myModelResources.py=utf-8
 encoding//ERP2_0_test/mySerializers.py=utf-8
 encoding//ERP2_0_test/test/datetime_test.py=utf-8

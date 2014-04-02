@@ -277,3 +277,37 @@ class TmpOrderFilter(models.Model):
     status = models.IntegerField(null=True, blank=True)
     class Meta:
         db_table = u'tmp_order_filter'
+
+class VOrderAnalysis(models.Model):
+    analysis_id = models.IntegerField(primary_key=True)
+    order_id = models.IntegerField(null=True, blank=True)
+    order_number = models.CharField(max_length=255, blank=True)
+    order_batch_number = models.CharField(max_length=255, blank=True)
+    t = models.CharField(max_length=255, blank=True)
+    p = models.CharField(max_length=255, blank=True)
+    c = models.CharField(max_length=255, blank=True)
+    n = models.IntegerField(null=True, blank=True)
+    storage = models.IntegerField(null=True, blank=True)
+    order_count = models.IntegerField(null=True, blank=True)
+    order_need = models.BigIntegerField(null=True, blank=True)
+    future_count = models.IntegerField(null=True, blank=True)
+    from_product = models.IntegerField(null=True, blank=True)
+    order_lead_time = models.DateField(null=True, blank=True)
+    class Meta:
+        db_table = u'v_order_analysis'
+
+class VOrderFindNewItemOrder(models.Model):
+    id = models.IntegerField(primary_key=True)
+    number = models.CharField(max_length=255, blank=True)
+    batch_number = models.CharField(max_length=255, blank=True)
+    type = models.CharField(max_length=255, blank=True)
+    note_date = models.DateTimeField(null=True, blank=True)
+    item_number = models.CharField(max_length=255, blank=True)
+    order_lead_time = models.DateField(null=True, blank=True)
+    count = models.IntegerField(null=True, blank=True)
+    status = models.IntegerField(null=True, blank=True)
+    i_time = models.DateTimeField(null=True, blank=True)
+    u_time = models.DateTimeField(null=True, blank=True)
+    d_time = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'v_order_find_new_item_order'

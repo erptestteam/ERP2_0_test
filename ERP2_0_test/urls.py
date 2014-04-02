@@ -9,7 +9,8 @@ import views
 from tastypie.api import Api
 from ERP2_0_test import api_models
 from ERP2_0_test import api_trash
-from ERP2_0_test import api_views
+from ERP2_0_test import api_dbViews
+from ERP2_0_test import api_udViews
 # from ERP2_0_test.api_model import EntMaterialResource, EntItemResource
 
 v1_api = Api(api_name='v1')
@@ -31,8 +32,9 @@ v1_api.register(api_models.TmpItemFullRelResource())
 v1_api.register(api_models.TmpOrderResource())
 v1_api.register(api_models.TmpOrderAnalysisResource())
 v1_api.register(api_models.TmpOrderFilterRelResource())
-# v1_api.register(api_models.testviewResource())
-v1_api.register(api_views.MessageResource())
+v1_api.register(api_udViews.MessageResource())
+v1_api.register(api_dbViews.VOrderAnalysisResource())
+v1_api.register(api_dbViews.VOrderFindNewItemOrderResource())
 
 trash_v1_api = Api(api_name='v1')
 trash_v1_api.register(api_trash.EntEquimentResource())
@@ -49,10 +51,10 @@ trash_v1_api.register(api_trash.EntRelTechnologyItemEquipmentResource())
 trash_v1_api.register(api_trash.EntSotrageResource())
 trash_v1_api.register(api_trash.EntTechnologyResource())
 trash_v1_api.register(api_trash.EntUserResource())
-trash_v1_api.register(api_trash.TmpItemFullRelResource())
+# trash_v1_api.register(api_trash.TmpItemFullRelResource())
 # trash_v1_api.register(api_trash.TmpOrderResource())
-trash_v1_api.register(api_trash.TmpOrderAnalysisResource())
-trash_v1_api.register(api_trash.TmpOrderFilterRelResource())
+# trash_v1_api.register(api_trash.TmpOrderAnalysisResource())
+# trash_v1_api.register(api_trash.TmpOrderFilterRelResource())
 
 urlpatterns = patterns('',
     (r'^api/', include(v1_api.urls)),

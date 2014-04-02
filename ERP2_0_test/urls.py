@@ -34,6 +34,7 @@ v1_api.register(api_models.TmpOrderAnalysisResource())
 v1_api.register(api_models.TmpOrderFilterRelResource())
 v1_api.register(api_udViews.MessageResource())
 v1_api.register(api_dbViews.VOrderAnalysisResource())
+v1_api.register(api_dbViews.VOrderFilterExtractResource())
 v1_api.register(api_dbViews.VOrderFindNewItemOrderResource())
 
 trash_v1_api = Api(api_name='v1')

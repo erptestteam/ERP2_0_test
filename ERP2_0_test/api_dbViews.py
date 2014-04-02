@@ -21,6 +21,21 @@ class VOrderAnalysisResource(ModelResource):
         serializer = mySerializers.TimeFormatSerializer()
     
 
+class VOrderFilterExtractResource(ModelResource):
+    class Meta:
+        queryset = dbModels.VOrderFilterExtract.objects.all()
+        resource_name = 'VOrderFilterExtract'
+        allFields = dbModels.VOrderFilterExtract._meta.get_all_field_names()
+        authorization = Authorization()
+        ordering = allFields
+        limit = 100
+        max_limit = 0
+        filtering = {}
+        for field in allFields:
+            filtering.setdefault(field, ALL)
+        serializer = mySerializers.TimeFormatSerializer()
+    
+
 class VOrderFindNewItemOrderResource(ModelResource):
     class Meta:
         queryset = dbModels.VOrderFindNewItemOrder.objects.all()

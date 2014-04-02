@@ -2,43 +2,45 @@ Procude of Getting Order Status
 ===============================
 *update @ 2014-04-02 19:30*
 
-| ������¼����ent_order
-| ������¼���й��ڶ�����״̬�����ԣ�ent_order.status
-| �붩����صļ�¼����
-| ��Ʒ��¼��	ent_item
-| ��������ɸѡ��¼��	tmp_order_filter
-| �������������¼��	tmp_order_analysis
+| 订单记录表：ent_order
+| 订单记录表中关于订单项状态的属性：ent_order.status
+| 与订单相关的记录表：
+|     部品记录表 ent_item
+|     订单分析筛选记录表   tmp_order_filter
+|     订单分析结果记录表   tmp_order_analysis
 
-Definition lists: 
+订单的可以有的状态情况(仅对未删除订单):
 
-what 
-  Definition lists associate a term with 
-  a definition. 
+1 
+  订单状态值错误
+  订单项状态为0或者为NULL或者为空字符串。
+10 
+  订单信息不合法
+  订单项中要求的部品在部品记录表中不存在，或订单项的数量小于等于0，或订单项中有其它必要信息缺失，如项目编号等。
+100 
+  订单纳期超时
+  当前日期大于等于订单项纳期。
+1000 
+  未分析
+  订单项编号存在于订单记录表，且不存在于订单分析筛选记录表中。
+10000 
+  在分析
+  订单项编号存在于订单记录表，且订单项编号存在于订单分析筛选记录表中。
+100000 
+  无效分析项目
+  且订单编号存在于订单分析筛选记录表，且(不存在于订单记录表中，或在订单记录表中状态为已删除)。
+1000000 
+  已投料（或者叫“预期可发货”） 
+  订单项状态大于等于200，对所有订单项状态大于等于200的记录调用order_analysis2(0,0)过程，在不展开订单项部品的状态下，筛选fromProdct为0的
+  由系统自动分析得到。
+10000000 
+  直接可发货
 
-how 
-  The term is a one-line phrase, and the 
-  definition is one or more paragraphs or 
-  body elements, indented relative to the 
-  term. Blank lines are not allowed 
-  between term and definition.
 
-�����Ŀ����е�״̬���:
+由用户手动改变的状态，不受其他因素而改变。
+未发货：100 
+已发货：等待买家确认 201
+已发货：买家确认不合格 202
+已发货：买家确认完成 203
 
-δ����:0 
-  ������״̬Ϊ0����ΪNULL����Ϊ���ַ���
-�ѷ������ȴ����ȷ�ϡ���11X 
-  ������״̬Ϊ���ѷ�����
-�ѷ��������ȷ�ϲ��ϸ񡪡�12X 
-  ������״̬Ϊ�����ȷ��ʧ�ܡ�
-�ѷ��������ȷ����ɡ���190X 
-  ������״̬Ϊ�����ȷ����ɡ�
-δ������(���ڣ���Ʒ������)����1XX 
-  ������״̬���ڵ���100���Ҷ�������Ҫ��Ĳ�Ʒ�ڲ�Ʒ��¼���в����ڣ���ǰ���ڴ��ڵ��ڶ���������
-δ������δ��������20X 
-  ������״̬���ڵ���200���Ҷ������Ų������ڶ�������ɸѡ��¼���С�
-δ�������ڷ�������22X 
-  ������״̬���ڵ���220���Ҷ��������Ѵ����ڶ�������ɸѡ��¼���С�
-δ�������շ�������24X 
-  ������״̬���ڵ���240���Ҷ�����Ŵ����ڶ�������ɸѡ��¼�����Ҳ������ڶ�����¼���С�
-δ��������Ͷ�ϡ���3XX�����߽С�Ԥ�ڿɷ������� 
-  ������״̬���ڵ���300�������ж�����״̬���ڵ���200�ļ�¼����order_analysis2(0,0)���̣��ڲ�չ�������Ʒ��״̬�£�ɸѡfromProdctΪ0�Ķ����
+

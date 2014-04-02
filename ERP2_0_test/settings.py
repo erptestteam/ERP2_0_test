@@ -28,7 +28,7 @@ DATABASES = {
         'PORT': '3306',  # Set to empty string for default. Not used with sqlite3.
     }
 }
-if True:
+if False:
     DATABASES = {
                  'default': {
                              'ENGINE': 'django.db.backends.mysql',
@@ -40,7 +40,7 @@ if True:
                              }
                  }
 
-if True and innerIP == '192.168.0.100':
+if False and innerIP == '192.168.0.100':
     DATABASES = {
                  'default': {
                              'ENGINE': 'django.db.backends.mysql',

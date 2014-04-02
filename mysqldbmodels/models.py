@@ -104,6 +104,7 @@ class EntOrder(models.Model):
     order_lead_time = models.DateField(null=True, blank=True)
     count = models.IntegerField(null=True, blank=True)
     status = models.IntegerField(null=True, blank=True)
+    sys_status = models.CharField(max_length=20, blank=True)
     i_time = models.DateTimeField(null=True, blank=True)
     u_time = models.DateTimeField(null=True, blank=True)
     d_time = models.DateTimeField(null=True, blank=True)
@@ -267,14 +268,7 @@ class TmpOrderAnalysis(models.Model):
 
 class TmpOrderFilter(models.Model):
     id = models.AutoField(primary_key=True)
-    number = models.CharField(max_length=255, unique=True, blank=True)
-    batch_number = models.CharField(max_length=255, unique=True, blank=True)
-    type = models.CharField(max_length=255, blank=True)
-    note_date = models.DateTimeField(null=True, blank=True)
-    item_number = models.CharField(max_length=255, blank=True)
-    order_lead_time = models.DateField(null=True, blank=True)
-    count = models.IntegerField(null=True, blank=True)
-    status = models.IntegerField(null=True, blank=True)
+    order_id = models.IntegerField(null=True, blank=True)
     class Meta:
         db_table = u'tmp_order_filter'
 
@@ -295,6 +289,23 @@ class VOrderAnalysis(models.Model):
     order_lead_time = models.DateField(null=True, blank=True)
     class Meta:
         db_table = u'v_order_analysis'
+
+class VOrderFilterExtract(models.Model):
+    order_id = models.IntegerField(primary_key=True)
+    number = models.CharField(max_length=255, blank=True)
+    batch_number = models.CharField(max_length=255, blank=True)
+    type = models.CharField(max_length=255, blank=True)
+    note_date = models.DateTimeField(null=True, blank=True)
+    item_number = models.CharField(max_length=255, blank=True)
+    order_lead_time = models.DateField(null=True, blank=True)
+    count = models.IntegerField(null=True, blank=True)
+    status = models.IntegerField(null=True, blank=True)
+    sys_status = models.CharField(max_length=20, blank=True)
+    i_time = models.DateTimeField(null=True, blank=True)
+    u_time = models.DateTimeField(null=True, blank=True)
+    d_time = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'v_order_filter_extract'
 
 class VOrderFindNewItemOrder(models.Model):
     id = models.IntegerField(primary_key=True)

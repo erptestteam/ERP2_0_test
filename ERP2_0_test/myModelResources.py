@@ -84,8 +84,10 @@ class ENTModelResource(ModelResource):
                 # authed_obj.delete()
                 authed_obj.d_time = datetime.datetime.now()
                 authed_obj.save()
+        
 
 class TMPModelResource(ModelResource):
+    '''
     def obj_get_list(self, bundle, **kwargs):
         filters = {}
 
@@ -103,7 +105,7 @@ class TMPModelResource(ModelResource):
         except ValueError:
             raise BadRequest("Invalid resource lookup data provided (mismatched type).")
     
-    
+
     def obj_delete(self, bundle, **kwargs):
         if not hasattr(bundle.obj, 'delete'):
             try:
@@ -134,7 +136,8 @@ class TMPModelResource(ModelResource):
                 # authed_obj.delete()
                 authed_obj.d_time = datetime.datetime.now()
                 authed_obj.save()
-
+    '''
+    
 
 class TrashModelResource(ModelResource):
     def obj_get_list(self, bundle, **kwargs):

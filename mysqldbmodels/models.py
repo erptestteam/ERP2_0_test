@@ -241,9 +241,6 @@ class TmpOrder(models.Model):
     order_lead_time = models.DateField(null=True, blank=True)
     count = models.IntegerField(null=True, blank=True)
     status = models.IntegerField(null=True, blank=True)
-    i_time = models.DateTimeField(null=True, blank=True)
-    u_time = models.DateTimeField(null=True, blank=True)
-    d_time = models.DateTimeField(null=True, blank=True)
     class Meta:
         db_table = u'tmp_order'
 

@@ -261,9 +261,9 @@ class TmpItemFullRelResource(myModelResources.TMPModelResource):
         serializer = mySerializers.TimeFormatSerializer()
     
 
-class TmpOrderResource(myModelResources.ENTModelResource):
+class TmpOrderResource(myModelResources.TMPModelResource):
     class Meta:
-        queryset = dbModels.TmpOrder.objects.all().order_by('-u_time', 'id')
+        queryset = dbModels.TmpOrder.objects.all()
         resource_name = 'TmpOrder'
         allFields = dbModels.TmpOrder._meta.get_all_field_names()
         authorization = Authorization()

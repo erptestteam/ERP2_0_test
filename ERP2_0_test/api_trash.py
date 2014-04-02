@@ -246,6 +246,7 @@ class EntUserResource(myModelResources.TrashModelResource):
         serializer = mySerializers.TimeFormatSerializer()
     
 
+'''
 class TmpItemFullRelResource(myModelResources.TrashModelResource):
     class Meta:
         queryset = dbModels.TmpItemFullRel.objects.all()
@@ -290,3 +291,4 @@ class TmpOrderFilterRelResource(myModelResources.TrashModelResource):
             filtering.setdefault(field, ALL)
         serializer = mySerializers.TimeFormatSerializer()
     
+'''

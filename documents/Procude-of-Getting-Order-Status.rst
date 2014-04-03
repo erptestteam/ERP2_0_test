@@ -1,6 +1,7 @@
 Procude of Getting Order Status
 ===============================
-*update @ 2014-04-02 19:30*
+:Release: *V1.0*
+:Date:    *2014-04-02 23:00*
 
 | 订单记录表：ent_order
 | 订单记录表中关于订单项状态的属性：ent_order.status

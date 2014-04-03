@@ -1,6 +1,7 @@
 Interacting With The API
-==========================
-*update @ 2014-04-02 19:00*
+========================
+:Release: *V2.0*
+:Date:    *2014-04-02 19:00*
 
 Documention has not been complented.
 

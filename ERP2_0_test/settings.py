@@ -40,7 +40,7 @@ if False:
                              }
                  }
 
-if False and innerIP == '192.168.0.100':
+if True and innerIP == '192.168.0.100':
     DATABASES = {
                  'default': {
                              'ENGINE': 'django.db.backends.mysql',

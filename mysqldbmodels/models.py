@@ -267,8 +267,7 @@ class TmpOrderAnalysis(models.Model):
         db_table = u'tmp_order_analysis'
 
 class TmpOrderFilter(models.Model):
-    id = models.AutoField(primary_key=True)
-    order_id = models.IntegerField(null=True, blank=True)
+    order_id = models.IntegerField(primary_key=True)
     class Meta:
         db_table = u'tmp_order_filter'
 

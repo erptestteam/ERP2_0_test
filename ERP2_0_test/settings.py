@@ -28,7 +28,7 @@ DATABASES = {
         'PORT': '3306',  # Set to empty string for default. Not used with sqlite3.
     }
 }
-if False:
+if True:
     DATABASES = {
                  'default': {
                              'ENGINE': 'django.db.backends.mysql',

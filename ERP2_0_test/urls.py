@@ -35,6 +35,7 @@ v1_api.register(api_models.TmpOrderFilterRelResource())
 v1_api.register(api_udViews.MessageResource())
 v1_api.register(api_dbViews.VOrderResource())
 v1_api.register(api_dbViews.VOrderAnalysisResource())
+v1_api.register(api_dbViews.VOrderAnalysis2Resource())
 v1_api.register(api_dbViews.VOrderFilterExtractResource())
 v1_api.register(api_dbViews.VOrderFindNewItemOrderResource())
 

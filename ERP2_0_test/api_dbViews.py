@@ -36,6 +36,21 @@ class VOrderAnalysisResource(ModelResource):
         serializer = mySerializers.TimeFormatSerializer()
     
 
+class VOrderAnalysis2Resource(ModelResource):
+    class Meta:
+        queryset = dbModels.VOrderAnalysis2.objects.all()
+        resource_name = 'VOrderAnalysis2'
+        allFields = dbModels.VOrderAnalysis2._meta.get_all_field_names()
+        authorization = Authorization()
+        ordering = allFields
+        limit = 100
+        max_limit = 0
+        filtering = {}
+        for field in allFields:
+            filtering.setdefault(field, ALL)
+        serializer = mySerializers.TimeFormatSerializer()
+    
+
 class VOrderFilterExtractResource(ModelResource):
     class Meta:
         queryset = dbModels.VOrderFilterExtract.objects.all()

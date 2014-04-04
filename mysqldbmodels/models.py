@@ -266,6 +266,27 @@ class TmpOrderAnalysis(models.Model):
     class Meta:
         db_table = u'tmp_order_analysis'
 
+class TmpOrderAnalysis2(models.Model):
+    id = models.IntegerField(primary_key=True)
+    orderid = models.IntegerField(null=True, db_column='orderID', blank=True)  # Field name made lowercase.
+    componentid = models.CharField(max_length=255, db_column='componentID', blank=True)  # Field name made lowercase.
+    p = models.CharField(max_length=255, blank=True)
+    c = models.CharField(max_length=255, blank=True)
+    orderrequirement = models.IntegerField(null=True, db_column='orderRequirement', blank=True)  # Field name made lowercase.
+    splitrequirement = models.IntegerField(null=True, db_column='splitRequirement', blank=True)  # Field name made lowercase.
+    otherrequirement = models.IntegerField(null=True, db_column='otherRequirement', blank=True)  # Field name made lowercase.
+    defectrequirement = models.IntegerField(null=True, db_column='defectRequirement', blank=True)  # Field name made lowercase.
+    actualstorage = models.IntegerField(null=True, db_column='actualStorage', blank=True)  # Field name made lowercase.
+    futurestorage = models.IntegerField(null=True, db_column='futureStorage', blank=True)  # Field name made lowercase.
+    usedstorage = models.IntegerField(null=True, db_column='usedStorage', blank=True)  # Field name made lowercase.
+    fromstorage = models.IntegerField(null=True, db_column='fromStorage', blank=True)  # Field name made lowercase.
+    fromproduct = models.IntegerField(null=True, db_column='fromProduct', blank=True)  # Field name made lowercase.
+    n_full_rel = models.IntegerField(null=True, blank=True)
+    nl_full_rel = models.IntegerField(null=True, blank=True)
+    l_full_rel = models.IntegerField(null=True, blank=True)
+    class Meta:
+        db_table = u'tmp_order_analysis2'
+
 class TmpOrderFilter(models.Model):
     order_id = models.IntegerField(primary_key=True)
     class Meta:
@@ -305,6 +326,23 @@ class VOrderAnalysis(models.Model):
     order_lead_time = models.DateField(null=True, blank=True)
     class Meta:
         db_table = u'v_order_analysis'
+
+class VOrderAnalysis2(models.Model):
+    analysis_id = models.IntegerField(primary_key=True)
+    order_id = models.IntegerField(null=True, blank=True)
+    order_number = models.CharField(max_length=255, blank=True)
+    order_batch_number = models.CharField(max_length=255, blank=True)
+    t = models.CharField(max_length=255, blank=True)
+    order_requirement = models.IntegerField(null=True, blank=True)
+    order_lead_time = models.DateField(null=True, blank=True)
+    actual_storage = models.IntegerField(null=True, blank=True)
+    future_storage = models.IntegerField(null=True, blank=True)
+    used_storage = models.IntegerField(null=True, blank=True)
+    from_storage = models.IntegerField(null=True, blank=True)
+    from_product = models.IntegerField(null=True, blank=True)
+    forecast = models.CharField(max_length=15, blank=True)
+    class Meta:
+        db_table = u'v_order_analysis2'
 
 class VOrderFilterExtract(models.Model):
     order_id = models.IntegerField(primary_key=True)

@@ -6,6 +6,21 @@ from ERP2_0_test import mySerializers
 from mysqldbmodels import models as dbModels
 
 
+class VOrderResource(ModelResource):
+    class Meta:
+        queryset = dbModels.VOrder.objects.all()
+        resource_name = 'VOrder'
+        allFields = dbModels.VOrder._meta.get_all_field_names()
+        authorization = Authorization()
+        ordering = allFields
+        limit = 100
+        max_limit = 0
+        filtering = {}
+        for field in allFields:
+            filtering.setdefault(field, ALL)
+        serializer = mySerializers.TimeFormatSerializer()
+    
+
 class VOrderAnalysisResource(ModelResource):
     class Meta:
         queryset = dbModels.VOrderAnalysis.objects.all()

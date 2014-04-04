@@ -271,6 +271,23 @@ class TmpOrderFilter(models.Model):
     class Meta:
         db_table = u'tmp_order_filter'
 
+class VOrder(models.Model):
+    id = models.IntegerField(primary_key=True)
+    number = models.CharField(max_length=255, blank=True)
+    batch_number = models.CharField(max_length=255, blank=True)
+    type = models.CharField(max_length=255, blank=True)
+    note_date = models.DateTimeField(null=True, blank=True)
+    item_number = models.CharField(max_length=255, blank=True)
+    order_lead_time = models.DateField(null=True, blank=True)
+    count = models.IntegerField(null=True, blank=True)
+    status = models.IntegerField(null=True, blank=True)
+    sys_status = models.CharField(max_length=60, blank=True)
+    i_time = models.DateTimeField(null=True, blank=True)
+    u_time = models.DateTimeField(null=True, blank=True)
+    d_time = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'v_order'
+
 class VOrderAnalysis(models.Model):
     analysis_id = models.IntegerField(primary_key=True)
     order_id = models.IntegerField(null=True, blank=True)

@@ -79,3 +79,4 @@ class VOrderFindNewItemOrderResource(ModelResource):
         for field in allFields:
             filtering.setdefault(field, ALL)
         serializer = mySerializers.TimeFormatSerializer()
+    

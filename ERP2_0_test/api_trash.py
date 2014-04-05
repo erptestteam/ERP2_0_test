@@ -96,7 +96,7 @@ class EntMaterialResource(myModelResources.TrashModelResource):
         serializer = mySerializers.TimeFormatSerializer()
     
 
-class EntMenuResource(myModelResources.ENTModelResource):
+class EntMenuResource(myModelResources.TrashModelResource):
     class Meta:
         queryset = dbModels.EntMenu.objects.all().order_by('-u_time', 'id')
         resource_name = 'EntMenu'

@@ -291,7 +291,22 @@ class TmpOrderAnalysisResource(myModelResources.TMPModelResource):
         serializer = mySerializers.TimeFormatSerializer()
     
 
-class TmpOrderFilterRelResource(myModelResources.TMPModelResource):
+class TmpOrderAnalysis2Resource(myModelResources.TMPModelResource):
+    class Meta:
+        queryset = dbModels.TmpOrderAnalysis2.objects.all()
+        resource_name = 'TmpOrderAnalysis2'
+        allFields = dbModels.TmpOrderAnalysis2._meta.get_all_field_names()
+        authorization = Authorization()
+        ordering = allFields
+        limit = 100
+        max_limit = 0
+        filtering = {}
+        for field in allFields:
+            filtering.setdefault(field, ALL)
+        serializer = mySerializers.TimeFormatSerializer()
+    
+
+class TmpOrderFilterResource(myModelResources.TMPModelResource):
     class Meta:
         queryset = dbModels.TmpOrderFilter.objects.all()
         resource_name = 'TmpOrderFilter'

@@ -21,6 +21,36 @@ class VOrderResource(ModelResource):
         serializer = mySerializers.TimeFormatSerializer()
     
 
+class VFeedingTrackingResource(ModelResource):
+    class Meta:
+        queryset = dbModels.VFeedingTracking.objects.all()
+        resource_name = 'VFeedingTracking'
+        allFields = dbModels.VFeedingTracking._meta.get_all_field_names()
+        authorization = Authorization()
+        ordering = allFields
+        limit = 100
+        max_limit = 0
+        filtering = {}
+        for field in allFields:
+            filtering.setdefault(field, ALL)
+        serializer = mySerializers.TimeFormatSerializer()
+    
+
+class VItemFullInfoResource(ModelResource):
+    class Meta:
+        queryset = dbModels.VItemFullInfo.objects.all()
+        resource_name = 'VItemFullInfo'
+        allFields = dbModels.VItemFullInfo._meta.get_all_field_names()
+        authorization = Authorization()
+        ordering = allFields
+        limit = 100
+        max_limit = 0
+        filtering = {}
+        for field in allFields:
+            filtering.setdefault(field, ALL)
+        serializer = mySerializers.TimeFormatSerializer()
+    
+
 class VOrderAnalysisResource(ModelResource):
     class Meta:
         queryset = dbModels.VOrderAnalysis.objects.all()

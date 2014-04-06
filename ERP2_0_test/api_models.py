@@ -38,7 +38,7 @@ class EntFeedingResource(myModelResources.ENTModelResource):
 
 class EntFeedingStatusResource(myModelResources.ENTModelResource):
     class Meta:
-        queryset = dbModels.EntFeedingStatus.objects.all().order_by('-u_time', 'id')
+        queryset = dbModels.EntFeedingStatus.objects.all().order_by('step_status', 'id')
         resource_name = 'EntFeedingStatus'
         allFields = dbModels.EntFeedingStatus._meta.get_all_field_names()
         authorization = Authorization()

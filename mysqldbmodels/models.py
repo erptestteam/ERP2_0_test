@@ -356,7 +356,7 @@ class VOrderAnalysis2(models.Model):
     used_storage = models.IntegerField(null=True, blank=True)
     from_storage = models.IntegerField(null=True, blank=True)
     from_product = models.IntegerField(null=True, blank=True)
-    forecast = models.CharField(max_length=15, blank=True)
+    forecast = models.IntegerField(null=True, blank=True)
     class Meta:
         db_table = u'v_order_analysis2'
 

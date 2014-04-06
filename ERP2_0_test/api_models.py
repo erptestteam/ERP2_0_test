@@ -216,6 +216,21 @@ class EntSotrageResource(myModelResources.ENTModelResource):
         serializer = mySerializers.TimeFormatSerializer()
     
 
+class EntStorageChangesRecordResource(myModelResources.ENTModelResource):
+    class Meta:
+        queryset = dbModels.EntStorageChangesRecord.objects.all().order_by('-u_time', 'id')
+        resource_name = 'EntStorageChangesRecord'
+        allFields = dbModels.EntStorageChangesRecord._meta.get_all_field_names()
+        authorization = Authorization()
+        ordering = allFields
+        limit = 100
+        max_limit = 0
+        filtering = {}
+        for field in allFields:
+            filtering.setdefault(field, ALL)
+        serializer = mySerializers.TimeFormatSerializer()
+    
+
 class EntTechnologyResource(myModelResources.ENTModelResource):
     class Meta:
         queryset = dbModels.EntTechnology.objects.all().order_by('-u_time', 'id')

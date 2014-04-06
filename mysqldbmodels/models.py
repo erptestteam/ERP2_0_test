@@ -200,6 +200,20 @@ class EntStorage(models.Model):
     class Meta:
         db_table = u'ent_storage'
 
+class EntStorageChangesRecord(models.Model):
+    id = models.AutoField(primary_key=True)
+    type = models.CharField(max_length=255, blank=True)
+    item_number = models.CharField(max_length=255, blank=True)
+    item_type = models.CharField(max_length=255, blank=True)
+    storage_id = models.CharField(max_length=255, blank=True)
+    count = models.IntegerField(null=True, blank=True)
+    remark = models.CharField(max_length=255, blank=True)
+    i_time = models.DateTimeField(null=True, blank=True)
+    u_time = models.DateTimeField(null=True, blank=True)
+    d_time = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'ent_storage_changes_record'
+
 class EntTechnology(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255, blank=True)

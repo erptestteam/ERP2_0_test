@@ -25,7 +25,7 @@ class EntFeedingResource(myModelResources.ENTModelResource):
     class Meta:
         queryset = dbModels.EntFeeding.objects.all().order_by('-u_time', 'id')
         resource_name = 'EntFeeding'
-        allFields = dbModels.EntItem._meta.get_all_field_names()
+        allFields = dbModels.EntFeeding._meta.get_all_field_names()
         authorization = Authorization()
         ordering = allFields
         limit = 100

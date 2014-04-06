@@ -24,6 +24,7 @@ class EntFeeding(models.Model):
     item_number = models.CharField(max_length=255, blank=True)
     feeding_count = models.IntegerField(null=True, blank=True)
     feeding_date = models.DateTimeField(null=True, blank=True)
+    storage_mark = models.IntegerField(null=True, blank=True)
     i_time = models.DateTimeField(null=True, blank=True)
     u_time = models.DateTimeField(null=True, blank=True)
     d_time = models.DateTimeField(null=True, blank=True)

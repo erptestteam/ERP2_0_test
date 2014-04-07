@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+
+    <title></title>
+    <script src="../lib/load.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    	//相对于load。js文件，加载css/js文件,filename首部不需要包含"/"
+ 		loadJsCssFileRelToLoadJs("local/index/menu/data.js","js");
+ 		loadJsCssFileRelToLoadJs("local/index/index.js","js");
+ 		loadJsCssFileRelToLoadJs("local/index/index.css", 'css');
+    </script>
+
+    <script type="text/javascript">
+
+
+    </script>
+    <style  type="text/css" >
+    </style>
+
+
+</head>
+<body scroll="no">
+
+    <div id="container">
+        <div position="top">
+        </div>
+
+        <div position="left" id="menu_accordion">
+            <div title="菜单">
+                <div id="menu_tree"></div>
+            </div>
+            <div title="功能列表2"></div>
+            <div title="功能列表3"></div>
+        </div>
+        <div id="center" position="center">
+            <div title="主页"></div>
+        </div>
+        <div id="bottom" position="bottom">
+            bottom
+        </div>
+    </div>
+</body>
+</html>

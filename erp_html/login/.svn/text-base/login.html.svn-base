@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>风怡科技</title>
+<meta name="renderer" content="ie-comp">
+<meta http-equiv="X-UA-Compatible" content="IE=10" >
+<script src="../lib/local/service_api.js" type="text/javascript"></script>
+<script src="../lib/local/bridge_map.js" type="text/javascript"></script>
+<script src="jquery-1.4.3.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="login.css" />
+<script type="text/javascript">
+
+		window.onload = function(){
+		  var bodyh = document.documentElement.clientHeight;
+		  document.getElementById("login_center_div").style.height = (parseInt(bodyh) - 148) + 'px';
+		};
+
+
+      document.onkeydown=keyListener;   
+		function keyListener(e){   
+		    e = e ? e : event;  
+		    if(e.keyCode == 13){
+		    	onSubmit();   
+		    }   
+		}  
+
+	$(function(){		
+		$("#username").focus(function() {
+			$(".login_prompt").text("");
+		});
+		
+		$("#username").blur(function() {
+			var username=$('#username').val();
+			if(username == "")
+				$(".login_prompt").text("please input the username");
+		});
+		
+		$("#password").focus(function() {
+			$(".login_prompt").text("");
+		});
+		
+		$("#password").blur(function() {
+			var password=$('#password').val();
+			if(password == "")
+				$(".login_prompt").text("please input the Password");
+		});
+		
+	});
+	
+	function onSubmit(){
+		//var remeber_me = "false";
+ 		var username=$('#username').val();
+		var password=$('#password').val();
+		//if(document.getElementById("login_remember_checkbox").checked){
+		//	remeber_me = $("#login_remember_checkbox").val();
+		//}
+		username=encodeURIComponent(username);
+		password=encodeURIComponent(password);
+		if(username!=''&&password!=''){
+			$.ajax({
+				type : 'GET',
+				url : erp_api_service.EntUser[0] + "?callback=?&login_name__exact="
+						+ username + "&login_pass__exact=" + password,
+				dataType : 'json',
+				cache : false,
+				async : true,
+				success : function(data) {
+					if (data && data.objects) {
+						var res = data.objects;
+						// console_info(res);
+						if (res.length == 1) {
+							//$(set_menu_data(res[0].menu_access));
+							bridge_map.save_user_info("user_name",username);
+							bridge_map.save_user_info("user_password",password);
+							bridge_map.save_user_info("user_menus",res[0].menu_access);
+							//bridge_map.get_user_info
+							window.location="../layout/index.html";
+						} else {
+						$('.login_prompt').text("用户名或密码错误。");
+						}
+					} else {
+						$('.login_prompt').text("用户名或密码错误。");
+					}
+				},
+				error : function(XMLHttpRequest) {
+					$('.login_prompt').text("系统错误,请关闭后重新启动。");
+				}
+			});
+		}else{
+			$('.login_prompt').text("请输入用户名和密码");
+		}
+		
+	}
+</script>
+</head>
+<body >
+	<div>
+		<div id="login_head">
+		<div class="login_head_image"><img src="image/newlogo_draft_1.png" style="width: 50px;height: 50px;"></div>
+		<div class="login_head_font"><span style="font-size: 35px;">风怡科技</span></br><span style="	font-size: 20px;">无锡风怡机械科技有限公司</span></br><span style="	font-size: 16px;">www.wxfyjx.com</span></div>
+		<span style="clear: both;"></span>
+		</div>
+		<div class="login_head_last"></div>
+		<div class="login_center_div" id="login_center_div">
+			<div id="loginCenter">
+				<div class="login_center_pince">
+				<h2 class="login_span_chinese">无锡风怡机械科技有限公司 </h2>
+					<span class="login_prompt"></span>
+					<div class="login_lable_txt_name">
+						<div id="lblAccount" class="login_label_name">用 户 名:</div>
+						<div class="login_txt_name"><input type="text" class="txt" id="username" ></div>
+						<span style="clear: both;"></span>
+					</div>
+					<div class="login_lable_txt_password">
+ 						<div id="lblPwd" class="login_label_password">密&nbsp;&nbsp;&nbsp;&nbsp; 码:</div>
+						<div class="login_txt_password"><input type="password" class="txt" id="password"></div>
+						<span style="clear: both;"></span>
+					</div>
+					<div class="login_button_remember">
+					<div class="login_button_div"><input type="button" value="Login" id="login_button" class="login_button" onclick="onSubmit()"></div>
+					<span style="clear: both;"></span>
+					</div>	
+				</div>
+			</div>
+				<span style="clear: both;"></span>
+		</div>
+		<span style="clear: both;"></span>
+	</div>
+</body>
+</html>

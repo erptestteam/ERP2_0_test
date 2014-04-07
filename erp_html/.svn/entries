@@ -1,0 +1,59 @@
+8
+
+dir
+142
+https://riouxsvn.com/svn/erp_sys/erp_html
+https://riouxsvn.com/svn/erp_sys
+
+
+
+2014-04-06T19:40:55.476603Z
+141
+developer1
+has-props
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+b6559c69-1348-4326-9f1a-bd48861ba9df
+
+.project
+file
+
+
+
+
+2014-03-31T12:03:44.149000Z
+669fc141a2a8b286f728f7696de58705
+2014-03-27T06:14:08.094214Z
+17
+developer1
+has-props
+
+css
+dir
+
+info
+dir
+
+layout
+dir
+
+lib
+dir
+
+login
+dir
+
+tab
+dir
+

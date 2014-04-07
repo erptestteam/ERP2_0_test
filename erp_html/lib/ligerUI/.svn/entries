@@ -1,0 +1,67 @@
+8
+
+dir
+142
+https://riouxsvn.com/svn/erp_sys/erp_html/lib/ligerUI
+https://riouxsvn.com/svn/erp_sys
+
+
+
+2014-04-04T12:24:11.010296Z
+95
+chongzi1031
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+b6559c69-1348-4326-9f1a-bd48861ba9df
+
+images
+dir
+
+jquery
+dir
+
+jquery-validation
+dir
+
+jquery.cookie.js
+file
+
+
+
+
+2014-03-31T12:03:55.069000Z
+8300eb5446df027b01ddd21e03c361b4
+2014-03-25T08:47:54.016318Z
+1
+chongzi1031
+
+json2.js
+file
+
+
+
+
+2014-03-31T12:03:56.029000Z
+5facf84b1ebbbf81129e4ecc03516db0
+2014-03-25T08:47:54.016318Z
+1
+chongzi1031
+
+ligerUI
+dir
+
+syntaxhighlighter
+dir
+

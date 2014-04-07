@@ -1,0 +1,19 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="../lib/load.js"></script>
+     <script type="text/javascript">
+   //相对于load。js文件，加载css/js文件,filename首部不需要包含"/"
+     	loadJsCssFileRelToLoadJs("local/tab/storage_location.js","js");
+    </script>
+    <style type="text/css">
+    </style>
+    
+</head>
+<body scroll="yes">
+    <div id="top_menu"></div>
+	<div id="filter"></div> 
+    <div id="storage_location"></div>
+</body>
+</html>

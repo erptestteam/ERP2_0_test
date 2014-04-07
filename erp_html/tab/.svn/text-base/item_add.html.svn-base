@@ -1,0 +1,48 @@
+﻿<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="../lib/load.js"></script>
+     <link rel="stylesheet" href="../css/item.css">
+	   <script type="text/javascript">
+     	loadJsCssFileRelToLoadJs("local/tab/item_add.js","js");
+    </script>
+       <script type="text/javascript">
+     	loadJsCssFileRelToLoadJs("local/tab/item_model.js","js");
+    </script>
+
+</head>
+<body scroll="no" style="padding:100 0 0 100;background-color:#CCCCCC">
+ <form name="form1" method="post" id="form1">
+ <div>
+
+     <table cellpadding="0" cellspacing="0" class="l-table-edit">
+            <tbody>
+            <tr>
+                <td align="right" class="l-table-edit-td " >部品编号:</td>
+                <td align="left" class="l-table-edit-td tdright"><div class="l-text" style="width: 178px;"><input name="item_No" type="text" id="item_No" ltype="text" class="l-text-field" ligeruiid="txtName" style="width: 174px;"><div class="l-text-l"></div><div class="l-text-r"></div></div></td>
+            </tr>
+            <tr>
+                <td align="right" class="l-table-edit-td tdtext">材料:</td>
+                <td align="left" class="l-table-edit-td tdright tdtext">
+				<input type="text" id="material">
+                </td>
+            </tr>
+             <tr>
+                <td align="right" class="l-table-edit-td tdtext" >备注:</td>
+                <td align="left" class="l-table-edit-td tdright tdtext"><div class="l-text" style="width: 178px;"><input name="remark" type="text" id="remark" ltype="text" class="l-text-field" ligeruiid="txtName" style="width: 174px;"><div class="l-text-l"></div><div class="l-text-r"></div></div></td>
+            </tr>
+        </tbody>
+    </table>
+ </div>
+ 	 <div style="margin:100 0 0 100">
+		<input type="submit" value="提交" id="Button1" class="l-button l-button-submit" onclick="add_item()">
+		<input type="reset" value="重置" class="l-button l-button-reset" style="margin-left:100">
+	</div>
+</form>
+	<div style="float:right;margin:-180 100 0 0">
+	   <input name="bom_btn" type="button" id="bom_btn" value="添加BOM结构" onclick="go_bom_page()">
+       <input name="tech_btn" type="button" id="tech_btn" value="添加工艺" style="margin-left:100">
+	</div>
+</body>
+</html>

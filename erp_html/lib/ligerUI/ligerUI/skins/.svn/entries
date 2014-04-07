@@ -1,0 +1,58 @@
+8
+
+dir
+142
+https://riouxsvn.com/svn/erp_sys/erp_html/lib/ligerUI/ligerUI/skins
+https://riouxsvn.com/svn/erp_sys
+
+
+
+2014-03-25T08:47:54.016318Z
+1
+chongzi1031
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+b6559c69-1348-4326-9f1a-bd48861ba9df
+
+Aqua
+dir
+
+Gray
+dir
+
+Gray2014
+dir
+
+Silvery
+dir
+
+Tab
+dir
+
+icons
+dir
+
+ligerui-icons.css
+file
+
+
+
+
+2014-03-31T12:03:47.153000Z
+f102e7e71cc88e6523b81cf2156185f9
+2014-03-25T08:47:54.016318Z
+1
+chongzi1031
+

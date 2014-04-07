@@ -1,0 +1,18 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="../lib/load.js"></script>
+     <script type="text/javascript">
+   //相对于load。js文件，加载css/js文件,filename首部不需要包含"/"
+     	loadJsCssFileRelToLoadJs("local/tab/item_bom_info.js","js");
+    </script>
+       <script type="text/javascript">
+    </script>
+    <style type="text/css">
+    </style>
+</head>
+<body scorll='yes'>
+    <div id="shwow_item_bom"></div>
+</body>
+</html>

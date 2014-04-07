@@ -1,0 +1,31 @@
+<html>
+<head> 
+    <title></title>
+<script src="../lib/load.js"></script>
+    <script type="text/javascript">
+        $(function ()
+        {
+        	var s = "1001001";
+        	var re = new RegExp("..0....","g"); // 创建正则表达式对象。
+        	var r = s.match(re); // 在字符串 s 中查找匹配。
+        	console.info(r);
+        });
+         
+    </script> 
+    <style type="text/css">
+        #txtGroup
+        {
+            height: 282px;
+            width: 463px;
+        }
+    </style>
+</head>
+<body style="padding: 10px"> 
+
+    <div id="filter" style="border:1px solid #d3d3d3;"></div>
+     <p>
+     <textarea id="txtGroup"></textarea></p>
+    <p>
+        <input id="Button1" type="button" value="获取当前过滤规则" /></p> 
+</body>
+</html>

@@ -1,0 +1,29 @@
+﻿<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="../lib/load.js"></script>
+     <script type="text/javascript">
+   //相对于load。js文件，加载css/js文件,filename首部不需要包含"/"
+     	loadJsCssFileRelToLoadJs("local/tab/order_edit.js","js");
+    </script>
+    <style type="text/css">
+    </style>
+    
+</head>
+<body scroll="yes">
+	<div id="top_menu"></div>
+	<div id="filter"></div> 
+    <div id="order_edit"></div>
+    <div id="excel" style="width:200px; margin:3px; display:none;">
+    选择要导入的工作簿:<input type="text" id="excel_sheets" />
+    </div>
+    <div id="excel_in_error_div" style="display:none;">
+    <div id ="excel_in_total"></div>
+    <div id ="excel_in_error_count"></div>
+     <div id ="excel_in_error"></div>
+     </div>
+ </div>
+     
+</body>
+</html>

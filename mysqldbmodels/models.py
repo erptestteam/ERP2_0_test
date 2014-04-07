@@ -267,19 +267,19 @@ class TmpOrder(models.Model):
 
 class TmpOrderAnalysis(models.Model):
     id = models.AutoField(primary_key=True)
-    orderid = models.IntegerField(null=True, db_column='orderID', blank=True) # Field name made lowercase.
-    componentid = models.CharField(max_length=255, db_column='componentID', blank=True) # Field name made lowercase.
+    orderid = models.IntegerField(null=True, db_column='orderID', blank=True)  # Field name made lowercase.
+    componentid = models.CharField(max_length=255, db_column='componentID', blank=True)  # Field name made lowercase.
     p = models.CharField(max_length=255, blank=True)
     c = models.CharField(max_length=255, blank=True)
-    orderrequirement = models.IntegerField(null=True, db_column='orderRequirement', blank=True) # Field name made lowercase.
-    splitrequirement = models.IntegerField(null=True, db_column='splitRequirement', blank=True) # Field name made lowercase.
-    otherrequirement = models.IntegerField(null=True, db_column='otherRequirement', blank=True) # Field name made lowercase.
-    defectrequirement = models.IntegerField(null=True, db_column='defectRequirement', blank=True) # Field name made lowercase.
-    actualstorage = models.IntegerField(null=True, db_column='actualStorage', blank=True) # Field name made lowercase.
-    futurestorage = models.IntegerField(null=True, db_column='futureStorage', blank=True) # Field name made lowercase.
-    usedstorage = models.IntegerField(null=True, db_column='usedStorage', blank=True) # Field name made lowercase.
-    fromstorage = models.IntegerField(null=True, db_column='fromStorage', blank=True) # Field name made lowercase.
-    fromproduct = models.IntegerField(null=True, db_column='fromProduct', blank=True) # Field name made lowercase.
+    orderrequirement = models.IntegerField(null=True, db_column='orderRequirement', blank=True)  # Field name made lowercase.
+    splitrequirement = models.IntegerField(null=True, db_column='splitRequirement', blank=True)  # Field name made lowercase.
+    otherrequirement = models.IntegerField(null=True, db_column='otherRequirement', blank=True)  # Field name made lowercase.
+    defectrequirement = models.IntegerField(null=True, db_column='defectRequirement', blank=True)  # Field name made lowercase.
+    actualstorage = models.IntegerField(null=True, db_column='actualStorage', blank=True)  # Field name made lowercase.
+    futurestorage = models.IntegerField(null=True, db_column='futureStorage', blank=True)  # Field name made lowercase.
+    usedstorage = models.IntegerField(null=True, db_column='usedStorage', blank=True)  # Field name made lowercase.
+    fromstorage = models.IntegerField(null=True, db_column='fromStorage', blank=True)  # Field name made lowercase.
+    fromproduct = models.IntegerField(null=True, db_column='fromProduct', blank=True)  # Field name made lowercase.
     n_full_rel = models.IntegerField(null=True, blank=True)
     nl_full_rel = models.IntegerField(null=True, blank=True)
     l_full_rel = models.IntegerField(null=True, blank=True)
@@ -288,19 +288,19 @@ class TmpOrderAnalysis(models.Model):
 
 class TmpOrderAnalysis2(models.Model):
     id = models.AutoField(primary_key=True)
-    orderid = models.IntegerField(null=True, db_column='orderID', blank=True) # Field name made lowercase.
-    componentid = models.CharField(max_length=255, db_column='componentID', blank=True) # Field name made lowercase.
+    orderid = models.IntegerField(null=True, db_column='orderID', blank=True)  # Field name made lowercase.
+    componentid = models.CharField(max_length=255, db_column='componentID', blank=True)  # Field name made lowercase.
     p = models.CharField(max_length=255, blank=True)
     c = models.CharField(max_length=255, blank=True)
-    orderrequirement = models.IntegerField(null=True, db_column='orderRequirement', blank=True) # Field name made lowercase.
-    splitrequirement = models.IntegerField(null=True, db_column='splitRequirement', blank=True) # Field name made lowercase.
-    otherrequirement = models.IntegerField(null=True, db_column='otherRequirement', blank=True) # Field name made lowercase.
-    defectrequirement = models.IntegerField(null=True, db_column='defectRequirement', blank=True) # Field name made lowercase.
-    actualstorage = models.IntegerField(null=True, db_column='actualStorage', blank=True) # Field name made lowercase.
-    futurestorage = models.IntegerField(null=True, db_column='futureStorage', blank=True) # Field name made lowercase.
-    usedstorage = models.IntegerField(null=True, db_column='usedStorage', blank=True) # Field name made lowercase.
-    fromstorage = models.IntegerField(null=True, db_column='fromStorage', blank=True) # Field name made lowercase.
-    fromproduct = models.IntegerField(null=True, db_column='fromProduct', blank=True) # Field name made lowercase.
+    orderrequirement = models.IntegerField(null=True, db_column='orderRequirement', blank=True)  # Field name made lowercase.
+    splitrequirement = models.IntegerField(null=True, db_column='splitRequirement', blank=True)  # Field name made lowercase.
+    otherrequirement = models.IntegerField(null=True, db_column='otherRequirement', blank=True)  # Field name made lowercase.
+    defectrequirement = models.IntegerField(null=True, db_column='defectRequirement', blank=True)  # Field name made lowercase.
+    actualstorage = models.IntegerField(null=True, db_column='actualStorage', blank=True)  # Field name made lowercase.
+    futurestorage = models.IntegerField(null=True, db_column='futureStorage', blank=True)  # Field name made lowercase.
+    usedstorage = models.IntegerField(null=True, db_column='usedStorage', blank=True)  # Field name made lowercase.
+    fromstorage = models.IntegerField(null=True, db_column='fromStorage', blank=True)  # Field name made lowercase.
+    fromproduct = models.IntegerField(null=True, db_column='fromProduct', blank=True)  # Field name made lowercase.
     n_full_rel = models.IntegerField(null=True, blank=True)
     nl_full_rel = models.IntegerField(null=True, blank=True)
     l_full_rel = models.IntegerField(null=True, blank=True)
@@ -353,6 +353,7 @@ class VItemFullInfo(models.Model):
     remark = models.CharField(max_length=255, blank=True)
     technology_count = models.IntegerField(null=True, blank=True)
     technologys = models.CharField(max_length=1536, blank=True)
+    drawings = models.CharField(max_length=1536, blank=True)
     defective_rate = models.FloatField(null=True, blank=True)
     i_time = models.DateTimeField(null=True, blank=True)
     u_time = models.DateTimeField(null=True, blank=True)

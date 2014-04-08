@@ -152,3 +152,11 @@ other:
 :tmp_order_analysis: 
 :tmp_order_analysis2: 
 :tmp_order_filter: 
+
+
+
+需要生产————分析投料数量
+调整投料数量————人工校对
+顶部分————
+父部品————
+默认可发货显示当前日期（或几天之内）的可发货订单

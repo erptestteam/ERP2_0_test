@@ -121,6 +121,7 @@ class EntRelItemDrawing(models.Model):
     id = models.AutoField(primary_key=True)
     item_number = models.CharField(max_length=255, blank=True)
     type = models.CharField(max_length=255, blank=True)
+    name = models.CharField(max_length=255, blank=True)
     location = models.CharField(max_length=255, blank=True)
     disable = models.IntegerField(null=True, blank=True)
     i_time = models.DateTimeField(null=True, blank=True)
@@ -240,6 +241,13 @@ class EntUser(models.Model):
     class Meta:
         db_table = u'ent_user'
 
+class TemporaryOrderFilter(models.Model):
+    order_id = models.IntegerField(primary_key=True)
+    item_number = models.CharField(max_length=255, blank=True)
+    count = models.IntegerField(null=True, blank=True)
+    class Meta:
+        db_table = u'temporary_order_filter'
+
 class TmpItemFullRel(models.Model):
     id = models.AutoField(primary_key=True)
     t = models.CharField(max_length=255)
@@ -267,19 +275,19 @@ class TmpOrder(models.Model):
 
 class TmpOrderAnalysis(models.Model):
     id = models.AutoField(primary_key=True)
-    orderid = models.IntegerField(null=True, db_column='orderID', blank=True)  # Field name made lowercase.
-    componentid = models.CharField(max_length=255, db_column='componentID', blank=True)  # Field name made lowercase.
+    orderid = models.IntegerField(null=True, db_column='orderID', blank=True) # Field name made lowercase.
+    componentid = models.CharField(max_length=255, db_column='componentID', blank=True) # Field name made lowercase.
     p = models.CharField(max_length=255, blank=True)
     c = models.CharField(max_length=255, blank=True)
-    orderrequirement = models.IntegerField(null=True, db_column='orderRequirement', blank=True)  # Field name made lowercase.
-    splitrequirement = models.IntegerField(null=True, db_column='splitRequirement', blank=True)  # Field name made lowercase.
-    otherrequirement = models.IntegerField(null=True, db_column='otherRequirement', blank=True)  # Field name made lowercase.
-    defectrequirement = models.IntegerField(null=True, db_column='defectRequirement', blank=True)  # Field name made lowercase.
-    actualstorage = models.IntegerField(null=True, db_column='actualStorage', blank=True)  # Field name made lowercase.
-    futurestorage = models.IntegerField(null=True, db_column='futureStorage', blank=True)  # Field name made lowercase.
-    usedstorage = models.IntegerField(null=True, db_column='usedStorage', blank=True)  # Field name made lowercase.
-    fromstorage = models.IntegerField(null=True, db_column='fromStorage', blank=True)  # Field name made lowercase.
-    fromproduct = models.IntegerField(null=True, db_column='fromProduct', blank=True)  # Field name made lowercase.
+    orderrequirement = models.IntegerField(null=True, db_column='orderRequirement', blank=True) # Field name made lowercase.
+    splitrequirement = models.IntegerField(null=True, db_column='splitRequirement', blank=True) # Field name made lowercase.
+    otherrequirement = models.IntegerField(null=True, db_column='otherRequirement', blank=True) # Field name made lowercase.
+    defectrequirement = models.IntegerField(null=True, db_column='defectRequirement', blank=True) # Field name made lowercase.
+    actualstorage = models.IntegerField(null=True, db_column='actualStorage', blank=True) # Field name made lowercase.
+    futurestorage = models.IntegerField(null=True, db_column='futureStorage', blank=True) # Field name made lowercase.
+    usedstorage = models.IntegerField(null=True, db_column='usedStorage', blank=True) # Field name made lowercase.
+    fromstorage = models.IntegerField(null=True, db_column='fromStorage', blank=True) # Field name made lowercase.
+    fromproduct = models.IntegerField(null=True, db_column='fromProduct', blank=True) # Field name made lowercase.
     n_full_rel = models.IntegerField(null=True, blank=True)
     nl_full_rel = models.IntegerField(null=True, blank=True)
     l_full_rel = models.IntegerField(null=True, blank=True)
@@ -288,19 +296,19 @@ class TmpOrderAnalysis(models.Model):
 
 class TmpOrderAnalysis2(models.Model):
     id = models.AutoField(primary_key=True)
-    orderid = models.IntegerField(null=True, db_column='orderID', blank=True)  # Field name made lowercase.
-    componentid = models.CharField(max_length=255, db_column='componentID', blank=True)  # Field name made lowercase.
+    orderid = models.IntegerField(null=True, db_column='orderID', blank=True) # Field name made lowercase.
+    componentid = models.CharField(max_length=255, db_column='componentID', blank=True) # Field name made lowercase.
     p = models.CharField(max_length=255, blank=True)
     c = models.CharField(max_length=255, blank=True)
-    orderrequirement = models.IntegerField(null=True, db_column='orderRequirement', blank=True)  # Field name made lowercase.
-    splitrequirement = models.IntegerField(null=True, db_column='splitRequirement', blank=True)  # Field name made lowercase.
-    otherrequirement = models.IntegerField(null=True, db_column='otherRequirement', blank=True)  # Field name made lowercase.
-    defectrequirement = models.IntegerField(null=True, db_column='defectRequirement', blank=True)  # Field name made lowercase.
-    actualstorage = models.IntegerField(null=True, db_column='actualStorage', blank=True)  # Field name made lowercase.
-    futurestorage = models.IntegerField(null=True, db_column='futureStorage', blank=True)  # Field name made lowercase.
-    usedstorage = models.IntegerField(null=True, db_column='usedStorage', blank=True)  # Field name made lowercase.
-    fromstorage = models.IntegerField(null=True, db_column='fromStorage', blank=True)  # Field name made lowercase.
-    fromproduct = models.IntegerField(null=True, db_column='fromProduct', blank=True)  # Field name made lowercase.
+    orderrequirement = models.IntegerField(null=True, db_column='orderRequirement', blank=True) # Field name made lowercase.
+    splitrequirement = models.IntegerField(null=True, db_column='splitRequirement', blank=True) # Field name made lowercase.
+    otherrequirement = models.IntegerField(null=True, db_column='otherRequirement', blank=True) # Field name made lowercase.
+    defectrequirement = models.IntegerField(null=True, db_column='defectRequirement', blank=True) # Field name made lowercase.
+    actualstorage = models.IntegerField(null=True, db_column='actualStorage', blank=True) # Field name made lowercase.
+    futurestorage = models.IntegerField(null=True, db_column='futureStorage', blank=True) # Field name made lowercase.
+    usedstorage = models.IntegerField(null=True, db_column='usedStorage', blank=True) # Field name made lowercase.
+    fromstorage = models.IntegerField(null=True, db_column='fromStorage', blank=True) # Field name made lowercase.
+    fromproduct = models.IntegerField(null=True, db_column='fromProduct', blank=True) # Field name made lowercase.
     n_full_rel = models.IntegerField(null=True, blank=True)
     nl_full_rel = models.IntegerField(null=True, blank=True)
     l_full_rel = models.IntegerField(null=True, blank=True)
@@ -311,6 +319,38 @@ class TmpOrderFilter(models.Model):
     order_id = models.IntegerField(primary_key=True)
     class Meta:
         db_table = u'tmp_order_filter'
+
+class VFeedingTracking(models.Model):
+    id = models.AutoField(primary_key=True)
+    item_number = models.CharField(max_length=255, blank=True)
+    feeding_count = models.IntegerField(null=True, blank=True)
+    feeding_date = models.DateTimeField(null=True, blank=True)
+    storage_mark = models.IntegerField(null=True, blank=True)
+    feeding_status_now = models.BigIntegerField(null=True, blank=True)
+    feeding_status_all = models.BigIntegerField(null=True, blank=True)
+    i_time = models.DateTimeField(null=True, blank=True)
+    u_time = models.DateTimeField(null=True, blank=True)
+    d_time = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'v_feeding_tracking'
+
+class VItemFullInfo(models.Model):
+    id = models.IntegerField(primary_key=True)
+    number = models.CharField(max_length=255, blank=True)
+    name_en = models.CharField(max_length=255, blank=True)
+    name_cn = models.CharField(max_length=255, blank=True)
+    material = models.CharField(max_length=255, blank=True)
+    type = models.CharField(max_length=9, blank=True)
+    remark = models.CharField(max_length=255, blank=True)
+    technology_count = models.IntegerField(null=True, blank=True)
+    technologys = models.CharField(max_length=1536, blank=True)
+    drawings = models.CharField(max_length=1536, blank=True)
+    defective_rate = models.FloatField(null=True, blank=True)
+    i_time = models.DateTimeField(null=True, blank=True)
+    u_time = models.DateTimeField(null=True, blank=True)
+    d_time = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'v_item_full_info'
 
 class VOrder(models.Model):
     id = models.IntegerField(primary_key=True)
@@ -328,38 +368,6 @@ class VOrder(models.Model):
     d_time = models.DateTimeField(null=True, blank=True)
     class Meta:
         db_table = u'v_order'
-
-class VFeedingTracking(models.Model):
-    id = models.AutoField(primary_key=True)
-    item_number = models.CharField(max_length=255, blank=True)
-    feeding_count = models.IntegerField(null=True, blank=True)
-    feeding_date = models.DateTimeField(null=True, blank=True)
-    storage_mark = models.IntegerField(null=True, blank=True)
-    feeding_status_now = models.DecimalField(null=True, max_digits=33, decimal_places=0, blank=True)
-    feeding_status_all = models.BigIntegerField(null=True, blank=True)
-    i_time = models.DateTimeField(null=True, blank=True)
-    u_time = models.DateTimeField(null=True, blank=True)
-    d_time = models.DateTimeField(null=True, blank=True)
-    class Meta:
-        db_table = u'v_feeding_tracking'
-
-class VItemFullInfo(models.Model):
-    id = models.IntegerField(primary_key=True)
-    number = models.CharField(max_length=255, blank=True)
-    name_en = models.CharField(max_length=255, blank=True)
-    name_cn = models.CharField(max_length=255, blank=True)
-    material = models.CharField(max_length=255, blank=True)
-    type = models.CharField(max_length=9, blank=True)
-    remark = models.CharField(max_length=765, blank=True)
-    technology_count = models.IntegerField(null=True, blank=True)
-    technologys = models.CharField(max_length=1536, blank=True)
-    drawings = models.CharField(max_length=1536, blank=True)
-    defective_rate = models.FloatField(null=True, blank=True)
-    i_time = models.DateTimeField(null=True, blank=True)
-    u_time = models.DateTimeField(null=True, blank=True)
-    d_time = models.DateTimeField(null=True, blank=True)
-    class Meta:
-        db_table = u'v_item_full_info'
 
 class VOrderAnalysis(models.Model):
     analysis_id = models.IntegerField(primary_key=True)
@@ -396,6 +404,21 @@ class VOrderAnalysis2(models.Model):
     class Meta:
         db_table = u'v_order_analysis2'
 
+class VOrderAnalysisGroupByNumber(models.Model):
+    analysis_id = models.IntegerField()
+    order_id = models.IntegerField(null=True, blank=True)
+    order_number = models.CharField(max_length=255, blank=True)
+    order_batch_number = models.CharField(max_length=255, blank=True)
+    c = models.CharField(max_length=255, blank=True)
+    storage = models.IntegerField(null=True, blank=True)
+    order_count = models.IntegerField(null=True, blank=True)
+    order_need = models.BigIntegerField(null=True, blank=True)
+    future_count = models.IntegerField(null=True, blank=True)
+    from_product = models.IntegerField(null=True, blank=True)
+    order_lead_time = models.DateField(null=True, blank=True)
+    class Meta:
+        db_table = u'v_order_analysis_group_by_number'
+
 class VOrderFilterExtract(models.Model):
     order_id = models.IntegerField(primary_key=True)
     number = models.CharField(max_length=255, blank=True)
@@ -406,7 +429,7 @@ class VOrderFilterExtract(models.Model):
     order_lead_time = models.DateField(null=True, blank=True)
     count = models.IntegerField(null=True, blank=True)
     status = models.IntegerField(null=True, blank=True)
-    sys_status = models.CharField(max_length=20, blank=True)
+    sys_status = models.CharField(max_length=60, blank=True)
     i_time = models.DateTimeField(null=True, blank=True)
     u_time = models.DateTimeField(null=True, blank=True)
     d_time = models.DateTimeField(null=True, blank=True)

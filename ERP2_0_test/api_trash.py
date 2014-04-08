@@ -25,7 +25,7 @@ class EntFeedingResource(myModelResources.TrashModelResource):
     class Meta:
         queryset = dbModels.EntFeeding.objects.all().order_by('-u_time', 'id')
         resource_name = 'EntFeeding'
-        allFields = dbModels.EntItem._meta.get_all_field_names()
+        allFields = dbModels.EntFeeding._meta.get_all_field_names()
         authorization = Authorization()
         ordering = allFields
         limit = 100
@@ -38,7 +38,7 @@ class EntFeedingResource(myModelResources.TrashModelResource):
 
 class EntFeedingStatusResource(myModelResources.TrashModelResource):
     class Meta:
-        queryset = dbModels.EntFeedingStatus.objects.all().order_by('-u_time', 'id')
+        queryset = dbModels.EntFeedingStatus.objects.all().order_by('step_rank', 'id')
         resource_name = 'EntFeedingStatus'
         allFields = dbModels.EntFeedingStatus._meta.get_all_field_names()
         authorization = Authorization()
@@ -260,6 +260,19 @@ class EntUserResource(myModelResources.TrashModelResource):
             filtering.setdefault(field, ALL)
         serializer = mySerializers.TimeFormatSerializer()
     
+class TemporaryOrderFilterResource(myModelResources.TrashModelResource):
+    class Meta:
+        queryset = dbModels.TemporaryOrderFilter.objects.all()
+        resource_name = 'TemporaryOrderFilter'
+        allFields = dbModels.TemporaryOrderFilter._meta.get_all_field_names()
+        authorization = Authorization()
+        ordering = allFields
+        limit = 100
+        max_limit = 0
+        filtering = {}
+        for field in allFields:
+            filtering.setdefault(field, ALL)
+        serializer = mySerializers.TimeFormatSerializer()
 
 '''
 class TmpItemFullRelResource(myModelResources.TrashModelResource):
@@ -267,6 +280,21 @@ class TmpItemFullRelResource(myModelResources.TrashModelResource):
         queryset = dbModels.TmpItemFullRel.objects.all()
         resource_name = 'TmpItemFullRel'
         allFields = dbModels.TmpItemFullRel._meta.get_all_field_names()
+        authorization = Authorization()
+        ordering = allFields
+        limit = 100
+        max_limit = 0
+        filtering = {}
+        for field in allFields:
+            filtering.setdefault(field, ALL)
+        serializer = mySerializers.TimeFormatSerializer()
+    
+
+class TmpOrderAnalysisResource(myModelResources.TrashModelResource):
+    class Meta:
+        queryset = dbModels.TmpOrder.objects.all()
+        resource_name = 'TmpOrder'
+        allFields = dbModels.TmpOrder._meta.get_all_field_names()
         authorization = Authorization()
         ordering = allFields
         limit = 100
@@ -292,7 +320,22 @@ class TmpOrderAnalysisResource(myModelResources.TrashModelResource):
         serializer = mySerializers.TimeFormatSerializer()
     
 
-class TmpOrderFilterRelResource(myModelResources.TrashModelResource):
+class TmpOrderAnalysis2Resource(myModelResources.TrashModelResource):
+    class Meta:
+        queryset = dbModels.TmpOrderAnalysis2.objects.all()
+        resource_name = 'TmpOrderAnalysis2'
+        allFields = dbModels.TmpOrderAnalysis2._meta.get_all_field_names()
+        authorization = Authorization()
+        ordering = allFields
+        limit = 100
+        max_limit = 0
+        filtering = {}
+        for field in allFields:
+            filtering.setdefault(field, ALL)
+        serializer = mySerializers.TimeFormatSerializer()
+    
+
+class TmpOrderFilterResource(myModelResources.TrashModelResource):
     class Meta:
         queryset = dbModels.TmpOrderFilter.objects.all()
         resource_name = 'TmpOrderFilter'

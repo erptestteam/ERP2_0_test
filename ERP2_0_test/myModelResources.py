@@ -6,7 +6,15 @@ from tastypie.utils import is_valid_jsonp_callback_value, dict_strip_unicode_key
 from tastypie.exceptions import NotFound, BadRequest, InvalidFilterError, HydrationError, InvalidSortError, ImmediateHttpResponse, Unauthorized
 
 
-class ENTModelResource(ModelResource): 
+class ENTModelResource(ModelResource):
+    '''
+    def apply_filters(self, request, applicable_filters):
+        distinct = request.GET('distinct', False) == 'True'
+        if distinct:
+            return self.get_object_list(request).filter(**applicable_filters).distinct()
+        else:
+            return self.get_object_list(request).filter(**applicable_filters)
+    '''
     def save(self, bundle, skip_errors=False):
         self.is_valid(bundle)
 

@@ -102,8 +102,8 @@ class EntMenu(models.Model):
 
 class EntOrder(models.Model):
     id = models.IntegerField(primary_key=True)
-    number = models.CharField(max_length=255, unique=True, blank=True)
-    batch_number = models.CharField(max_length=255, unique=True, blank=True)
+    number = models.CharField(max_length=255, blank=True)
+    batch_number = models.CharField(max_length=255, blank=True)
     type = models.CharField(max_length=255, blank=True)
     note_date = models.DateTimeField(null=True, blank=True)
     item_number = models.CharField(max_length=255, blank=True)
@@ -157,6 +157,7 @@ class EntRelMachineItem(models.Model):
 class EntRelStorageItem(models.Model):
     id = models.IntegerField(primary_key=True)
     storage_id = models.IntegerField(null=True, blank=True)
+    storage_name = models.CharField(max_length=255, blank=True)
     item_number = models.CharField(max_length=255, blank=True)
     actual_count = models.IntegerField(null=True, blank=True)
     min_count = models.IntegerField(null=True, blank=True)
@@ -414,9 +415,9 @@ class VOrderAnalysisGroupByNumber(models.Model):
     c = models.CharField(max_length=255, blank=True)
     storage = models.IntegerField(null=True, blank=True)
     order_count = models.IntegerField(null=True, blank=True)
-    order_need = models.BigIntegerField(null=True, blank=True)
+    order_need = models.DecimalField(null=True, max_digits=34, decimal_places=0, blank=True)
     future_count = models.IntegerField(null=True, blank=True)
-    from_product = models.IntegerField(null=True, blank=True)
+    from_product = models.DecimalField(null=True, max_digits=33, decimal_places=0, blank=True)
     order_lead_time = models.DateField(null=True, blank=True)
     class Meta:
         db_table = u'v_order_analysis_group_by_number'

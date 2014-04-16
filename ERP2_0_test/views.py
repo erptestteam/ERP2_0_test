@@ -72,7 +72,11 @@ def entItem_del(request, del_id):
 def userDefinedSQL(request, sql):
     cursor = connection.cursor()
     cursor.execute(sql)
-    res = cursor.fetchall()
+    res = ''
+    try:
+        res = cursor.fetchall()
+    except:
+        res = 'no output'
     return HttpResponse(simplejson.dumps(res))
 
 

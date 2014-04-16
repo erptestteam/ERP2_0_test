@@ -6,11 +6,11 @@
 #
 # Also note: You'll have to insert the output of 'django-admin.py sqlcustom [appname]'
 # into your database.
-# python manage.py inspectdb > d:\ERP2_0_test\mysqldbmodels\models_auto.py
+
 from django.db import models
 
 class EntEquipment(models.Model):
-    id = models.AutoField(primary_key=True)
+    id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=255, blank=True)
     remark = models.CharField(max_length=255, blank=True)
     i_time = models.DateTimeField(null=True, blank=True)
@@ -20,7 +20,7 @@ class EntEquipment(models.Model):
         db_table = u'ent_equipment'
 
 class EntFeeding(models.Model):
-    id = models.AutoField(primary_key=True)
+    id = models.IntegerField(primary_key=True)
     item_number = models.CharField(max_length=255, blank=True)
     feeding_count = models.IntegerField(null=True, blank=True)
     feeding_date = models.DateTimeField(null=True, blank=True)
@@ -32,7 +32,7 @@ class EntFeeding(models.Model):
         db_table = u'ent_feeding'
 
 class EntFeedingStatus(models.Model):
-    id = models.AutoField(primary_key=True)
+    id = models.IntegerField(primary_key=True)
     item_number = models.CharField(max_length=255, blank=True)
     feeding_id = models.IntegerField(null=True, blank=True)
     step_tie_id = models.IntegerField(null=True, blank=True)
@@ -46,7 +46,7 @@ class EntFeedingStatus(models.Model):
         db_table = u'ent_feeding_status'
 
 class EntItem(models.Model):
-    id = models.AutoField(primary_key=True)
+    id = models.IntegerField(primary_key=True)
     number = models.CharField(max_length=255, unique=True, blank=True)
     name_en = models.CharField(max_length=255, blank=True)
     name_cn = models.CharField(max_length=255, blank=True)
@@ -61,7 +61,7 @@ class EntItem(models.Model):
         db_table = u'ent_item'
 
 class EntMachine(models.Model):
-    id = models.AutoField(primary_key=True)
+    id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=255, unique=True, blank=True)
     descr = models.CharField(max_length=255, blank=True)
     remark = models.CharField(max_length=255, blank=True)
@@ -72,7 +72,7 @@ class EntMachine(models.Model):
         db_table = u'ent_machine'
 
 class EntMaterial(models.Model):
-    id = models.AutoField(primary_key=True)
+    id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=255, unique=True, blank=True)
     material_type = models.CharField(max_length=33, blank=True)
     length = models.FloatField(null=True, blank=True)
@@ -88,7 +88,7 @@ class EntMaterial(models.Model):
         db_table = u'ent_material'
 
 class EntMenu(models.Model):
-    id = models.AutoField(primary_key=True)
+    id = models.IntegerField(primary_key=True)
     menu_name = models.CharField(max_length=255, blank=True)
     menu_level = models.IntegerField(null=True, blank=True)
     menu_url = models.CharField(max_length=255, blank=True)
@@ -101,7 +101,7 @@ class EntMenu(models.Model):
         db_table = u'ent_menu'
 
 class EntOrder(models.Model):
-    id = models.AutoField(primary_key=True)
+    id = models.IntegerField(primary_key=True)
     number = models.CharField(max_length=255, blank=True)
     batch_number = models.CharField(max_length=255, blank=True)
     type = models.CharField(max_length=255, blank=True)
@@ -118,7 +118,7 @@ class EntOrder(models.Model):
         db_table = u'ent_order'
 
 class EntRelItemDrawing(models.Model):
-    id = models.AutoField(primary_key=True)
+    id = models.IntegerField(primary_key=True)
     item_number = models.CharField(max_length=255, blank=True)
     type = models.CharField(max_length=255, blank=True)
     name = models.CharField(max_length=255, blank=True)
@@ -131,7 +131,7 @@ class EntRelItemDrawing(models.Model):
         db_table = u'ent_rel_item_drawing'
 
 class EntRelItemItem(models.Model):
-    id = models.AutoField(primary_key=True)
+    id = models.IntegerField(primary_key=True)
     p_item_number = models.CharField(max_length=255, blank=True)
     c_item_number = models.CharField(max_length=255, blank=True)
     count = models.IntegerField(null=True, blank=True)
@@ -143,7 +143,7 @@ class EntRelItemItem(models.Model):
         db_table = u'ent_rel_item_item'
 
 class EntRelMachineItem(models.Model):
-    id = models.AutoField(primary_key=True)
+    id = models.IntegerField(primary_key=True)
     machine_id = models.IntegerField(unique=True, null=True, blank=True)
     item_number = models.CharField(max_length=255, blank=True)
     count = models.IntegerField(null=True, blank=True)
@@ -155,7 +155,7 @@ class EntRelMachineItem(models.Model):
         db_table = u'ent_rel_machine_item'
 
 class EntRelStorageItem(models.Model):
-    id = models.AutoField(primary_key=True)
+    id = models.IntegerField(primary_key=True)
     storage_id = models.IntegerField(null=True, blank=True)
     storage_name = models.CharField(max_length=255, blank=True)
     item_number = models.CharField(max_length=255, blank=True)
@@ -172,7 +172,7 @@ class EntRelStorageItem(models.Model):
         db_table = u'ent_rel_storage_item'
 
 class EntRelTechnologyItemEquipment(models.Model):
-    id = models.AutoField(primary_key=True)
+    id = models.IntegerField(primary_key=True)
     item_number = models.CharField(max_length=255, blank=True)
     technology_id = models.IntegerField(null=True, blank=True)
     technology_name = models.CharField(max_length=255, blank=True)
@@ -196,7 +196,7 @@ class EntRelTechnologyItemEquipment(models.Model):
         db_table = u'ent_rel_technology_item_equipment'
 
 class EntStorage(models.Model):
-    id = models.AutoField(primary_key=True)
+    id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=255, blank=True)
     descr = models.CharField(max_length=255, blank=True)
     remark = models.CharField(max_length=255, blank=True)
@@ -207,7 +207,7 @@ class EntStorage(models.Model):
         db_table = u'ent_storage'
 
 class EntStorageChangesRecord(models.Model):
-    id = models.AutoField(primary_key=True)
+    id = models.IntegerField(primary_key=True)
     type = models.CharField(max_length=255, blank=True)
     item_number = models.CharField(max_length=255, blank=True)
     item_type = models.CharField(max_length=255, blank=True)
@@ -222,7 +222,7 @@ class EntStorageChangesRecord(models.Model):
         db_table = u'ent_storage_changes_record'
 
 class EntTechnology(models.Model):
-    id = models.AutoField(primary_key=True)
+    id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=255, blank=True)
     descr = models.CharField(max_length=255, blank=True)
     remark = models.CharField(max_length=255, blank=True)
@@ -233,7 +233,7 @@ class EntTechnology(models.Model):
         db_table = u'ent_technology'
 
 class EntUser(models.Model):
-    id = models.AutoField(primary_key=True)
+    id = models.IntegerField(primary_key=True)
     login_name = models.CharField(max_length=255, blank=True)
     login_pass = models.CharField(max_length=255, blank=True)
     menu_access = models.CharField(max_length=255, blank=True)
@@ -244,14 +244,14 @@ class EntUser(models.Model):
         db_table = u'ent_user'
 
 class TemporaryOrderFilter(models.Model):
-    order_id = models.AutoField(primary_key=True)
+    order_id = models.IntegerField(primary_key=True)
     item_number = models.CharField(max_length=255, blank=True)
     count = models.IntegerField(null=True, blank=True)
     class Meta:
         db_table = u'temporary_order_filter'
 
 class TmpItemFullRel(models.Model):
-    id = models.AutoField(primary_key=True)
+    id = models.IntegerField(primary_key=True)
     t = models.CharField(max_length=255)
     p = models.CharField(max_length=255)
     c = models.CharField(max_length=255)
@@ -263,7 +263,7 @@ class TmpItemFullRel(models.Model):
         db_table = u'tmp_item_full_rel'
 
 class TmpOrder(models.Model):
-    id = models.AutoField(primary_key=True)
+    id = models.IntegerField(primary_key=True)
     number = models.CharField(max_length=255, blank=True)
     batch_number = models.CharField(max_length=255, blank=True)
     type = models.CharField(max_length=255, blank=True)
@@ -276,7 +276,7 @@ class TmpOrder(models.Model):
         db_table = u'tmp_order'
 
 class TmpOrderAnalysis(models.Model):
-    id = models.AutoField(primary_key=True)
+    id = models.IntegerField(primary_key=True)
     orderid = models.IntegerField(null=True, db_column='orderID', blank=True) # Field name made lowercase.
     componentid = models.CharField(max_length=255, db_column='componentID', blank=True) # Field name made lowercase.
     p = models.CharField(max_length=255, blank=True)
@@ -297,7 +297,7 @@ class TmpOrderAnalysis(models.Model):
         db_table = u'tmp_order_analysis'
 
 class TmpOrderAnalysis2(models.Model):
-    id = models.AutoField(primary_key=True)
+    id = models.IntegerField(primary_key=True)
     orderid = models.IntegerField(null=True, db_column='orderID', blank=True) # Field name made lowercase.
     componentid = models.CharField(max_length=255, db_column='componentID', blank=True) # Field name made lowercase.
     p = models.CharField(max_length=255, blank=True)
@@ -323,7 +323,7 @@ class TmpOrderFilter(models.Model):
         db_table = u'tmp_order_filter'
 
 class VFeedingTracking(models.Model):
-    id = models.IntegerField(primary_key=True)
+    id = models.IntegerField()
     item_number = models.CharField(max_length=255, blank=True)
     feeding_count = models.IntegerField(null=True, blank=True)
     feeding_date = models.DateTimeField(null=True, blank=True)
@@ -341,7 +341,7 @@ class VFeedingTracking(models.Model):
         db_table = u'v_feeding_tracking'
 
 class VItemFullInfo(models.Model):
-    id = models.IntegerField(primary_key=True)
+    id = models.IntegerField()
     number = models.CharField(max_length=255, blank=True)
     name_en = models.CharField(max_length=255, blank=True)
     name_cn = models.CharField(max_length=255, blank=True)
@@ -361,7 +361,7 @@ class VItemFullInfo(models.Model):
         db_table = u'v_item_full_info'
 
 class VOrder(models.Model):
-    id = models.IntegerField(primary_key=True)
+    id = models.IntegerField()
     number = models.CharField(max_length=255, blank=True)
     batch_number = models.CharField(max_length=255, blank=True)
     type = models.CharField(max_length=255, blank=True)
@@ -378,7 +378,7 @@ class VOrder(models.Model):
         db_table = u'v_order'
 
 class VOrderAnalysis(models.Model):
-    analysis_id = models.IntegerField(primary_key=True)
+    analysis_id = models.IntegerField()
     order_id = models.IntegerField(null=True, blank=True)
     order_number = models.CharField(max_length=255, blank=True)
     order_batch_number = models.CharField(max_length=255, blank=True)
@@ -396,7 +396,7 @@ class VOrderAnalysis(models.Model):
         db_table = u'v_order_analysis'
 
 class VOrderAnalysis2(models.Model):
-    analysis_id = models.IntegerField(primary_key=True)
+    analysis_id = models.IntegerField()
     order_id = models.IntegerField(null=True, blank=True)
     order_number = models.CharField(max_length=255, blank=True)
     order_batch_number = models.CharField(max_length=255, blank=True)
@@ -413,22 +413,22 @@ class VOrderAnalysis2(models.Model):
         db_table = u'v_order_analysis2'
 
 class VOrderAnalysisGroupByNumber(models.Model):
-    analysis_id = models.IntegerField(primary_key=True)
+    analysis_id = models.IntegerField()
     order_id = models.IntegerField(null=True, blank=True)
     order_number = models.CharField(max_length=255, blank=True)
     order_batch_number = models.CharField(max_length=255, blank=True)
     c = models.CharField(max_length=255, blank=True)
     storage = models.IntegerField(null=True, blank=True)
     order_count = models.IntegerField(null=True, blank=True)
-    order_need = models.IntegerField(null=True, blank=True)
+    order_need = models.DecimalField(null=True, max_digits=34, decimal_places=0, blank=True)
     future_count = models.IntegerField(null=True, blank=True)
-    from_product = models.IntegerField(null=True, blank=True)
+    from_product = models.DecimalField(null=True, max_digits=33, decimal_places=0, blank=True)
     order_lead_time = models.DateField(null=True, blank=True)
     class Meta:
         db_table = u'v_order_analysis_group_by_number'
 
 class VOrderFilterExtract(models.Model):
-    order_id = models.IntegerField(primary_key=True)
+    order_id = models.IntegerField()
     number = models.CharField(max_length=255, blank=True)
     batch_number = models.CharField(max_length=255, blank=True)
     type = models.CharField(max_length=255, blank=True)
@@ -445,7 +445,7 @@ class VOrderFilterExtract(models.Model):
         db_table = u'v_order_filter_extract'
 
 class VOrderFindNewItemOrder(models.Model):
-    id = models.IntegerField(primary_key=True)
+    id = models.IntegerField()
     number = models.CharField(max_length=255, blank=True)
     batch_number = models.CharField(max_length=255, blank=True)
     type = models.CharField(max_length=255, blank=True)

@@ -330,7 +330,7 @@ class VFeedingTracking(models.Model):
     plan_storage_time = models.DateTimeField(null=True, blank=True)
     actual_storage_timeout = models.IntegerField(null=True, blank=True)
     actual_storage_time = models.DateTimeField(null=True, blank=True)
-    actual_storage_count = models.IntegerField(null=True, max_digits=33, decimal_places=0, blank=True)
+    actual_storage_count = models.IntegerField(null=True, blank=True)
     actual_storage_record = models.TextField(blank=True)
     feeding_status_now = models.BigIntegerField(null=True, blank=True)
     feeding_status_all = models.BigIntegerField(null=True, blank=True)

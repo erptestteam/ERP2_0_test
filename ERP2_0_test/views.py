@@ -1,11 +1,13 @@
 # coding=utf-8
 from django.http import HttpResponse
 from django.db import connection
+from django.db import transaction
 from django.utils import simplejson
 from django.core.serializers import json
 import datetime
 from mysqldbmodels import models as dbmodels
 from django.conf import settings
+
 
 
 def index(request):
@@ -69,6 +71,7 @@ def entItem_del(request, del_id):
     return HttpResponse('del entItem %s successful' % (obj_to_del.id))
 
 
+@transaction.commit_on_success
 def userDefinedSQL(request, sql):
     cursor = connection.cursor()
     cursor.execute(sql)

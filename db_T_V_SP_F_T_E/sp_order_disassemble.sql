@@ -37,9 +37,9 @@ BEGIN
         FETCH p_cursor INTO _sub_p,_sub_c,_sub_n,_sub_ns,_sub_l;
         WHILE _found DO
             SET _sub_c_split_req = _sub_ns * shortValue;
-            SET _sub_c_usedStorage = (SELECT `f_get_component_used_storage`(_sub_c));
-            SET _actualStorage = (SELECT `f_get_component_actual_storage`(_sub_c_actual_storage,_useActualStorage));
-            SET _futureStorage = (SELECT `f_get_component_future_storage`(_sub_c_future_storage,_useFutureStorage));
+            SET _sub_c_usedStorage = (SELECT `f_get_component_used_storage`(0,_sub_c));
+            SET _sub_c_actual_storage = (SELECT `f_get_component_actual_storage`(_sub_c,_useActualStorage));
+            SET _sub_c_future_storage = (SELECT `f_get_component_future_storage`(_sub_c,_useFutureStorage));
             #CALL get_component_actual_future_storage3
                 #(_sub_c,_useActualStorage,_useFutureStorage,_sub_c_actual_storage,_sub_c_future_storage);
             IF _sub_c_split_req <= (_sub_c_actual_storage + _sub_c_future_storage - _sub_c_usedStorage) THEN

@@ -47,7 +47,7 @@ class EntFeedingStatus(models.Model):
 
 class EntItem(models.Model):
     id = models.AutoField(primary_key=True)
-    number = models.CharField(max_length=255, unique=True, blank=True)
+    number = models.CharField(max_length=255, blank=True)
     name_en = models.CharField(max_length=255, blank=True)
     name_cn = models.CharField(max_length=255, blank=True)
     material = models.CharField(max_length=255, blank=True)
@@ -459,4 +459,13 @@ class VOrderFindNewItemOrder(models.Model):
     d_time = models.DateTimeField(null=True, blank=True)
     class Meta:
         db_table = u'v_order_find_new_item_order'
+
+class VStorageItemGroupByItem(models.Model):
+    storage_ids = models.TextField(blank=True)
+    storage_names = models.CharField(max_length=1023, blank=True)
+    item_number = models.CharField(primary_key=True, max_length=255, blank=True)
+    sum_actual_count = models.DecimalField(null=True, max_digits=33, decimal_places=0, blank=True)
+    sum_future_count = models.DecimalField(null=True, max_digits=33, decimal_places=0, blank=True)
+    class Meta:
+        db_table = u'v_storage_item_group_by_item'
 

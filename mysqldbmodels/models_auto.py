@@ -47,7 +47,7 @@ class EntFeedingStatus(models.Model):
 
 class EntItem(models.Model):
     id = models.IntegerField(primary_key=True)
-    number = models.CharField(max_length=255, unique=True, blank=True)
+    number = models.CharField(max_length=255, blank=True)
     name_en = models.CharField(max_length=255, blank=True)
     name_cn = models.CharField(max_length=255, blank=True)
     material = models.CharField(max_length=255, blank=True)
@@ -145,7 +145,7 @@ class EntRelItemItem(models.Model):
 class EntRelMachineItem(models.Model):
     id = models.IntegerField(primary_key=True)
     machine_id = models.IntegerField(unique=True, null=True, blank=True)
-    item_number = models.CharField(max_length=255, blank=True)
+    item_number = models.CharField(max_length=255, unique=True, blank=True)
     count = models.IntegerField(null=True, blank=True)
     remark = models.CharField(max_length=255, blank=True)
     i_time = models.DateTimeField(null=True, blank=True)
@@ -243,6 +243,30 @@ class EntUser(models.Model):
     class Meta:
         db_table = u'ent_user'
 
+class ItemTechnology(models.Model):
+    id = models.IntegerField(primary_key=True)
+    item_number = models.CharField(max_length=255, blank=True)
+    technology_id = models.IntegerField(null=True, blank=True)
+    technology_name = models.CharField(max_length=255, blank=True)
+    technology_rank = models.IntegerField(null=True, blank=True)
+    technology_info = models.CharField(max_length=255, blank=True)
+    dimensions = models.CharField(max_length=255, blank=True)
+    equipment_id = models.IntegerField(null=True, blank=True)
+    equipment_name = models.CharField(max_length=255, blank=True)
+    equipment_parm = models.CharField(max_length=255, blank=True)
+    fixture_id = models.IntegerField(null=True, blank=True)
+    fixture_name = models.CharField(max_length=255, blank=True)
+    testtool_id = models.IntegerField(null=True, blank=True)
+    testtool_name = models.CharField(max_length=255, blank=True)
+    testtool_param = models.CharField(max_length=255, blank=True)
+    testtool_control = models.CharField(max_length=255, blank=True)
+    remark = models.CharField(max_length=255, blank=True)
+    i_time = models.DateTimeField(null=True, blank=True)
+    u_time = models.DateTimeField(null=True, blank=True)
+    d_time = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'item_technology'
+
 class TemporaryOrderFilter(models.Model):
     order_id = models.IntegerField(primary_key=True)
     item_number = models.CharField(max_length=255, blank=True)
@@ -330,7 +354,7 @@ class VFeedingTracking(models.Model):
     plan_storage_time = models.DateTimeField(null=True, blank=True)
     actual_storage_timeout = models.IntegerField(null=True, blank=True)
     actual_storage_time = models.DateTimeField(null=True, blank=True)
-    actual_storage_count = models.IntegerField(null=True, max_digits=33, decimal_places=0, blank=True)
+    actual_storage_count = models.IntegerField(null=True, blank=True)
     actual_storage_record = models.TextField(blank=True)
     feeding_status_now = models.BigIntegerField(null=True, blank=True)
     feeding_status_all = models.BigIntegerField(null=True, blank=True)
@@ -420,9 +444,9 @@ class VOrderAnalysisGroupByNumber(models.Model):
     c = models.CharField(max_length=255, blank=True)
     storage = models.IntegerField(null=True, blank=True)
     order_count = models.IntegerField(null=True, blank=True)
-    order_need = models.DecimalField(null=True, max_digits=34, decimal_places=0, blank=True)
+    order_need = models.IntegerField(null=True, blank=True)
     future_count = models.IntegerField(null=True, blank=True)
-    from_product = models.DecimalField(null=True, max_digits=33, decimal_places=0, blank=True)
+    from_product = models.IntegerField(null=True, blank=True)
     order_lead_time = models.DateField(null=True, blank=True)
     class Meta:
         db_table = u'v_order_analysis_group_by_number'
@@ -459,4 +483,13 @@ class VOrderFindNewItemOrder(models.Model):
     d_time = models.DateTimeField(null=True, blank=True)
     class Meta:
         db_table = u'v_order_find_new_item_order'
+
+class VStorageItemGroupByItem(models.Model):
+    storage_ids = models.TextField(blank=True)
+    storage_names = models.CharField(max_length=1023, blank=True)
+    item_number = models.CharField(max_length=255, blank=True)
+    sum_actual_count = models.DecimalField(null=True, max_digits=33, decimal_places=0, blank=True)
+    sum_future_count = models.DecimalField(null=True, max_digits=33, decimal_places=0, blank=True)
+    class Meta:
+        db_table = u'v_storage_item_group_by_item'
 

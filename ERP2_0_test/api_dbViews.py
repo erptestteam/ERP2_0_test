@@ -125,3 +125,17 @@ class VOrderFindNewItemOrderResource(ModelResource):
             filtering.setdefault(field, ALL)
         serializer = mySerializers.TimeFormatSerializer()
     
+
+class VStorageItemGroupByItemResource(ModelResource):
+    class Meta:
+        queryset = dbModels.VStorageItemGroupByItem.objects.all()
+        resource_name = 'VStorageItemGroupByItem'
+        allFields = dbModels.VStorageItemGroupByItem._meta.get_all_field_names()
+        authorization = Authorization()
+        ordering = allFields
+        limit = 100
+        max_limit = 0
+        filtering = {}
+        for field in allFields:
+            filtering.setdefault(field, ALL)
+        serializer = mySerializers.TimeFormatSerializer()

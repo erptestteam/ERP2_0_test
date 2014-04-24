@@ -46,6 +46,7 @@ v1_api.register(api_dbViews.VOrderAnalysis2Resource())
 v1_api.register(api_dbViews.VOrderAnalysisGroupByNumberResource())
 v1_api.register(api_dbViews.VOrderFilterExtractResource())
 v1_api.register(api_dbViews.VOrderFindNewItemOrderResource())
+v1_api.register(api_dbViews.VStorageItemGroupByItemResource())
 
 trash_v1_api = Api(api_name='v1')
 trash_v1_api.register(api_trash.EntEquimentResource())

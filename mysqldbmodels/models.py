@@ -164,7 +164,8 @@ class EntRelStorageItem(models.Model):
     lock_count = models.IntegerField(null=True, blank=True)
     future_count = models.IntegerField(null=True, blank=True)
     audit_time = models.DateTimeField(null=True, blank=True)
-    type = models.CharField(max_length=255, blank=True)
+    type = models.IntegerField(null=True, blank=True)
+    type_info = models.CharField(max_length=255, blank=True)
     i_time = models.DateTimeField(null=True, blank=True)
     u_time = models.DateTimeField(null=True, blank=True)
     d_time = models.DateTimeField(null=True, blank=True)
@@ -243,6 +244,30 @@ class EntUser(models.Model):
     class Meta:
         db_table = u'ent_user'
 
+class ItemTechnology(models.Model):
+    id = models.AutoField(primary_key=True)
+    item_number = models.CharField(max_length=255, blank=True)
+    technology_id = models.IntegerField(null=True, blank=True)
+    technology_name = models.CharField(max_length=255, blank=True)
+    technology_rank = models.IntegerField(null=True, blank=True)
+    technology_info = models.CharField(max_length=255, blank=True)
+    dimensions = models.CharField(max_length=255, blank=True)
+    equipment_id = models.IntegerField(null=True, blank=True)
+    equipment_name = models.CharField(max_length=255, blank=True)
+    equipment_parm = models.CharField(max_length=255, blank=True)
+    fixture_id = models.IntegerField(null=True, blank=True)
+    fixture_name = models.CharField(max_length=255, blank=True)
+    testtool_id = models.IntegerField(null=True, blank=True)
+    testtool_name = models.CharField(max_length=255, blank=True)
+    testtool_param = models.CharField(max_length=255, blank=True)
+    testtool_control = models.CharField(max_length=255, blank=True)
+    remark = models.CharField(max_length=255, blank=True)
+    i_time = models.DateTimeField(null=True, blank=True)
+    u_time = models.DateTimeField(null=True, blank=True)
+    d_time = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'item_technology'
+
 class TemporaryOrderFilter(models.Model):
     order_id = models.AutoField(primary_key=True)
     item_number = models.CharField(max_length=255, blank=True)
@@ -288,6 +313,7 @@ class TmpOrderAnalysis(models.Model):
     actualstorage = models.IntegerField(null=True, db_column='actualStorage', blank=True) # Field name made lowercase.
     futurestorage = models.IntegerField(null=True, db_column='futureStorage', blank=True) # Field name made lowercase.
     usedstorage = models.IntegerField(null=True, db_column='usedStorage', blank=True) # Field name made lowercase.
+    halfstorage = models.IntegerField(null=True, db_column='halfStorage', blank=True) # Field name made lowercase.
     fromstorage = models.IntegerField(null=True, db_column='fromStorage', blank=True) # Field name made lowercase.
     fromproduct = models.IntegerField(null=True, db_column='fromProduct', blank=True) # Field name made lowercase.
     n_full_rel = models.IntegerField(null=True, blank=True)
@@ -309,6 +335,7 @@ class TmpOrderAnalysis2(models.Model):
     actualstorage = models.IntegerField(null=True, db_column='actualStorage', blank=True) # Field name made lowercase.
     futurestorage = models.IntegerField(null=True, db_column='futureStorage', blank=True) # Field name made lowercase.
     usedstorage = models.IntegerField(null=True, db_column='usedStorage', blank=True) # Field name made lowercase.
+    halfstorage = models.IntegerField(null=True, db_column='halfStorage', blank=True) # Field name made lowercase.
     fromstorage = models.IntegerField(null=True, db_column='fromStorage', blank=True) # Field name made lowercase.
     fromproduct = models.IntegerField(null=True, db_column='fromProduct', blank=True) # Field name made lowercase.
     n_full_rel = models.IntegerField(null=True, blank=True)
@@ -318,7 +345,7 @@ class TmpOrderAnalysis2(models.Model):
         db_table = u'tmp_order_analysis2'
 
 class TmpOrderFilter(models.Model):
-    order_id = models.IntegerField(primary_key=True)
+    order_id = models.AutoField(primary_key=True)
     class Meta:
         db_table = u'tmp_order_filter'
 
@@ -389,6 +416,8 @@ class VOrderAnalysis(models.Model):
     storage = models.IntegerField(null=True, blank=True)
     order_count = models.IntegerField(null=True, blank=True)
     order_need = models.BigIntegerField(null=True, blank=True)
+    used_storage = models.IntegerField(null=True, blank=True)
+    half_storage = models.IntegerField(null=True, blank=True)
     future_count = models.IntegerField(null=True, blank=True)
     from_product = models.IntegerField(null=True, blank=True)
     order_lead_time = models.DateField(null=True, blank=True)
@@ -406,6 +435,7 @@ class VOrderAnalysis2(models.Model):
     actual_storage = models.IntegerField(null=True, blank=True)
     future_storage = models.IntegerField(null=True, blank=True)
     used_storage = models.IntegerField(null=True, blank=True)
+    half_storage = models.IntegerField(null=True, blank=True)
     from_storage = models.IntegerField(null=True, blank=True)
     from_product = models.IntegerField(null=True, blank=True)
     forecast = models.IntegerField(null=True, blank=True)
@@ -465,6 +495,8 @@ class VStorageItemGroupByItem(models.Model):
     storage_names = models.CharField(max_length=1023, blank=True)
     item_number = models.CharField(primary_key=True, max_length=255, blank=True)
     sum_actual_count = models.DecimalField(null=True, max_digits=33, decimal_places=0, blank=True)
+    sum_half_storage = models.IntegerField(null=True, blank=True)
+    sum_comp_storage = models.DecimalField(null=True, max_digits=34, decimal_places=0, blank=True)
     sum_future_count = models.DecimalField(null=True, max_digits=33, decimal_places=0, blank=True)
     class Meta:
         db_table = u'v_storage_item_group_by_item'

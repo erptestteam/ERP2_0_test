@@ -144,7 +144,7 @@ class EntRelItemItem(models.Model):
 
 class EntRelMachineItem(models.Model):
     id = models.AutoField(primary_key=True)
-    machine_id = models.IntegerField(unique=True, null=True, blank=True)
+    machine_id = models.IntegerField(null=True, blank=True)
     item_number = models.CharField(max_length=255, blank=True)
     count = models.IntegerField(null=True, blank=True)
     remark = models.CharField(max_length=255, blank=True)
@@ -268,6 +268,24 @@ class ItemTechnology(models.Model):
     class Meta:
         db_table = u'item_technology'
 
+class StorageGroupBy(models.Model):
+    id = models.AutoField(primary_key=True)
+    storage_id = models.IntegerField(null=True, blank=True)
+    storage_name = models.CharField(max_length=255, blank=True)
+    item_number = models.CharField(max_length=255, blank=True)
+    actual_count = models.IntegerField(null=True, blank=True)
+    min_count = models.IntegerField(null=True, blank=True)
+    lock_count = models.IntegerField(null=True, blank=True)
+    future_count = models.IntegerField(null=True, blank=True)
+    audit_time = models.DateTimeField(null=True, blank=True)
+    type = models.IntegerField(null=True, blank=True)
+    type_info = models.CharField(max_length=255, blank=True)
+    i_time = models.DateTimeField(null=True, blank=True)
+    u_time = models.DateTimeField(null=True, blank=True)
+    d_time = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'storage_group_by'
+
 class TemporaryOrderFilter(models.Model):
     order_id = models.AutoField(primary_key=True)
     item_number = models.CharField(max_length=255, blank=True)
@@ -377,7 +395,10 @@ class VItemFullInfo(models.Model):
     remark = models.CharField(max_length=255, blank=True)
     technology_count = models.IntegerField(null=True, blank=True)
     technologys = models.CharField(max_length=1536, blank=True)
+    machines = models.CharField(max_length=3072, blank=True)
     actual_storage = models.IntegerField(null=True, blank=True)
+    sum_half_storage = models.IntegerField(null=True, blank=True)
+    sum_comp_storage = models.BigIntegerField(null=True, blank=True)
     future_storage = models.IntegerField(null=True, blank=True)
     drawings = models.CharField(max_length=1536, blank=True)
     defective_rate = models.FloatField(null=True, blank=True)
@@ -494,10 +515,10 @@ class VStorageItemGroupByItem(models.Model):
     storage_ids = models.TextField(blank=True)
     storage_names = models.CharField(max_length=1023, blank=True)
     item_number = models.CharField(primary_key=True, max_length=255, blank=True)
-    sum_actual_count = models.DecimalField(null=True, max_digits=33, decimal_places=0, blank=True)
+    sum_actual_count = models.IntegerField(null=True, blank=True)
     sum_half_storage = models.IntegerField(null=True, blank=True)
-    sum_comp_storage = models.DecimalField(null=True, max_digits=34, decimal_places=0, blank=True)
-    sum_future_count = models.DecimalField(null=True, max_digits=33, decimal_places=0, blank=True)
+    sum_comp_storage = models.IntegerField(null=True, blank=True)
+    sum_future_count = models.IntegerField(null=True, blank=True)
     class Meta:
         db_table = u'v_storage_item_group_by_item'
 

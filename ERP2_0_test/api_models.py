@@ -260,6 +260,35 @@ class EntUserResource(myModelResources.ENTModelResource):
             filtering.setdefault(field, ALL)
         serializer = mySerializers.TimeFormatSerializer()
     
+class ItemTechnologyResource(myModelResources.TMPModelResource):
+    class Meta:
+        queryset = dbModels.ItemTechnology.objects.all()
+        resource_name = 'ItemTechnology'
+        allFields = dbModels.ItemTechnology._meta.get_all_field_names()
+        authorization = Authorization()
+        ordering = allFields
+        limit = 100
+        max_limit = 0
+        filtering = {}
+        for field in allFields:
+            filtering.setdefault(field, ALL)
+        serializer = mySerializers.TimeFormatSerializer()
+    
+class StorageGroupByResource(myModelResources.TMPModelResource):
+    class Meta:
+        queryset = dbModels.StorageGroupBy.objects.all()
+        resource_name = 'StorageGroupBy'
+        allFields = dbModels.StorageGroupBy._meta.get_all_field_names()
+        authorization = Authorization()
+        ordering = allFields
+        limit = 100
+        max_limit = 0
+        filtering = {}
+        for field in allFields:
+            filtering.setdefault(field, ALL)
+        serializer = mySerializers.TimeFormatSerializer()
+    
+
 class TemporaryOrderFilterResource(myModelResources.TMPModelResource):
     class Meta:
         queryset = dbModels.TemporaryOrderFilter.objects.all()

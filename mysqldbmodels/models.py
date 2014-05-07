@@ -380,6 +380,7 @@ class VFeedingTracking(models.Model):
     actual_storage_record = models.TextField(blank=True)
     feeding_status_now = models.BigIntegerField(null=True, blank=True)
     feeding_status_all = models.BigIntegerField(null=True, blank=True)
+    remark = models.CharField(max_length=255, blank=True)
     i_time = models.DateTimeField(null=True, blank=True)
     u_time = models.DateTimeField(null=True, blank=True)
     d_time = models.DateTimeField(null=True, blank=True)

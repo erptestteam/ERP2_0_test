@@ -25,6 +25,7 @@ class EntFeeding(models.Model):
     feeding_count = models.IntegerField(null=True, blank=True)
     feeding_date = models.DateTimeField(null=True, blank=True)
     plan_storage_time = models.DateTimeField(null=True, blank=True)
+    remark = models.CharField(max_length=255, blank=True)
     i_time = models.DateTimeField(null=True, blank=True)
     u_time = models.DateTimeField(null=True, blank=True)
     d_time = models.DateTimeField(null=True, blank=True)
@@ -398,7 +399,7 @@ class VItemFullInfo(models.Model):
     machines = models.CharField(max_length=3072, blank=True)
     actual_storage = models.IntegerField(null=True, blank=True)
     sum_half_storage = models.IntegerField(null=True, blank=True)
-    sum_comp_storage = models.BigIntegerField(null=True, blank=True)
+    sum_comp_storage = models.IntegerField(null=True, blank=True)
     future_storage = models.IntegerField(null=True, blank=True)
     drawings = models.CharField(max_length=1536, blank=True)
     defective_rate = models.FloatField(null=True, blank=True)
@@ -407,6 +408,21 @@ class VItemFullInfo(models.Model):
     d_time = models.DateTimeField(null=True, blank=True)
     class Meta:
         db_table = u'v_item_full_info'
+
+class VItemFullStorage(models.Model):
+    id = models.IntegerField(primary_key=True)
+    t = models.CharField(max_length=255)
+    p = models.CharField(max_length=255)
+    c = models.CharField(max_length=255)
+    n = models.IntegerField(null=True, blank=True)
+    n1 = models.IntegerField(null=True, blank=True)
+    l = models.IntegerField(null=True, blank=True)
+    leaf = models.IntegerField(null=True, blank=True)
+    comp_storage = models.IntegerField(null=True, blank=True)
+    half_storage = models.IntegerField(null=True, blank=True)
+    future_storage = models.IntegerField(null=True, blank=True)
+    class Meta:
+        db_table = u'v_item_full_storage'
 
 class VOrder(models.Model):
     id = models.IntegerField(primary_key=True)
@@ -512,7 +528,7 @@ class VOrderFindNewItemOrder(models.Model):
         db_table = u'v_order_find_new_item_order'
 
 class VStorageItemGroupByItem(models.Model):
-    storage_ids = models.TextField(blank=True)
+    storage_ids = models.CharField()
     storage_names = models.CharField(max_length=1023, blank=True)
     item_number = models.CharField(primary_key=True, max_length=255, blank=True)
     sum_actual_count = models.IntegerField(null=True, blank=True)

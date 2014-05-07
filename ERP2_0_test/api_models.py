@@ -260,9 +260,10 @@ class EntUserResource(myModelResources.ENTModelResource):
             filtering.setdefault(field, ALL)
         serializer = mySerializers.TimeFormatSerializer()
     
-class ItemTechnologyResource(myModelResources.TMPModelResource):
+
+class ItemTechnologyResource(myModelResources.ENTModelResource):
     class Meta:
-        queryset = dbModels.ItemTechnology.objects.all()
+        queryset = dbModels.ItemTechnology.objects.all().order_by('-u_time', 'id')
         resource_name = 'ItemTechnology'
         allFields = dbModels.ItemTechnology._meta.get_all_field_names()
         authorization = Authorization()
@@ -274,7 +275,8 @@ class ItemTechnologyResource(myModelResources.TMPModelResource):
             filtering.setdefault(field, ALL)
         serializer = mySerializers.TimeFormatSerializer()
     
-class StorageGroupByResource(myModelResources.TMPModelResource):
+
+class StorageGroupByResource(myModelResources.ENTModelResource):
     class Meta:
         queryset = dbModels.StorageGroupBy.objects.all()
         resource_name = 'StorageGroupBy'

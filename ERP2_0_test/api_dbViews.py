@@ -36,6 +36,21 @@ class VItemFullInfoResource(ModelResource):
         serializer = mySerializers.TimeFormatSerializer()
     
 
+class VItemFullStorageResource(ModelResource):
+    class Meta:
+        queryset = dbModels.VItemFullStorage.objects.all()
+        resource_name = 'VItemFullStorage'
+        allFields = dbModels.VItemFullStorage._meta.get_all_field_names()
+        authorization = Authorization()
+        ordering = allFields
+        limit = 100
+        max_limit = 0
+        filtering = {}
+        for field in allFields:
+            filtering.setdefault(field, ALL)
+        serializer = mySerializers.TimeFormatSerializer()
+    
+
 class VOrderResource(ModelResource):
     class Meta:
         queryset = dbModels.VOrder.objects.all()

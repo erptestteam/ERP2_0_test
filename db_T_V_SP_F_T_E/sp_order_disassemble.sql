@@ -18,6 +18,7 @@ BEGIN
     DECLARE _sub_n INT;
     DECLARE _sub_ns INT;
     DECLARE _sub_l INT;
+    DECLARE _sub_leaf INT;
     DECLARE _sub_c_split_req INT;
     DECLARE _sub_c_usedStorage INT;
     DECLARE _sub_c_actual_storage INT;
@@ -25,7 +26,7 @@ BEGIN
     DECLARE _sub_c_from_storage INT;
     DECLARE _sub_c_from_product INT;
     DECLARE _found BOOLEAN DEFAULT TRUE;
-    DECLARE p_cursor CURSOR FOR SELECT p,c,n,n1,l FROM tmp_item_full_rel WHERE t = _componentID;
+    DECLARE p_cursor CURSOR FOR SELECT p,c,n,n1,l,leaf FROM tmp_item_full_rel WHERE t = _componentID;
     DECLARE CONTINUE HANDLER FOR NOT FOUND SET _found = FALSE;
     
     SET parrentLevel = 0;
@@ -34,7 +35,7 @@ BEGIN
     WHERE orderID = _orderID;
     IF _found THEN
         OPEN p_cursor;
-        FETCH p_cursor INTO _sub_p,_sub_c,_sub_n,_sub_ns,_sub_l;
+        FETCH p_cursor INTO _sub_p,_sub_c,_sub_n,_sub_ns,_sub_l,_sub_leaf;
         WHILE _found DO
             SET _sub_c_split_req = _sub_ns * shortValue;
             SET _sub_c_usedStorage = (SELECT `f_get_component_used_storage`(0,_sub_c));
@@ -52,12 +53,12 @@ BEGIN
             INSERT INTO tmp_order_analysis (orderID,componentID,p,c,
             orderRequirement,splitRequirement,otherRequirement,defectRequirement,
             actualStorage,futureStorage,usedStorage,fromStorage,fromProduct,
-            n_full_rel,nl_full_rel,l_full_rel)
+            n_full_rel,nl_full_rel,l_full_rel,leaf_full_rel)
             VALUES (_orderID,_componentID,_sub_p,_sub_c,
             0,_sub_c_split_req,0,(SELECT f_get_component_defective_requirement(_sub_c,_sub_c_split_req)),
             _sub_c_actual_storage,_sub_c_future_storage,_sub_c_usedStorage,_sub_c_from_storage,_sub_c_from_product,
-            _sub_n,_sub_ns,_sub_l);
-            FETCH p_cursor INTO _sub_p,_sub_c,_sub_n,_sub_ns,_sub_l;
+            _sub_n,_sub_ns,_sub_l,_sub_leaf);
+            FETCH p_cursor INTO _sub_p,_sub_c,_sub_n,_sub_ns,_sub_l,_sub_leaf;
         END WHILE;
         CLOSE p_cursor;
     END IF;

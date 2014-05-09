@@ -339,6 +339,7 @@ class TmpOrderAnalysis(models.Model):
     n_full_rel = models.IntegerField(null=True, blank=True)
     nl_full_rel = models.IntegerField(null=True, blank=True)
     l_full_rel = models.IntegerField(null=True, blank=True)
+    leaf_full_rel = models.IntegerField(null=True, blank=True)
     class Meta:
         db_table = u'tmp_order_analysis'
 

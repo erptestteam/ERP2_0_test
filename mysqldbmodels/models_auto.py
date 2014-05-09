@@ -339,6 +339,7 @@ class TmpOrderAnalysis(models.Model):
     n_full_rel = models.IntegerField(null=True, blank=True)
     nl_full_rel = models.IntegerField(null=True, blank=True)
     l_full_rel = models.IntegerField(null=True, blank=True)
+    leaf_full_rel = models.IntegerField(null=True, blank=True)
     class Meta:
         db_table = u'tmp_order_analysis'
 
@@ -377,7 +378,7 @@ class VFeedingTracking(models.Model):
     plan_storage_time = models.DateTimeField(null=True, blank=True)
     actual_storage_timeout = models.IntegerField(null=True, blank=True)
     actual_storage_time = models.DateTimeField(null=True, blank=True)
-    actual_storage_count = models.DecimalField(null=True, max_digits=33, decimal_places=0, blank=True)
+    actual_storage_count = models.IntegerField(null=True, blank=True)
     actual_storage_record = models.TextField(blank=True)
     feeding_status_now = models.BigIntegerField(null=True, blank=True)
     feeding_status_all = models.BigIntegerField(null=True, blank=True)
@@ -535,11 +536,11 @@ class VOrderFindNewItemOrder(models.Model):
 class VStorageItemGroupByItem(models.Model):
     storage_ids = models.CharField()
     storage_names = models.CharField(max_length=1023, blank=True)
-    item_number = models.CharField(primary_key=True, max_length=255, blank=True)
-    sum_actual_count = models.IntegerField(null=True, blank=True)
+    item_number = models.CharField(max_length=255, blank=True)
+    sum_actual_count = models.IntegerField()
     sum_half_storage = models.IntegerField(null=True, blank=True)
-    sum_comp_storage = models.IntegerField(null=True, blank=True)
-    sum_future_count = models.IntegerField(null=True, blank=True)
+    sum_comp_storage = models.DecimalField(null=True, max_digits=34, decimal_places=0, blank=True)
+    sum_future_count = models.DecimalField(null=True, max_digits=33, decimal_places=0, blank=True)
     class Meta:
         db_table = u'v_storage_item_group_by_item'
 

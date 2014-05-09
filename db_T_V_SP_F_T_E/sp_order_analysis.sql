@@ -4,7 +4,7 @@ USE `erp`$$
 
 DROP PROCEDURE IF EXISTS `sp_order_analysis`$$
 
-CREATE DEFINER=`root`@`%` PROCEDURE `sp_order_analysis`(IN _useExpand INT,IN _useActualStorage INT,IN _useFutureStorage INT)
+CREATE DEFINER=`root`@`%` PROCEDURE `sp_order_analysis`(IN _mergeOrder INT,IN _useExpand INT,IN _useActualStorage INT,IN _useFutureStorage INT)
 BEGIN
     DECLARE _orderID INT(11);
     DECLARE _componentID VARCHAR(255);
@@ -24,7 +24,15 @@ BEGIN
     #drop TABLE if EXISTS temporary_order_filter;
     #create temporary table temporary_order_filter as select order_id,item_number,COUNT  from `v_order_filter_extract`;
     TRUNCATE temporary_order_filter;
-    INSERT INTO temporary_order_filter SELECT order_id,item_number,COUNT FROM v_order_filter_extract;
+    IF _mergeOrder = 0 THEN
+        INSERT INTO temporary_order_filter SELECT order_id,item_number,COUNT FROM v_order_filter_extract;
+    ELSEIF _mergeOrder =1 THEN
+        INSERT INTO temporary_order_filter SELECT NULL,item_number,g_count FROM 
+        (SELECT NULL,item_number,SUM(COUNT) AS g_count,MIN(order_lead_time) AS g_lead_time 
+        FROM v_order_filter_extract AS p1 GROUP BY item_number) AS p2
+        ORDER BY g_lead_time;
+        #select null,item_number,sum(count) from v_order_filter_extract group by item_number;
+    END IF;
     IF _useExpand = 0 THEN
         TRUNCATE tmp_order_analysis;
     ELSEIF _useExpand = 1 THEN
@@ -64,6 +72,11 @@ BEGIN
         FETCH p_cursor INTO _orderID,_componentID,_orderRequirement;
     END WHILE ;
     CLOSE p_cursor;
+    IF _useExpand = 0 THEN
+         CALL sp_analysis_update_halfStorage();
+    ELSEIF _useExpand = 1 THEN
+         CALL sp_analysis_update_halfStorage2();
+    END IF;
 END$$
 
 DELIMITER ;
